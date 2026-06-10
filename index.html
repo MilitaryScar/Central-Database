@@ -22,7 +22,7 @@
 
         /* --- TACTICAL NIGHT MODE (Red/Black Stealth) --- */
         body.tactical-mode {
-            background: #030000 !important; /* Kills the bright wallpaper */
+            background: #030000 !important; 
             --theme: #ff3333;
             --theme-bright: #ff6666;
             --theme-dim: #800000;
@@ -34,9 +34,7 @@
         }
 
         body.tactical-mode .screen {
-            backdrop-filter: none;
-            border-color: #330000;
-            box-shadow: inset 0 0 100px rgba(0,0,0,1);
+            backdrop-filter: none; border-color: #330000; box-shadow: inset 0 0 100px rgba(0,0,0,1);
         }
         body.tactical-mode .terminal-panel {
             background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,51,51,0.03) 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255,51,51,0.03) 20px);
@@ -51,41 +49,27 @@
 
         body {
             background: #000 url('Roxy Wallpaper.png') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--theme);
-            font-family: 'Inter', sans-serif;
-            margin: 0; padding: 20px;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow: hidden;
-            user-select: none;
-            transition: background 0.5s ease;
+            background-size: cover; color: var(--theme); font-family: 'Inter', sans-serif;
+            margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow: hidden; user-select: none; transition: background 0.5s ease;
         }
 
         .monitor {
-            background: var(--bezel);
-            padding: 20px;
-            border-radius: 20px;
-            border: 2px solid #222630;
+            background: var(--bezel); padding: 20px; border-radius: 20px; border: 2px solid #222630;
             box-shadow: 0 40px 100px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.03), 0 0 0 8px #08090a;
-            width: 1500px;
-            max-width: 98vw;
-            position: relative;
-            transition: background 0.5s ease;
+            width: 1500px; max-width: 98vw; position: relative; transition: background 0.5s ease;
         }
 
         .screen {
-            background-color: var(--bg-deep);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 42, 133, 0.2);
-            border-radius: 12px;
-            height: 88vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
-            transition: all 0.5s ease;
+            background-color: var(--bg-deep); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 42, 133, 0.2); border-radius: 12px; height: 88vh;
+            display: flex; flex-direction: column; position: relative; overflow: hidden;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8); transition: all 0.5s ease;
+        }
+
+        .screen::after {
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            z-index: 100; pointer-events: none; box-shadow: inset 0 0 60px rgba(0, 216, 255, 0.05);
         }
 
         .ui-container { display: flex; flex: 1; overflow: hidden; position: relative; z-index: 5; }
@@ -103,8 +87,7 @@
         #bootLoader {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: #050103; z-index: 3000; padding: 40px 50px; color: var(--theme);
-            font-family: 'Share Tech Mono', monospace;
-            display: flex; flex-direction: column; gap: 4px; font-size: 1rem;
+            font-family: 'Share Tech Mono', monospace; display: flex; flex-direction: column; gap: 4px; font-size: 1rem;
             box-sizing: border-box; overflow-y: hidden; text-shadow: 0 0 5px var(--theme);
         }
 
@@ -128,9 +111,7 @@
         }
 
         .terminal-panel {
-            border: 1px solid var(--theme-ghost); padding: 25px; 
-            background: var(--ui-bg);
-            border-radius: 12px;
+            border: 1px solid var(--theme-ghost); padding: 25px; background: var(--ui-bg); border-radius: 12px;
             position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: border-color 0.2s, box-shadow 0.2s, background 0.5s ease;
         }
         .terminal-panel:focus-within { border-color: var(--theme-bright); box-shadow: 0 10px 40px rgba(255, 42, 133, 0.15); }
@@ -147,9 +128,7 @@
             padding: 12px 16px; width: 100%; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 6px 6px 0 0;
         }
-        .data-input:focus {
-            outline: none; border-bottom-color: var(--theme-bright); background: rgba(255, 42, 133, 0.05); 
-        }
+        .data-input:focus { outline: none; border-bottom-color: var(--theme-bright); background: rgba(255, 42, 133, 0.05); }
         .data-input::placeholder { color: rgba(255,255,255,0.3); }
 
         .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 10px; padding-top: 10px; }
@@ -167,14 +146,12 @@
             border: 1px solid var(--theme-dim); background: rgba(0,0,0,0.5); cursor: pointer; position: relative; transition: 0.2s;
         }
         input[type="checkbox"]:checked { border-color: var(--theme-bright); background: var(--theme); box-shadow: 0 0 10px var(--theme); }
-        input[type="checkbox"]:checked::after { 
-            content: "✓"; color: #000; position: absolute; top: -2px; left: 2px; font-size: 14px; font-weight: 900; 
-        }
+        input[type="checkbox"]:checked::after { content: "✓"; color: #000; position: absolute; top: -2px; left: 2px; font-size: 14px; font-weight: 900; }
 
-        .tab-bar { display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .tab-bar { display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; overflow-x:auto;}
         .tab { 
             padding: 10px 24px; color: #aaa; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
-            background: rgba(0,0,0,0.4); border-radius: 30px; border: 1px solid transparent; letter-spacing: 1px;
+            background: rgba(0,0,0,0.4); border-radius: 30px; border: 1px solid transparent; letter-spacing: 1px; white-space:nowrap;
         }
         .tab:hover { color: #fff; background: rgba(255, 42, 133, 0.1); }
         .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px var(--theme-ghost); }
@@ -198,32 +175,31 @@
         
         .printer-container {
             width: 100%; height: 450px; position: relative;
-            background: linear-gradient(to bottom, #111 0%, #050505 100%); 
-            border: 1px solid #333; border-radius: 12px; display: none; overflow: hidden;
-            box-shadow: inset 0 30px 40px rgba(0,0,0,0.9), 0 10px 30px rgba(0,0,0,0.8);
-            perspective: 1000px; margin-top: 20px; margin-bottom: 20px;
+            background: linear-gradient(to bottom, #111 0%, #050505 100%); border: 1px solid #333; border-radius: 12px; display: none; overflow: hidden;
+            box-shadow: inset 0 30px 40px rgba(0,0,0,0.9), 0 10px 30px rgba(0,0,0,0.8); perspective: 1000px; margin-top: 20px; margin-bottom: 20px;
         }
         .printer-container::after {
             content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 25px;
             background: linear-gradient(to bottom, #222, #000); border-top: 1px solid #444; box-shadow: 0 -10px 20px rgba(0,0,0,0.9); z-index: 10;
         }
         
-        .paper-wrapper { 
-            height: 100%; overflow-y: auto; padding: 20px 40px 60px 40px; box-sizing: border-box; 
-            transform-origin: bottom center; transform: rotateX(15deg); scrollbar-width: none;
-        }
+        .paper-wrapper { height: 100%; overflow-y: auto; padding: 20px 40px 60px 40px; box-sizing: border-box; transform-origin: bottom center; transform: rotateX(15deg); scrollbar-width: none; }
         .paper-wrapper::-webkit-scrollbar { display: none; }
         
         .paper {
             background: #fff; color: #111; font-family: 'Inter', sans-serif;
-            padding: 50px 60px; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap;
-            position: relative; width: 100%; box-sizing: border-box; min-height: 100%;
+            padding: 50px 60px; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap; position: relative; width: 100%; box-sizing: border-box; min-height: 100%;
             box-shadow: 0 5px 30px rgba(0,0,0,0.8); border-radius: 4px;
         }
-
         .paper .bold { font-weight: 800; font-size: 1.1em; color: #000; }
         .paper .italic { font-style: italic; color: #444; }
         .paper .bold-italic { font-weight: 800; font-style: italic; font-size: 1.1em; color: #000; }
+        
+        .paper-holes {
+            position: absolute; left: -20px; top: 0; bottom: 0; width: 40px;
+            background-image: radial-gradient(circle at 20px 12px, #050608 5px, transparent 6px); background-size: 40px 24px; border-right: 1px dashed rgba(0,0,0,0.15); background-color: #f4f7f8;
+        }
+        .paper-holes.right { left: auto; right: -20px; border-right: none; border-left: 1px dashed rgba(0,0,0,0.15); }
         
         .person-row { display: flex; gap: 10px; margin-bottom: 12px; }
         .person-select { width: 160px; font-family: 'Inter', sans-serif; padding: 12px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid var(--theme-dim); border-radius: 6px; outline: none; }
@@ -256,7 +232,7 @@
         <div id="bootLoader"></div>
 
         <div id="bootTransition">
-            <img src="Roxy Logo.png" style="width: 300px; filter: drop-shadow(0 0 25px rgba(255, 42, 133, 0.6)); margin-bottom: 30px;">
+            <img src="Roxy Logo.png" style="width: 300px; filter: drop-shadow(0 0 25px rgba(255, 42, 133, 0.6)); margin-bottom: 30px;" onerror="this.style.display='none'">
             <div style="width:400px; height:4px; background:var(--theme-ghost); margin:20px 0; position:relative; overflow:hidden; border-radius: 2px;">
                 <div style="position:absolute; height:100%; width:40%; background:var(--theme-bright); animation:loadBar 1s infinite cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 15px var(--theme-bright);"></div>
             </div>
@@ -264,33 +240,65 @@
         </div>
 
         <div id="loginScreen">
-            <img src="Roxy Logo.png" style="width: 220px; margin-bottom: 15px; filter: drop-shadow(0 0 20px rgba(255, 42, 133, 0.4));">
+            <img src="Roxy Logo.png" style="width: 220px; margin-bottom: 15px; filter: drop-shadow(0 0 20px rgba(255, 42, 133, 0.4));" onerror="this.style.display='none'">
             <div class="login-banner">PINK PATROL MDT</div>
             <div style="color: #aaa; font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">STATEWIDE MULTITASKING TERMINAL HOST</div>
             
             <div class="terminal-panel" style="width: 480px; text-align: left; padding: 40px 30px;">
                 <span class="panel-label">SECURITY CHALLENGE</span>
                 
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">AUTHORIZING AGENCY:</label>
-                    <select id="agencySel" class="data-input" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
-                        <option value="LSPD">LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
-                        <option value="SASP">SAN ANDREAS STATE POLICE (SASP)</option>
-                        <option value="BCSO">BLAINE COUNTY SHERIFF'S OFFICE (BCSO)</option>
-                    </select>
+                <div id="authError" style="display:none; font-size:0.75rem; color:#850000; font-weight:bold; margin-bottom:20px; border: 1px solid #4a0000; padding:10px; background:rgba(30,0,0,0.4)">
+                    NOTICE: UNLAWFUL ACCESS TO THIS LOGGING COMPUTER IS STRICTLY MONITORED UNDER STATE FEDERAL CODES. DISCONNECT IMMEDIATELY IF UNAUTHORIZED.
                 </div>
 
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">OPERATOR IDENTITY (Rank & Name):</label>
-                    <input type="text" class="data-input" id="offName" value="Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                <div id="loginView">
+                    <div style="margin-bottom:15px;">
+                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">OPERATOR IDENTITY NAME:</label>
+                        <input type="text" class="data-input" id="loginName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                    </div>
+
+                    <div style="margin-bottom:35px;">
+                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">ACCESS PASSPHRASE:</label>
+                        <input type="password" class="data-input" id="loginPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                    </div>
+
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn" style="flex:1; padding: 16px; font-size: 1rem;" onclick="attemptLogin()">AUTHORIZE</button>
+                        <button class="btn" style="flex:1; padding: 16px; font-size: 1rem; background:transparent; color:var(--theme-bright); border-color:var(--theme-dim);" onclick="toggleAuthView('register')">CREATE PROFILE</button>
+                    </div>
                 </div>
 
-                <div style="margin-bottom:35px;">
-                    <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">ASSIGNED STATION/UNIT CALLSIGN:</label>
-                    <input type="text" class="data-input" id="unitID" value="1A-37" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                <div id="registerView" style="display:none;">
+                    <div style="margin-bottom:15px;">
+                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">NEW OPERATOR NAME:</label>
+                        <input type="text" class="data-input" id="regName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                    </div>
+                    
+                    <div style="margin-bottom:15px;">
+                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">ASSIGNED CALLSIGN:</label>
+                        <input type="text" class="data-input" id="regCallsign" placeholder="e.g. 1A-37" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                    </div>
+
+                    <div style="margin-bottom:15px;">
+                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">AUTHORIZING AGENCY:</label>
+                        <select id="regAgency" class="data-input" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                            <option value="LSPD">LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
+                            <option value="SASP">SAN ANDREAS STATE POLICE (SASP)</option>
+                            <option value="BCSO">BLAINE COUNTY SHERIFF'S OFFICE (BCSO)</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom:25px;">
+                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">NEW PASSPHRASE:</label>
+                        <input type="password" class="data-input" id="regPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                    </div>
+
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn" style="flex:1; padding: 14px; background:var(--success); color:#000; border-color:var(--success);" onclick="attemptRegister()">REGISTER & LOGIN</button>
+                        <button class="btn" style="flex:1; padding: 14px; background:transparent; color:var(--alert-red); border-color:rgba(255,51,102,0.3);" onclick="toggleAuthView('login')">CANCEL</button>
+                    </div>
                 </div>
 
-                <button class="btn" style="width:100%; padding: 16px; font-size: 1rem;" onclick="finishLogin()">ESTABLISH SECURE LINK</button>
             </div>
         </div>
 
@@ -342,6 +350,7 @@
                     <div class="tab" onclick="setTab('MISSING', this)">MISSING PERSON</div>
                     <div class="tab" onclick="setTab('WARRANT', this)">WARRANT</div>
                     <div class="tab" style="color:var(--success); border-color:rgba(0,255,204,0.2);" onclick="setTab('NCIC', this)">NCIC DATABASE</div>
+                    <div class="tab" style="margin-left:auto; color:#fff; border-color:var(--theme-dim);" onclick="setTab('SETTINGS', this)">⚙️ SETTINGS</div>
                 </div>
 
                 <div id="dynamicFields"></div>
@@ -435,7 +444,6 @@
                     <button class="btn" id="printBtn" style="flex:2" onclick="initiatePrintSequence()">🖨️ COMPILE & PRINT</button>
                     <button class="btn" id="copyBtn" style="display:none; flex:1; background:var(--theme-dim); border-color:var(--theme-bright); color:#fff;" onclick="copyReport()">📋 COPY MARKDOWN</button>
                     <button class="btn" id="hardcopyBtn" style="display:none; flex:1; background:var(--success); color:#000; border-color:var(--success);" onclick="triggerHardcopy()">📠 HARDCOPY EXPORT</button>
-                    <button class="btn" style="background:transparent; color:var(--alert-red); border-color:rgba(255,51,102,0.3);" onclick="localStorage.removeItem('gemini_api_key'); alert('API KEY SECURELY PURGED FROM LOCAL STORAGE.');">🔑 RESET KEY</button>
                     <button class="btn" style="background:rgba(255,51,102,0.1); color:var(--alert-red); border-color:var(--alert-red);" onclick="clearReport()">🗑️ CLEAR</button>
                 </div>
             </div>
@@ -446,13 +454,16 @@
 <script>
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     let currentTab = "ARREST";
-    let activeAgency = "LSPD";
     let noiseBuffer = null;
     let activePrinterNodes = [];
     let printJobID = 0; 
     let globalRawMarkdownOutput = ""; 
     let audioMuted = false;
     let nightMode = false;
+
+    // --- MOCK USER DATABASE INITIALIZATION ---
+    let usersDB = JSON.parse(localStorage.getItem('kyntraUsers')) || {};
+    let currentUserProfile = null; // Holds the active user object
 
     let localNCIC = JSON.parse(localStorage.getItem('kyntraNCIC')) || [];
 
@@ -496,6 +507,7 @@
         }
     }
 
+    // --- SOUND ENGINE ---
     function getNoiseBuffer() {
         if (noiseBuffer) return noiseBuffer;
         const size = audioCtx.sampleRate * 2;
@@ -668,20 +680,115 @@
         }, 600);
     }
 
-    function finishLogin() {
+    // --- AUTHENTICATION LOGIC ---
+    function toggleAuthView(view) {
         playHeavyClick();
-        activeAgency = document.getElementById('agencySel').value;
-        const offName = document.getElementById('offName').value.toUpperCase(); 
-        const unitID = document.getElementById('unitID').value.toUpperCase();
-        
-        document.getElementById('agencyDisplay').innerText = activeAgency;
-        document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${offName} [${unitID}]`;
+        document.getElementById('authError').style.display = 'none';
+        if(view === 'register') {
+            document.getElementById('loginView').style.display = 'none';
+            document.getElementById('registerView').style.display = 'block';
+        } else {
+            document.getElementById('registerView').style.display = 'none';
+            document.getElementById('loginView').style.display = 'block';
+        }
+    }
+
+    function showAuthError(msg) {
+        const err = document.getElementById('authError');
+        err.style.display = 'block';
+        err.innerText = `ERROR: ${msg}`;
+        playPrintFinishSound(); // Just a heavy error sound
+    }
+
+    function attemptRegister() {
+        playHeavyClick();
+        const name = document.getElementById('regName').value.trim().toUpperCase();
+        const pass = document.getElementById('regPass').value;
+        const callsign = document.getElementById('regCallsign').value.trim().toUpperCase();
+        const agency = document.getElementById('regAgency').value;
+
+        if(!name || !pass || !callsign) {
+            showAuthError("ALL REGISTRATION FIELDS MUST BE FILLED.");
+            return;
+        }
+
+        if(usersDB[name]) {
+            showAuthError("OPERATOR IDENTITY ALREADY EXISTS IN DATABASE.");
+            return;
+        }
+
+        // Save new user to DB
+        usersDB[name] = { password: pass, callsign: callsign, agency: agency };
+        localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
+
+        // Auto Login
+        currentUserProfile = usersDB[name];
+        currentUserProfile.name = name;
+        completeLoginSequence();
+    }
+
+    function attemptLogin() {
+        playHeavyClick();
+        const name = document.getElementById('loginName').value.trim().toUpperCase();
+        const pass = document.getElementById('loginPass').value;
+
+        if(!name || !pass) {
+            showAuthError("CREDENTIALS REQUIRED TO ESTABLISH LINK.");
+            return;
+        }
+
+        if(usersDB[name] && usersDB[name].password === pass) {
+            currentUserProfile = usersDB[name];
+            currentUserProfile.name = name;
+            completeLoginSequence();
+        } else {
+            showAuthError("INVALID IDENTITY OR PASSPHRASE.");
+        }
+    }
+
+    function completeLoginSequence() {
+        document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
+        document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
         document.getElementById('loginScreen').style.display = 'none'; 
         
-        document.title = `${activeAgency} Central Database - Node 04`;
+        document.title = `${currentUserProfile.agency} Central Database - Node 04`;
         
         setTab('ARREST', document.querySelector('.tab'));
     }
+
+    // --- PROFILE SETTINGS ---
+    function updateProfile(field) {
+        playHeavyClick();
+        if(field === 'callsign') {
+            const newCS = document.getElementById('setCallsign').value.trim().toUpperCase();
+            if(newCS) {
+                currentUserProfile.callsign = newCS;
+                usersDB[currentUserProfile.name].callsign = newCS;
+                alert("CALLSIGN UPDATED SECURELY.");
+            }
+        } else if(field === 'agency') {
+            const newAg = document.getElementById('setAgency').value;
+            currentUserProfile.agency = newAg;
+            usersDB[currentUserProfile.name].agency = newAg;
+            document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
+            document.title = `${currentUserProfile.agency} Central Database - Node 04`;
+            alert("AUTHORIZING AGENCY UPDATED.");
+        }
+        
+        localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
+        document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
+    }
+
+    function deleteAccount() {
+        playHeavyClick();
+        if(confirm("CRITICAL WARNING: THIS WILL PURGE YOUR ENTIRE OPERATOR PROFILE FROM THE DATABASE PERMANENTLY.\n\nPROCEED WITH DELETION?")) {
+            delete usersDB[currentUserProfile.name];
+            localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
+            location.reload();
+        }
+    }
+
+    // --- EXISTING FUNCTIONS ---
 
     function toggleLexicon() {
         playHeavyClick(); const sidebar = document.getElementById('lexiconSidebar');
@@ -722,7 +829,7 @@
                 body: JSON.stringify({
                     contents: [{
                         parts: [{ 
-                            text: `You are an AI assistant built into a ${activeAgency} police terminal. Take the following rough officer shorthand notes and rewrite them into a formal, professional police report narrative.\n\nSTRICT PROTOCOLS:\n1. Write strictly in the FIRST-PERSON past tense (e.g., "I observed", "I responded", "my unit").\n2. DO NOT add honorifics like "Mr.", "Ms.", or "Officer". Use the exact names provided, or refer to them as "the suspect", "the subject", "the victim", etc.\n3. DO NOT embellish or add made-up facts. Only clean up and professionalize the grammar and terminology.\n4. Output ONLY the rewritten narrative text and nothing else.\n\nOriginal Notes: ${rawText}` 
+                            text: `You are an AI assistant built into a ${currentUserProfile.agency} police terminal. Take the following rough officer shorthand notes and rewrite them into a formal, professional police report narrative.\n\nSTRICT PROTOCOLS:\n1. Write strictly in the FIRST-PERSON past tense (e.g., "I observed", "I responded", "my unit").\n2. DO NOT add honorifics like "Mr.", "Ms.", or "Officer". Use the exact names provided, or refer to them as "the suspect", "the subject", "the victim", etc.\n3. DO NOT embellish or add made-up facts. Only clean up and professionalize the grammar and terminology.\n4. Output ONLY the rewritten narrative text and nothing else.\n\nOriginal Notes: ${rawText}` 
                         }]
                     }]
                 })
@@ -844,7 +951,9 @@
 
     function setTab(type, el) {
         playHeavyClick(); currentTab = type;
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); el.classList.add('active');
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); 
+        if(el) el.classList.add('active');
+        
         const container = document.getElementById('dynamicFields'); container.innerHTML = '';
         
         if(type === 'NCIC') {
@@ -902,6 +1011,36 @@
                     <textarea id="warReason" class="data-input" rows="4" placeholder="Provide factual justification and reasoning for warrant request..."></textarea>
                 </div>
             `;
+        } else if (type === 'SETTINGS') {
+            document.getElementById('standardForms').style.display = 'none'; 
+            document.getElementById('actionButtons').style.display = 'none'; 
+            
+            container.innerHTML = `
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">OPERATOR SETTINGS</span>
+                    
+                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">UPDATE CALLSIGN:</label>
+                    <div style="display:flex; gap:10px; margin-bottom: 20px;">
+                        <input type="text" id="setCallsign" class="data-input" value="${currentUserProfile.callsign}" style="flex:1;">
+                        <button class="btn" onclick="updateProfile('callsign')">UPDATE</button>
+                    </div>
+
+                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">UPDATE AGENCY:</label>
+                    <div style="display:flex; gap:10px; margin-bottom: 30px;">
+                        <select id="setAgency" class="data-input" style="flex:1;">
+                            <option value="LSPD" ${currentUserProfile.agency === 'LSPD' ? 'selected' : ''}>LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
+                            <option value="SASP" ${currentUserProfile.agency === 'SASP' ? 'selected' : ''}>SAN ANDREAS STATE POLICE (SASP)</option>
+                            <option value="BCSO" ${currentUserProfile.agency === 'BCSO' ? 'selected' : ''}>BLAINE COUNTY SHERIFF'S OFFICE (BCSO)</option>
+                        </select>
+                        <button class="btn" onclick="updateProfile('agency')">UPDATE</button>
+                    </div>
+
+                    <div style="border-top:1px dashed var(--theme-ghost); padding-top:25px; display:flex; justify-content:space-between;">
+                        <button class="btn" style="background:transparent; color:var(--alert-red); border-color:var(--alert-red);" onclick="deleteAccount()">🚨 PURGE ACCOUNT DATA 🚨</button>
+                        <button class="btn" onclick="location.reload()">LOGOUT</button>
+                    </div>
+                </div>
+            `;
         } else {
             document.getElementById('standardForms').style.display = 'block'; document.getElementById('actionButtons').style.display = 'flex'; 
             
@@ -949,8 +1088,11 @@
         document.getElementById('paperContent').innerHTML = '';
         printer.style.display = 'none';
         
-        const offName = document.getElementById('offName').value;
-        const unitID = document.getElementById('unitID').value || "UNKNOWN"; const nar = document.getElementById('narrative').value;
+        // --- FETCH GLOBALLY STORED PROFILE VARS ---
+        const offName = currentUserProfile.name;
+        const unitID = currentUserProfile.callsign; 
+        
+        const nar = document.getElementById('narrative').value;
         const evi = document.getElementById('evidence').value; const add = document.getElementById('addActions').value;
         const coreChecks = Array.from(document.querySelectorAll('#actionsMatrix input:checked')).map(c => c.value);
         const customChecks = Array.from(document.querySelectorAll('#customActionsGrid input:checked')).map(c => c.value);
@@ -958,7 +1100,7 @@
 
         const now = new Date(); const timestamp = now.toLocaleString('en-US');
         
-        let rawOut = `**[ ${activeAgency} CENTRAL DATABASE ]**\n`;
+        let rawOut = `**[ ${currentUserProfile.agency} CENTRAL DATABASE ]**\n`;
         rawOut += `**TYPE:** ${currentTab}\n`;
         rawOut += `**OFFICER:** ${offName}\n`;
         rawOut += `**UNIT:** ${unitID}\n`;
