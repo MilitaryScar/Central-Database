@@ -8,17 +8,41 @@
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap');
 
         :root {
-            /* Pink Patrol Modern Theme */
+            /* Pink Patrol Modern Theme (Default) */
             --theme: #ff2a85;
             --theme-bright: #ff66a3;
             --theme-dim: #99004d;
             --theme-ghost: #4d0026;
             --success: #00ffcc;
-            --bg-deep: rgba(10, 2, 8, 0.75); /* Translucent dark purple for glass effect */
-            --bezel: #111318; /* Rugged laptop plastic */
+            --bg-deep: rgba(10, 2, 8, 0.75); 
+            --bezel: #111318; 
             --alert-red: #ff3366;
             --ui-bg: rgba(20, 5, 15, 0.6);
         }
+
+        /* --- TACTICAL NIGHT MODE (Red/Black Stealth) --- */
+        body.tactical-mode {
+            background: #030000 !important; /* Kills the bright wallpaper */
+            --theme: #ff3333;
+            --theme-bright: #ff6666;
+            --theme-dim: #800000;
+            --theme-ghost: #330000;
+            --success: #ff3333;
+            --bg-deep: rgba(5, 0, 0, 0.95);
+            --bezel: #050000;
+            --ui-bg: rgba(10, 0, 0, 0.9);
+        }
+
+        body.tactical-mode .screen {
+            backdrop-filter: none;
+            border-color: #330000;
+            box-shadow: inset 0 0 100px rgba(0,0,0,1);
+        }
+        body.tactical-mode .terminal-panel {
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,51,51,0.03) 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255,51,51,0.03) 20px);
+        }
+        body.tactical-mode .login-banner { text-shadow: 0 0 15px #ff3333; }
+        /* ----------------------------------------------- */
 
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -26,7 +50,6 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--theme-bright); }
 
         body {
-            /* Modernized Wallpaper Integration */
             background: #000 url('Roxy Wallpaper.png') no-repeat center center fixed;
             background-size: cover;
             color: var(--theme);
@@ -35,9 +58,9 @@
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; overflow: hidden;
             user-select: none;
+            transition: background 0.5s ease;
         }
 
-        /* Ruggedized Modern Laptop Shell */
         .monitor {
             background: var(--bezel);
             padding: 20px;
@@ -47,9 +70,9 @@
             width: 1500px;
             max-width: 98vw;
             position: relative;
+            transition: background 0.5s ease;
         }
 
-        /* Frosted Glass Screen */
         .screen {
             background-color: var(--bg-deep);
             backdrop-filter: blur(15px);
@@ -62,12 +85,13 @@
             position: relative;
             overflow: hidden;
             box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
+            transition: all 0.5s ease;
         }
 
         .ui-container { display: flex; flex: 1; overflow: hidden; position: relative; z-index: 5; }
 
         .sidebar {
-            width: 320px; border-right: 1px solid rgba(255, 42, 133, 0.3); padding: 25px;
+            width: 320px; border-right: 1px solid var(--theme-ghost); padding: 25px;
             background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, transparent 100%); font-size: 0.85rem; overflow-y: auto;
             transition: all 0.2s ease-in-out; scroll-behavior: smooth;
         }
@@ -86,7 +110,7 @@
 
         #bootTransition {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #050103; z-index: 2500; display: none;
+            background: var(--bezel); z-index: 2500; display: none;
             flex-direction: column; justify-content: center; align-items: center;
         }
 
@@ -100,15 +124,14 @@
 
         .login-banner { 
             color: #fff; font-size: 2.2rem; letter-spacing: 4px; margin-bottom: 5px; font-weight: 800; 
-            text-shadow: 0 0 20px var(--theme-bright); font-style: italic;
+            text-shadow: 0 0 20px var(--theme-bright); font-style: italic; transition: text-shadow 0.5s ease;
         }
 
-        /* Modernized Form Panels */
         .terminal-panel {
-            border: 1px solid rgba(255, 42, 133, 0.3); padding: 25px; 
+            border: 1px solid var(--theme-ghost); padding: 25px; 
             background: var(--ui-bg);
             border-radius: 12px;
-            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: border-color 0.2s, box-shadow 0.2s;
+            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: border-color 0.2s, box-shadow 0.2s, background 0.5s ease;
         }
         .terminal-panel:focus-within { border-color: var(--theme-bright); box-shadow: 0 10px 40px rgba(255, 42, 133, 0.15); }
 
@@ -118,7 +141,6 @@
             border-radius: 4px; border: 1px solid var(--theme-dim); box-shadow: 0 0 10px var(--theme-ghost);
         }
 
-        /* Sleek Modern Inputs */
         .data-input {
             font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.5;
             background: rgba(0, 0, 0, 0.6); border: none; border-bottom: 2px solid var(--theme-dim); color: #fff;
@@ -140,7 +162,6 @@
         .action-item label { cursor: pointer; color: #ccc; transition: 0.2s; }
         .action-item label:hover { color: #fff; text-shadow: 0 0 8px var(--theme-dim); }
         
-        /* Modern Checkboxes */
         input[type="checkbox"] {
             appearance: none; width: 18px; height: 18px; flex-shrink: 0; border-radius: 4px;
             border: 1px solid var(--theme-dim); background: rgba(0,0,0,0.5); cursor: pointer; position: relative; transition: 0.2s;
@@ -150,27 +171,25 @@
             content: "✓"; color: #000; position: absolute; top: -2px; left: 2px; font-size: 14px; font-weight: 900; 
         }
 
-        /* Modern Pill Tabs */
         .tab-bar { display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
         .tab { 
             padding: 10px 24px; color: #aaa; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
             background: rgba(0,0,0,0.4); border-radius: 30px; border: 1px solid transparent; letter-spacing: 1px;
         }
         .tab:hover { color: #fff; background: rgba(255, 42, 133, 0.1); }
-        .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px rgba(255, 42, 133, 0.5); }
+        .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px var(--theme-ghost); }
 
-        /* Modernized Buttons */
         .btn {
             background: var(--theme-ghost); color: var(--theme-bright); border: 1px solid var(--theme-dim); border-radius: 8px;
             padding: 14px 24px; font-weight: 800; cursor: pointer; text-transform: uppercase; 
             font-family: inherit; letter-spacing: 1.5px; font-size: 0.85rem; transition: all 0.2s;
         }
-        .btn:hover:not(:disabled) { background: var(--theme); color: #000; box-shadow: 0 0 20px rgba(255, 42, 133, 0.5); border-color: var(--theme-bright); }
+        .btn:hover:not(:disabled) { background: var(--theme); color: #000; box-shadow: 0 0 20px var(--theme-ghost); border-color: var(--theme-bright); }
         .btn:active:not(:disabled) { transform: scale(0.98); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .btn-toggle { background: transparent; color: var(--theme-bright); border: 1px solid var(--theme-dim); border-radius: 20px; padding: 6px 14px; font-size: 0.7rem; cursor: pointer; font-weight: 800; text-transform: uppercase; font-family: inherit; transition: 0.2s;}
-        .btn-toggle:hover { background: rgba(255, 42, 133, 0.15); box-shadow: 0 0 10px rgba(255, 42, 133, 0.3); }
+        .btn-toggle:hover { background: rgba(255, 42, 133, 0.15); box-shadow: 0 0 10px var(--theme-ghost); }
 
         #printStatusBox {
             background: rgba(0,0,0,0.8); border: 1px solid var(--success); color: var(--success); border-radius: 8px;
@@ -195,7 +214,6 @@
         }
         .paper-wrapper::-webkit-scrollbar { display: none; }
         
-        /* Sleek Modern White Thermal Paper */
         .paper {
             background: #fff; color: #111; font-family: 'Inter', sans-serif;
             padding: 50px 60px; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap;
@@ -306,9 +324,12 @@
                         <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:#fff; text-shadow: 0 0 10px var(--theme); font-style:italic;">LSPD</span>
                         <span style="color:var(--theme-dim);">//</span>
                         <span id="userDisplay" style="font-size:0.9rem; color:#aaa; font-weight:bold; font-family:'Share Tech Mono';">NODE: 04 | AUTH: ---</span>
-                        <button class="btn-toggle" onclick="toggleLexicon()">[ Toggle Lexicon ]</button>
                     </div>
-                    <div style="display:flex; align-items:center; gap: 15px; font-family:'Share Tech Mono';">
+                    <div style="display:flex; align-items:center; gap: 10px; font-family:'Share Tech Mono';">
+                        <button class="btn-toggle" onclick="toggleLexicon()" title="Toggle Jargon Translation">📖 LEXICON</button>
+                        <button class="btn-toggle" id="themeToggle" onclick="toggleNightMode()" title="Toggle Low-Emission UI">🌙 TACTICAL</button>
+                        <button class="btn-toggle" id="audioToggle" onclick="toggleAudio()" title="Toggle Terminal Sound">🔊 AUDIO ON</button>
+                        <span style="color:var(--theme-dim);">|</span>
                         <span id="hexTicker" style="font-size:0.75rem; color:var(--theme-bright); opacity:0.5;">0x00000000</span>
                         <span id="sysClock" style="font-size:1rem; font-weight:bold; color:var(--theme-bright); text-shadow: 0 0 5px var(--theme);">00:00:00</span>
                     </div>
@@ -430,6 +451,8 @@
     let activePrinterNodes = [];
     let printJobID = 0; 
     let globalRawMarkdownOutput = ""; 
+    let audioMuted = false;
+    let nightMode = false;
 
     let localNCIC = JSON.parse(localStorage.getItem('kyntraNCIC')) || [];
 
@@ -438,6 +461,40 @@
         document.getElementById('sysClock').innerText = now.toLocaleTimeString('en-US', {hour12: false}) + " HRS";
         document.getElementById('hexTicker').innerText = '0x' + Math.floor(Math.random()*16777215).toString(16).padStart(8, '0').toUpperCase();
     }, 1000);
+
+    // --- HARDWARE TOGGLES ---
+    function toggleAudio() {
+        audioMuted = !audioMuted;
+        const btn = document.getElementById('audioToggle');
+        if(audioMuted) {
+            btn.innerText = "🔇 AUDIO OFF";
+            btn.style.color = "var(--theme-dim)";
+            btn.style.borderColor = "var(--theme-dim)";
+            stopPrinterSound();
+        } else {
+            btn.innerText = "🔊 AUDIO ON";
+            btn.style.color = "var(--theme-bright)";
+            btn.style.borderColor = "var(--theme-dim)";
+            playClick();
+        }
+    }
+
+    function toggleNightMode() {
+        playHeavyClick();
+        nightMode = !nightMode;
+        const btn = document.getElementById('themeToggle');
+        if(nightMode) {
+            document.body.classList.add('tactical-mode');
+            btn.innerText = "☀️ NORMAL UI";
+            btn.style.color = "var(--alert-red)";
+            btn.style.borderColor = "var(--alert-red)";
+        } else {
+            document.body.classList.remove('tactical-mode');
+            btn.innerText = "🌙 TACTICAL";
+            btn.style.color = "var(--theme-bright)";
+            btn.style.borderColor = "var(--theme-dim)";
+        }
+    }
 
     function getNoiseBuffer() {
         if (noiseBuffer) return noiseBuffer;
@@ -449,7 +506,7 @@
     }
 
     function playHoverBlip() {
-        if(audioCtx.state === 'suspended') return;
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
         osc.type = 'sine'; osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
         gain.gain.setValueAtTime(0.015, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
@@ -463,7 +520,10 @@
     });
 
     function playClick() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') {
+            if(!audioMuted && audioCtx.state === 'suspended') audioCtx.resume();
+            else return;
+        }
         const clickNoise = audioCtx.createBufferSource(); clickNoise.buffer = getNoiseBuffer();
         const noiseFilter = audioCtx.createBiquadFilter(); noiseFilter.type = 'bandpass'; noiseFilter.frequency.setValueAtTime(1000 + (Math.random() * 500), audioCtx.currentTime); noiseFilter.Q.setValueAtTime(5, audioCtx.currentTime);
         const noiseGain = audioCtx.createGain(); noiseGain.gain.setValueAtTime(0.03, audioCtx.currentTime); noiseGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.012);
@@ -475,7 +535,7 @@
     }
 
     function playHeavyClick() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
         osc.type = 'sawtooth'; osc.frequency.setValueAtTime(85, audioCtx.currentTime); osc.frequency.linearRampToValueAtTime(25, audioCtx.currentTime + 0.07);
         const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.setValueAtTime(220, audioCtx.currentTime);
@@ -485,7 +545,7 @@
     }
 
     function playPrintFinishSound() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); osc.type = 'square';
         osc.frequency.setValueAtTime(60, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.15);
         const gain = audioCtx.createGain(); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
@@ -493,7 +553,7 @@
     }
 
     function playPostBeep() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
         osc.type = 'square'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
         gain.gain.setValueAtTime(0.05, audioCtx.currentTime); gain.gain.setValueAtTime(0, audioCtx.currentTime + 0.15);
@@ -502,7 +562,7 @@
     }
 
     function playHDDSpinUp() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
         osc.type = 'sawtooth'; osc.frequency.setValueAtTime(40, audioCtx.currentTime); osc.frequency.linearRampToValueAtTime(120, audioCtx.currentTime + 2); 
         gain.gain.setValueAtTime(0.01, audioCtx.currentTime); gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 2); gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 5);
@@ -511,7 +571,7 @@
     }
 
     function playModemHandshake() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); const osc2 = audioCtx.createOscillator(); const gain = audioCtx.createGain();
         osc.type = 'square'; osc.frequency.setValueAtTime(2100, audioCtx.currentTime); osc.frequency.setValueAtTime(1100, audioCtx.currentTime + 0.5); osc.frequency.linearRampToValueAtTime(2400, audioCtx.currentTime + 1);
         osc2.type = 'sawtooth'; osc2.frequency.setValueAtTime(1800, audioCtx.currentTime); osc2.frequency.linearRampToValueAtTime(900, audioCtx.currentTime + 0.8);
@@ -521,7 +581,7 @@
     }
 
     function playCRTBootSound() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const degauss = audioCtx.createOscillator(); degauss.type = 'sine'; degauss.frequency.setValueAtTime(55, audioCtx.currentTime); degauss.frequency.linearRampToValueAtTime(12, audioCtx.currentTime + 0.7);
         const degGain = audioCtx.createGain(); degGain.gain.setValueAtTime(0.5, audioCtx.currentTime); degGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.7);
         degauss.connect(degGain); degGain.connect(audioCtx.destination); degauss.start(); degauss.stop(audioCtx.currentTime + 0.7);
@@ -531,7 +591,7 @@
     }
 
     function playDataSeekSound() {
-        if(audioCtx.state === 'suspended') audioCtx.resume();
+        if(audioMuted || audioCtx.state === 'suspended') return;
         const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter();
         osc.type = 'triangle'; osc.frequency.setValueAtTime(180 + (Math.random() * 300), audioCtx.currentTime);
         filter.type = 'bandpass'; filter.frequency.setValueAtTime(600, audioCtx.currentTime);
@@ -541,7 +601,8 @@
     }
 
     function startPrinterSound() {
-        if(audioCtx.state === 'suspended') audioCtx.resume(); stopPrinterSound();
+        if(audioMuted || audioCtx.state === 'suspended') return;
+        stopPrinterSound();
         const masterPrinterGain = audioCtx.createGain(); masterPrinterGain.gain.setValueAtTime(0.18, audioCtx.currentTime); masterPrinterGain.connect(audioCtx.destination);
         const pinStrikes = audioCtx.createBufferSource(); pinStrikes.buffer = getNoiseBuffer(); pinStrikes.loop = true;
         const pinFilter = audioCtx.createBiquadFilter(); pinFilter.type = 'bandpass'; pinFilter.frequency.setValueAtTime(2200, audioCtx.currentTime); pinFilter.Q.setValueAtTime(4, audioCtx.currentTime);
