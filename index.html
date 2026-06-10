@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statewide Central Database - Node 04</title>
+    <title>Kyntra Database - Node 04</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap');
 
@@ -195,13 +195,14 @@
         input[type="checkbox"]:checked { border-color: var(--theme-bright); background: var(--theme); box-shadow: 0 0 10px var(--theme); }
         input[type="checkbox"]:checked::after { content: "✓"; color: #000; position: absolute; top: -2px; left: 2px; font-size: 14px; font-weight: 900; }
 
-        .tab-bar { display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; overflow-x:auto;}
+        /* FIXED TAB BAR: Using flex-wrap prevents clipping */
+        .tab-bar { display: flex; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 10px; }
         .tab { 
-            padding: 10px 24px; color: #aaa; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
-            background: rgba(0,0,0,0.4); border-radius: 30px; border: 1px solid transparent; letter-spacing: 1px; white-space:nowrap;
+            padding: 10px 24px; color: #e0e0e0; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
+            background: rgba(0,0,0,0.6); border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); letter-spacing: 1px; white-space: nowrap;
         }
-        .tab:hover { color: #fff; background: var(--theme-ghost); }
-        .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px var(--theme-ghost); }
+        .tab:hover { color: #fff; background: var(--theme-ghost); border-color: var(--theme-dim); }
+        .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px var(--theme-ghost); border-color: transparent; }
 
         .btn {
             background: var(--theme-ghost); color: var(--theme-bright); border: 1px solid var(--theme-dim); border-radius: 8px;
@@ -213,7 +214,7 @@
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .btn-toggle { background: transparent; color: var(--theme-bright); border: 1px solid var(--theme-dim); border-radius: 20px; padding: 6px 14px; font-size: 0.7rem; cursor: pointer; font-weight: 800; text-transform: uppercase; font-family: inherit; transition: 0.2s;}
-        .btn-toggle:hover { background: var(--theme-ghost); box-shadow: 0 0 10px var(--theme-ghost); }
+        .btn-toggle:hover { background: rgba(255, 255, 255, 0.05); box-shadow: 0 0 10px var(--theme-ghost); }
 
         #printStatusBox {
             background: rgba(0,0,0,0.8); border: 1px solid var(--success); color: var(--success); border-radius: 8px;
@@ -288,8 +289,8 @@
 
         <div id="loginScreen">
             <img src="Roxy Logo.png" class="dynamic-logo" style="width: 220px;" onerror="this.style.display='none'">
-            <div class="login-banner">MD TERMINAL HOST</div>
-            <div style="color: #aaa; font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">STATEWIDE MULTITASKING DATABASE</div>
+            <div class="login-banner">KYNTRA DATABASE</div>
+            <div style="color: #aaa; font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">SECURE MULTITASKING TERMINAL HOST</div>
             
             <div class="terminal-panel" style="width: 480px; text-align: left; padding: 40px 30px;">
                 <span class="panel-label">SECURITY CHALLENGE</span>
@@ -802,7 +803,7 @@
         document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
         document.getElementById('loginScreen').style.display = 'none'; 
         
-        document.title = `${currentUserProfile.agency} Central Database - Node 04`;
+        document.title = `Kyntra Database - Node 04`;
         
         setTab('ARREST', document.querySelector('.tab'));
     }
@@ -823,7 +824,6 @@
             activeAgency = newAg;
             usersDB[currentUserProfile.name].agency = newAg;
             document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
-            document.title = `${currentUserProfile.agency} Central Database - Node 04`;
             alert("AUTHORIZING AGENCY UPDATED.");
         }
         
@@ -1153,7 +1153,7 @@
 
         const now = new Date(); const timestamp = now.toLocaleString('en-US');
         
-        let rawOut = `**[ ${activeAgency} CENTRAL DATABASE ]**\n`;
+        let rawOut = `**[ ${activeAgency} - KYNTRA DATABASE ]**\n`;
         rawOut += `**TYPE:** ${currentTab}\n`;
         rawOut += `**OFFICER:** ${offName}\n`;
         rawOut += `**UNIT:** ${unitID}\n`;
@@ -1269,7 +1269,6 @@
         document.getElementById('printBody').innerHTML = printContentHTML;
         btn.disabled = false; copyBtn.style.display = 'block'; hardBtn.style.display = 'block';
         
-        // Add API reset key functionality via a temporary invisible form variable or keeping standard clear
         playHeavyClick();
     }
 
