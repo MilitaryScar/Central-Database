@@ -7,8 +7,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap');
 
+        /* --- DYNAMIC THEME ENGINE --- */
+        
+        /* 🌸 Pink Patrol (Default) */
         :root {
-            /* Pink Patrol Modern Theme (Default) */
             --theme: #ff2a85;
             --theme-bright: #ff66a3;
             --theme-dim: #99004d;
@@ -18,29 +20,53 @@
             --bezel: #111318; 
             --alert-red: #ff3366;
             --ui-bg: rgba(20, 5, 15, 0.6);
+            --bg-image: url('Roxy Wallpaper.png');
+            --logo-filter: drop-shadow(0 0 25px rgba(255, 42, 133, 0.6));
+            --panel-lines: rgba(255, 42, 133, 0.02);
+            --glass-blur: blur(15px);
         }
 
-        /* --- TACTICAL NIGHT MODE (Red/Black Stealth) --- */
-        body.tactical-mode {
-            background: #030000 !important; 
-            --theme: #ff3333;
-            --theme-bright: #ff6666;
-            --theme-dim: #800000;
-            --theme-ghost: #330000;
-            --success: #ff3333;
-            --bg-deep: rgba(5, 0, 0, 0.95);
-            --bezel: #050000;
-            --ui-bg: rgba(10, 0, 0, 0.9);
+        /* 🚔 LSPD Blue */
+        body.theme-lspd {
+            --theme: #00d8ff; --theme-bright: #80ebff; --theme-dim: #006c80; --theme-ghost: #002b33;
+            --success: #33ff33; --alert-red: #ff3333; --bg-deep: rgba(2, 6, 10, 0.95); --bezel: #0a111a; 
+            --ui-bg: rgba(4, 12, 20, 0.9); --bg-image: none;
+            --logo-filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(5) drop-shadow(0 0 25px rgba(0,216,255,0.6));
+            --panel-lines: rgba(0, 216, 255, 0.02);
+            --glass-blur: none;
         }
 
-        body.tactical-mode .screen {
-            backdrop-filter: none; border-color: #330000; box-shadow: inset 0 0 100px rgba(0,0,0,1);
+        /* 🌙 Tactical Red */
+        body.theme-tactical {
+            --theme: #ff3333; --theme-bright: #ff6666; --theme-dim: #800000; --theme-ghost: #330000;
+            --success: #ff3333; --alert-red: #ff0000; --bg-deep: rgba(5, 0, 0, 0.95); --bezel: #050000; 
+            --ui-bg: rgba(10, 0, 0, 0.9); --bg-image: none;
+            --logo-filter: grayscale(1) sepia(1) hue-rotate(-50deg) saturate(5) drop-shadow(0 0 25px rgba(255,51,51,0.6));
+            --panel-lines: rgba(255,51,51,0.03);
+            --glass-blur: none;
         }
-        body.tactical-mode .terminal-panel {
-            background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255,51,51,0.03) 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255,51,51,0.03) 20px);
+
+        /* 📟 Classic Amber */
+        body.theme-amber {
+            --theme: #ffb000; --theme-bright: #ffc44d; --theme-dim: #7c5600; --theme-ghost: #261a00;
+            --success: #33ff33; --alert-red: #cc0000; --bg-deep: rgba(5, 4, 2, 0.95); --bezel: #111; 
+            --ui-bg: rgba(10, 8, 4, 0.9); --bg-image: none;
+            --logo-filter: grayscale(1) sepia(1) hue-rotate(5deg) saturate(5) drop-shadow(0 0 25px rgba(255,176,0,0.6));
+            --panel-lines: rgba(255,176,0,0.02);
+            --glass-blur: none;
         }
-        body.tactical-mode .login-banner { text-shadow: 0 0 15px #ff3333; }
-        /* ----------------------------------------------- */
+
+        /* 💻 Matrix Green */
+        body.theme-hacker {
+            --theme: #33ff33; --theme-bright: #66ff66; --theme-dim: #008000; --theme-ghost: #003300;
+            --success: #33ff33; --alert-red: #ff3333; --bg-deep: rgba(0, 5, 0, 0.95); --bezel: #000; 
+            --ui-bg: rgba(0, 10, 0, 0.9); --bg-image: none;
+            --logo-filter: grayscale(1) sepia(1) hue-rotate(80deg) saturate(5) drop-shadow(0 0 25px rgba(51,255,51,0.6));
+            --panel-lines: rgba(51,255,51,0.02);
+            --glass-blur: none;
+        }
+
+        /* ---------------------------------- */
 
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -48,28 +74,40 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--theme-bright); }
 
         body {
-            background: #000 url('Roxy Wallpaper.png') no-repeat center center fixed;
-            background-size: cover; color: var(--theme); font-family: 'Inter', sans-serif;
-            margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow: hidden; user-select: none; transition: background 0.5s ease;
+            background: #000 var(--bg-image) no-repeat center center fixed;
+            background-size: cover;
+            color: var(--theme);
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 20px;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow: hidden;
+            user-select: none;
         }
 
         .monitor {
-            background: var(--bezel); padding: 20px; border-radius: 20px; border: 2px solid #222630;
+            background: var(--bezel);
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid #222630;
             box-shadow: 0 40px 100px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.03), 0 0 0 8px #08090a;
-            width: 1500px; max-width: 98vw; position: relative; transition: background 0.5s ease;
+            width: 1500px; max-width: 98vw; position: relative;
+            transition: background 0.5s ease;
         }
 
         .screen {
-            background-color: var(--bg-deep); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 42, 133, 0.2); border-radius: 12px; height: 88vh;
+            background-color: var(--bg-deep);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 2px solid var(--theme-ghost);
+            border-radius: 12px; height: 88vh;
             display: flex; flex-direction: column; position: relative; overflow: hidden;
-            box-shadow: inset 0 0 80px rgba(0,0,0,0.8); transition: all 0.5s ease;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
+            transition: all 0.5s ease;
         }
 
         .screen::after {
             content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            z-index: 100; pointer-events: none; box-shadow: inset 0 0 60px rgba(0, 216, 255, 0.05);
+            z-index: 100; pointer-events: none; box-shadow: inset 0 0 60px rgba(0,0,0,0.5);
         }
 
         .ui-container { display: flex; flex: 1; overflow: hidden; position: relative; z-index: 5; }
@@ -97,6 +135,13 @@
             flex-direction: column; justify-content: center; align-items: center;
         }
 
+        /* Dynamic Logo Coloring */
+        .dynamic-logo {
+            width: 300px; margin-bottom: 30px;
+            filter: var(--logo-filter);
+            transition: filter 0.5s ease;
+        }
+
         @keyframes loadBar { 0% { left: -50%; } 100% { left: 100%; } }
 
         #loginScreen {
@@ -112,9 +157,11 @@
 
         .terminal-panel {
             border: 1px solid var(--theme-ghost); padding: 25px; background: var(--ui-bg); border-radius: 12px;
-            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: border-color 0.2s, box-shadow 0.2s, background 0.5s ease;
+            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, var(--panel-lines) 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, var(--panel-lines) 20px);
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.5s ease;
         }
-        .terminal-panel:focus-within { border-color: var(--theme-bright); box-shadow: 0 10px 40px rgba(255, 42, 133, 0.15); }
+        .terminal-panel:focus-within { border-color: var(--theme-bright); box-shadow: 0 10px 40px var(--theme-ghost); }
 
         .panel-label {
             position: absolute; top: -12px; left: 20px; background: #1a0511; padding: 4px 12px;
@@ -128,7 +175,7 @@
             padding: 12px 16px; width: 100%; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 6px 6px 0 0;
         }
-        .data-input:focus { outline: none; border-bottom-color: var(--theme-bright); background: rgba(255, 42, 133, 0.05); }
+        .data-input:focus { outline: none; border-bottom-color: var(--theme-bright); background: rgba(0,0,0,0.8); }
         .data-input::placeholder { color: rgba(255,255,255,0.3); }
 
         .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 10px; padding-top: 10px; }
@@ -153,7 +200,7 @@
             padding: 10px 24px; color: #aaa; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
             background: rgba(0,0,0,0.4); border-radius: 30px; border: 1px solid transparent; letter-spacing: 1px; white-space:nowrap;
         }
-        .tab:hover { color: #fff; background: rgba(255, 42, 133, 0.1); }
+        .tab:hover { color: #fff; background: var(--theme-ghost); }
         .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px var(--theme-ghost); }
 
         .btn {
@@ -166,7 +213,7 @@
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         .btn-toggle { background: transparent; color: var(--theme-bright); border: 1px solid var(--theme-dim); border-radius: 20px; padding: 6px 14px; font-size: 0.7rem; cursor: pointer; font-weight: 800; text-transform: uppercase; font-family: inherit; transition: 0.2s;}
-        .btn-toggle:hover { background: rgba(255, 42, 133, 0.15); box-shadow: 0 0 10px var(--theme-ghost); }
+        .btn-toggle:hover { background: var(--theme-ghost); box-shadow: 0 0 10px var(--theme-ghost); }
 
         #printStatusBox {
             background: rgba(0,0,0,0.8); border: 1px solid var(--success); color: var(--success); border-radius: 8px;
@@ -232,7 +279,7 @@
         <div id="bootLoader"></div>
 
         <div id="bootTransition">
-            <img src="Roxy Logo.png" style="width: 300px; filter: drop-shadow(0 0 25px rgba(255, 42, 133, 0.6)); margin-bottom: 30px;" onerror="this.style.display='none'">
+            <img src="Roxy Logo.png" class="dynamic-logo" onerror="this.style.display='none'">
             <div style="width:400px; height:4px; background:var(--theme-ghost); margin:20px 0; position:relative; overflow:hidden; border-radius: 2px;">
                 <div style="position:absolute; height:100%; width:40%; background:var(--theme-bright); animation:loadBar 1s infinite cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 15px var(--theme-bright);"></div>
             </div>
@@ -240,9 +287,9 @@
         </div>
 
         <div id="loginScreen">
-            <img src="Roxy Logo.png" style="width: 220px; margin-bottom: 15px; filter: drop-shadow(0 0 20px rgba(255, 42, 133, 0.4));" onerror="this.style.display='none'">
-            <div class="login-banner">PINK PATROL MDT</div>
-            <div style="color: #aaa; font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">STATEWIDE MULTITASKING TERMINAL HOST</div>
+            <img src="Roxy Logo.png" class="dynamic-logo" style="width: 220px;" onerror="this.style.display='none'">
+            <div class="login-banner">MD TERMINAL HOST</div>
+            <div style="color: #aaa; font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">STATEWIDE MULTITASKING DATABASE</div>
             
             <div class="terminal-panel" style="width: 480px; text-align: left; padding: 40px 30px;">
                 <span class="panel-label">SECURITY CHALLENGE</span>
@@ -335,7 +382,15 @@
                     </div>
                     <div style="display:flex; align-items:center; gap: 10px; font-family:'Share Tech Mono';">
                         <button class="btn-toggle" onclick="toggleLexicon()" title="Toggle Jargon Translation">📖 LEXICON</button>
-                        <button class="btn-toggle" id="themeToggle" onclick="toggleNightMode()" title="Toggle Low-Emission UI">🌙 TACTICAL</button>
+                        
+                        <select id="themeSelector" class="btn-toggle" style="outline:none; cursor:pointer;" onchange="applyTheme(this.value)" title="System Theme">
+                            <option value="theme-pink" style="background:#000; color:#ff66a3;">🌸 PINK PATROL</option>
+                            <option value="theme-lspd" style="background:#000; color:#80ebff;">🚔 LSPD BLUE</option>
+                            <option value="theme-tactical" style="background:#000; color:#ff6666;">🌙 TACTICAL RED</option>
+                            <option value="theme-amber" style="background:#000; color:#ffc44d;">📟 CLASSIC AMBER</option>
+                            <option value="theme-hacker" style="background:#000; color:#66ff66;">💻 MATRIX GREEN</option>
+                        </select>
+
                         <button class="btn-toggle" id="audioToggle" onclick="toggleAudio()" title="Toggle Terminal Sound">🔊 AUDIO ON</button>
                         <span style="color:var(--theme-dim);">|</span>
                         <span id="hexTicker" style="font-size:0.75rem; color:var(--theme-bright); opacity:0.5;">0x00000000</span>
@@ -454,17 +509,31 @@
 <script>
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     let currentTab = "ARREST";
+    let activeAgency = "LSPD";
     let noiseBuffer = null;
     let activePrinterNodes = [];
     let printJobID = 0; 
     let globalRawMarkdownOutput = ""; 
     let audioMuted = false;
-    let nightMode = false;
+
+    // --- INIT THEMES ---
+    let activeTheme = localStorage.getItem('kyntraTheme') || 'theme-pink';
+    document.body.className = activeTheme;
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const sel = document.getElementById('themeSelector');
+        if(sel) sel.value = activeTheme;
+    });
+
+    function applyTheme(themeName) {
+        playHeavyClick();
+        document.body.className = themeName;
+        localStorage.setItem('kyntraTheme', themeName);
+    }
 
     // --- MOCK USER DATABASE INITIALIZATION ---
     let usersDB = JSON.parse(localStorage.getItem('kyntraUsers')) || {};
-    let currentUserProfile = null; // Holds the active user object
-
+    let currentUserProfile = null; 
     let localNCIC = JSON.parse(localStorage.getItem('kyntraNCIC')) || [];
 
     setInterval(() => {
@@ -487,23 +556,6 @@
             btn.style.color = "var(--theme-bright)";
             btn.style.borderColor = "var(--theme-dim)";
             playClick();
-        }
-    }
-
-    function toggleNightMode() {
-        playHeavyClick();
-        nightMode = !nightMode;
-        const btn = document.getElementById('themeToggle');
-        if(nightMode) {
-            document.body.classList.add('tactical-mode');
-            btn.innerText = "☀️ NORMAL UI";
-            btn.style.color = "var(--alert-red)";
-            btn.style.borderColor = "var(--alert-red)";
-        } else {
-            document.body.classList.remove('tactical-mode');
-            btn.innerText = "🌙 TACTICAL";
-            btn.style.color = "var(--theme-bright)";
-            btn.style.borderColor = "var(--theme-dim)";
         }
     }
 
@@ -697,7 +749,7 @@
         const err = document.getElementById('authError');
         err.style.display = 'block';
         err.innerText = `ERROR: ${msg}`;
-        playPrintFinishSound(); // Just a heavy error sound
+        playPrintFinishSound(); 
     }
 
     function attemptRegister() {
@@ -717,11 +769,9 @@
             return;
         }
 
-        // Save new user to DB
         usersDB[name] = { password: pass, callsign: callsign, agency: agency };
         localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
 
-        // Auto Login
         currentUserProfile = usersDB[name];
         currentUserProfile.name = name;
         completeLoginSequence();
@@ -747,6 +797,7 @@
     }
 
     function completeLoginSequence() {
+        activeAgency = currentUserProfile.agency;
         document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
         document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
         document.getElementById('loginScreen').style.display = 'none'; 
@@ -769,6 +820,7 @@
         } else if(field === 'agency') {
             const newAg = document.getElementById('setAgency').value;
             currentUserProfile.agency = newAg;
+            activeAgency = newAg;
             usersDB[currentUserProfile.name].agency = newAg;
             document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
             document.title = `${currentUserProfile.agency} Central Database - Node 04`;
@@ -787,8 +839,6 @@
             location.reload();
         }
     }
-
-    // --- EXISTING FUNCTIONS ---
 
     function toggleLexicon() {
         playHeavyClick(); const sidebar = document.getElementById('lexiconSidebar');
@@ -829,7 +879,7 @@
                 body: JSON.stringify({
                     contents: [{
                         parts: [{ 
-                            text: `You are an AI assistant built into a ${currentUserProfile.agency} police terminal. Take the following rough officer shorthand notes and rewrite them into a formal, professional police report narrative.\n\nSTRICT PROTOCOLS:\n1. Write strictly in the FIRST-PERSON past tense (e.g., "I observed", "I responded", "my unit").\n2. DO NOT add honorifics like "Mr.", "Ms.", or "Officer". Use the exact names provided, or refer to them as "the suspect", "the subject", "the victim", etc.\n3. DO NOT embellish or add made-up facts. Only clean up and professionalize the grammar and terminology.\n4. Output ONLY the rewritten narrative text and nothing else.\n\nOriginal Notes: ${rawText}` 
+                            text: `You are an AI assistant built into a ${activeAgency} police terminal. Take the following rough officer shorthand notes and rewrite them into a formal, professional police report narrative.\n\nSTRICT PROTOCOLS:\n1. Write strictly in the FIRST-PERSON past tense (e.g., "I observed", "I responded", "my unit").\n2. DO NOT add honorifics like "Mr.", "Ms.", or "Officer". Use the exact names provided, or refer to them as "the suspect", "the subject", "the victim", etc.\n3. DO NOT embellish or add made-up facts. Only clean up and professionalize the grammar and terminology.\n4. Output ONLY the rewritten narrative text and nothing else.\n\nOriginal Notes: ${rawText}` 
                         }]
                     }]
                 })
@@ -1088,19 +1138,22 @@
         document.getElementById('paperContent').innerHTML = '';
         printer.style.display = 'none';
         
-        // --- FETCH GLOBALLY STORED PROFILE VARS ---
         const offName = currentUserProfile.name;
         const unitID = currentUserProfile.callsign; 
+        const nar = document.getElementById('narrative') ? document.getElementById('narrative').value : '';
+        const evi = document.getElementById('evidence') ? document.getElementById('evidence').value : ''; 
+        const add = document.getElementById('addActions') ? document.getElementById('addActions').value : '';
         
-        const nar = document.getElementById('narrative').value;
-        const evi = document.getElementById('evidence').value; const add = document.getElementById('addActions').value;
-        const coreChecks = Array.from(document.querySelectorAll('#actionsMatrix input:checked')).map(c => c.value);
-        const customChecks = Array.from(document.querySelectorAll('#customActionsGrid input:checked')).map(c => c.value);
-        const checks = coreChecks.concat(customChecks);
+        let checks = [];
+        if (currentTab !== 'WARRANT') {
+            const coreChecks = Array.from(document.querySelectorAll('#actionsMatrix input:checked')).map(c => c.value);
+            const customChecks = Array.from(document.querySelectorAll('#customActionsGrid input:checked')).map(c => c.value);
+            checks = coreChecks.concat(customChecks);
+        }
 
         const now = new Date(); const timestamp = now.toLocaleString('en-US');
         
-        let rawOut = `**[ ${currentUserProfile.agency} CENTRAL DATABASE ]**\n`;
+        let rawOut = `**[ ${activeAgency} CENTRAL DATABASE ]**\n`;
         rawOut += `**TYPE:** ${currentTab}\n`;
         rawOut += `**OFFICER:** ${offName}\n`;
         rawOut += `**UNIT:** ${unitID}\n`;
@@ -1215,6 +1268,8 @@
         
         document.getElementById('printBody').innerHTML = printContentHTML;
         btn.disabled = false; copyBtn.style.display = 'block'; hardBtn.style.display = 'block';
+        
+        // Add API reset key functionality via a temporary invisible form variable or keeping standard clear
         playHeavyClick();
     }
 
