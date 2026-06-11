@@ -7,63 +7,90 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap');
 
-        /* --- DYNAMIC THEME ENGINE --- */
+        /* --- IMMERSIVE THEME ENGINE --- */
         
-        /* 🌸 Pink Patrol (Default) */
+        /* 1. Investigator's Desk (Default) */
         :root {
-            --theme: #ff2a85;
-            --theme-bright: #ff66a3;
-            --theme-dim: #99004d;
-            --theme-ghost: #4d0026;
-            --success: #00ffcc;
-            --bg-deep: rgba(10, 2, 8, 0.75); 
-            --bezel: #111318; 
-            --alert-red: #ff3366;
-            --ui-bg: rgba(20, 5, 15, 0.6);
-            --bg-image: url('Roxy Wallpaper.png');
-            --logo-filter: drop-shadow(0 0 25px rgba(255, 42, 133, 0.6));
-            --panel-lines: rgba(255, 42, 133, 0.02);
-            --glass-blur: blur(15px);
+            --theme: #d4a373; --theme-bright: #faedcd; --theme-dim: #8b5a2b; --theme-ghost: #5c3a21;
+            --success: #81b29a; --alert-red: #e07a5f;
+            --bg-deep: rgba(30, 20, 15, 0.85); --bezel: #1a1008; --ui-bg: rgba(40, 25, 18, 0.7);
+            --bg-image: repeating-linear-gradient(90deg, #382312, #382312 40px, #332010 40px, #332010 80px);
+            --logo-filter: sepia(1) hue-rotate(-30deg) saturate(2) drop-shadow(0 0 15px rgba(212,163,115,0.4));
+            --panel-lines: rgba(212, 163, 115, 0.03); --glass-blur: blur(8px);
+            --text-main: #fefae0; --text-muted: #d4a373; --input-bg: rgba(20, 10, 5, 0.6);
+            --tab-active-text: #1a1008;
         }
 
-        /* 🚔 LSPD Blue */
-        body.theme-lspd {
-            --theme: #00d8ff; --theme-bright: #80ebff; --theme-dim: #006c80; --theme-ghost: #002b33;
-            --success: #33ff33; --alert-red: #ff3333; --bg-deep: rgba(2, 6, 10, 0.95); --bezel: #0a111a; 
-            --ui-bg: rgba(4, 12, 20, 0.9); --bg-image: none;
-            --logo-filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(5) drop-shadow(0 0 25px rgba(0,216,255,0.6));
-            --panel-lines: rgba(0, 216, 255, 0.02);
-            --glass-blur: none;
+        /* 2. Paper Archive */
+        body.theme-archive {
+            --theme: #3d2616; --theme-bright: #1c110a; --theme-dim: #a68a68; --theme-ghost: #d1bfae;
+            --success: #285943; --alert-red: #8b0000;
+            --bg-deep: rgba(230, 218, 195, 0.95); --bezel: #8c7b65; --ui-bg: rgba(245, 238, 220, 0.85);
+            --bg-image: none; background-color: #d1bfae;
+            --logo-filter: sepia(1) hue-rotate(-40deg) saturate(1) opacity(0.8);
+            --panel-lines: rgba(61, 38, 22, 0.05); --glass-blur: none;
+            --text-main: #2b1f15; --text-muted: #5e4835; --input-bg: rgba(255, 255, 255, 0.6);
+            --tab-active-text: #fefae0;
         }
 
-        /* 🌙 Tactical Red */
-        body.theme-tactical {
-            --theme: #ff3333; --theme-bright: #ff6666; --theme-dim: #800000; --theme-ghost: #330000;
-            --success: #ff3333; --alert-red: #ff0000; --bg-deep: rgba(5, 0, 0, 0.95); --bezel: #050000; 
-            --ui-bg: rgba(10, 0, 0, 0.9); --bg-image: none;
-            --logo-filter: grayscale(1) sepia(1) hue-rotate(-50deg) saturate(5) drop-shadow(0 0 25px rgba(255,51,51,0.6));
-            --panel-lines: rgba(255,51,51,0.03);
-            --glass-blur: none;
-        }
-
-        /* 📟 Classic Amber */
-        body.theme-amber {
-            --theme: #ffb000; --theme-bright: #ffc44d; --theme-dim: #7c5600; --theme-ghost: #261a00;
-            --success: #33ff33; --alert-red: #cc0000; --bg-deep: rgba(5, 4, 2, 0.95); --bezel: #111; 
-            --ui-bg: rgba(10, 8, 4, 0.9); --bg-image: none;
-            --logo-filter: grayscale(1) sepia(1) hue-rotate(5deg) saturate(5) drop-shadow(0 0 25px rgba(255,176,0,0.6));
-            --panel-lines: rgba(255,176,0,0.02);
-            --glass-blur: none;
-        }
-
-        /* 💻 Matrix Green */
-        body.theme-hacker {
+        /* 3. Classic Terminal */
+        body.theme-terminal {
             --theme: #33ff33; --theme-bright: #66ff66; --theme-dim: #008000; --theme-ghost: #003300;
-            --success: #33ff33; --alert-red: #ff3333; --bg-deep: rgba(0, 5, 0, 0.95); --bezel: #000; 
-            --ui-bg: rgba(0, 10, 0, 0.9); --bg-image: none;
+            --success: #33ff33; --alert-red: #ff3333;
+            --bg-deep: rgba(0, 5, 0, 0.95); --bezel: #000; --ui-bg: rgba(0, 10, 0, 0.9);
+            --bg-image: none; background-color: #000;
             --logo-filter: grayscale(1) sepia(1) hue-rotate(80deg) saturate(5) drop-shadow(0 0 25px rgba(51,255,51,0.6));
-            --panel-lines: rgba(51,255,51,0.02);
-            --glass-blur: none;
+            --panel-lines: rgba(51,255,51,0.02); --glass-blur: none;
+            --text-main: #33ff33; --text-muted: #00aa00; --input-bg: rgba(0, 20, 0, 0.6);
+            --tab-active-text: #000;
+        }
+
+        /* 4. Evidence Locker */
+        body.theme-evidence {
+            --theme: #ffcc00; --theme-bright: #ffe680; --theme-dim: #997a00; --theme-ghost: #332900;
+            --success: #00ffcc; --alert-red: #ff3333;
+            --bg-deep: rgba(15, 18, 22, 0.95); --bezel: #222; --ui-bg: rgba(25, 30, 35, 0.9);
+            --bg-image: repeating-linear-gradient(45deg, #111, #111 10px, #1a1a1a 10px, #1a1a1a 20px);
+            --logo-filter: grayscale(1) sepia(1) hue-rotate(10deg) saturate(5) drop-shadow(0 0 15px rgba(255,204,0,0.4));
+            --panel-lines: rgba(255,204,0,0.02); --glass-blur: none;
+            --text-main: #e0e0e0; --text-muted: #88929e; --input-bg: rgba(0, 0, 0, 0.5);
+            --tab-active-text: #000;
+        }
+
+        /* 5. Court Records */
+        body.theme-court {
+            --theme: #0f253f; --theme-bright: #173b66; --theme-dim: #7f95ad; --theme-ghost: #d6dfeb;
+            --success: #205c3c; --alert-red: #801515;
+            --bg-deep: rgba(248, 249, 250, 0.98); --bezel: #0f253f; --ui-bg: rgba(255, 255, 255, 0.9);
+            --bg-image: none; background-color: #e2e6eb;
+            --logo-filter: sepia(1) hue-rotate(180deg) saturate(2) opacity(0.8);
+            --panel-lines: rgba(15, 37, 63, 0.03); --glass-blur: none;
+            --text-main: #14181c; --text-muted: #4e5a66; --input-bg: rgba(0, 0, 0, 0.05);
+            --tab-active-text: #fff;
+        }
+
+        /* 6. Night Shift */
+        body.theme-night {
+            --theme: #4a7c99; --theme-bright: #7db5d6; --theme-dim: #1f3d52; --theme-ghost: #0f1e29;
+            --success: #4a9978; --alert-red: #994a4a;
+            --bg-deep: rgba(8, 12, 16, 0.95); --bezel: #040608; --ui-bg: rgba(12, 18, 24, 0.9);
+            --bg-image: none; background-color: #040608;
+            --logo-filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(2) drop-shadow(0 0 15px rgba(74,124,153,0.3));
+            --panel-lines: rgba(74,124,153,0.02); --glass-blur: none;
+            --text-main: #a9c2d1; --text-muted: #5e7b8f; --input-bg: rgba(0, 0, 0, 0.4);
+            --tab-active-text: #000;
+        }
+
+        /* 7. Case File Desk */
+        body.theme-desk {
+            --theme: #8b9eb0; --theme-bright: #c2d1e0; --theme-dim: #445463; --theme-ghost: #1e262e;
+            --success: #5ab084; --alert-red: #b05a5a;
+            --bg-deep: rgba(20, 25, 30, 0.85); --bezel: #0a0d12; --ui-bg: rgba(30, 38, 45, 0.8);
+            --bg-image: radial-gradient(circle at 50% 50%, #2a3540 0%, #10141a 100%);
+            --logo-filter: grayscale(0.5) opacity(0.7);
+            --panel-lines: rgba(139, 158, 176, 0.02); --glass-blur: blur(5px);
+            --text-main: #e6edf2; --text-muted: #8b9eb0; --input-bg: rgba(10, 15, 20, 0.6);
+            --tab-active-text: #000;
         }
 
         /* ---------------------------------- */
@@ -74,35 +101,24 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--theme-bright); }
 
         body {
-            background: #000 var(--bg-image) no-repeat center center fixed;
-            background-size: cover;
-            color: var(--theme);
-            font-family: 'Inter', sans-serif;
-            margin: 0; padding: 20px;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; overflow: hidden;
-            user-select: none;
+            background: var(--bg-image);
+            background-color: var(--bg-deep); /* Fallback */
+            color: var(--theme); font-family: 'Inter', sans-serif;
+            margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow: hidden; user-select: none; transition: background 0.5s ease;
         }
 
         .monitor {
-            background: var(--bezel);
-            padding: 20px;
-            border-radius: 20px;
-            border: 2px solid #222630;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.03), 0 0 0 8px #08090a;
-            width: 1500px; max-width: 98vw; position: relative;
-            transition: background 0.5s ease;
+            background: var(--bezel); padding: 20px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.05);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.03), 0 0 0 8px rgba(0,0,0,0.5);
+            width: 1500px; max-width: 98vw; position: relative; transition: background 0.5s ease;
         }
 
         .screen {
-            background-color: var(--bg-deep);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 2px solid var(--theme-ghost);
-            border-radius: 12px; height: 88vh;
+            background-color: var(--bg-deep); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 2px solid var(--theme-ghost); border-radius: 12px; height: 88vh;
             display: flex; flex-direction: column; position: relative; overflow: hidden;
-            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
-            transition: all 0.5s ease;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8); transition: all 0.5s ease;
         }
 
         .screen::after {
@@ -114,13 +130,18 @@
 
         .sidebar {
             width: 320px; border-right: 1px solid var(--theme-ghost); padding: 25px;
-            background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, transparent 100%); font-size: 0.85rem; overflow-y: auto;
+            background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, transparent 100%); font-size: 0.85rem; overflow-y: auto;
             transition: all 0.2s ease-in-out; scroll-behavior: smooth;
         }
 
         .main-content {
-            flex: 1; display: flex; flex-direction: column; padding: 30px; overflow-y: auto; gap: 20px; scroll-behavior: smooth;
+            flex: 1; display: flex; flex-direction: column; padding: 30px; overflow-y: auto; gap: 20px; scroll-behavior: smooth; position: relative;
         }
+
+        .workspace-panel {
+            width: 100%; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; display: none; opacity: 0; transform: translateY(20px);
+        }
+        .workspace-panel.active { display: block; opacity: 1; transform: translateY(0); }
 
         #bootLoader {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -131,27 +152,22 @@
 
         #bootTransition {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bezel); z-index: 2500; display: none;
-            flex-direction: column; justify-content: center; align-items: center;
+            background: var(--bezel); z-index: 2500; display: none; flex-direction: column; justify-content: center; align-items: center;
         }
 
         /* Dynamic Logo Coloring */
-        .dynamic-logo {
-            width: 300px; margin-bottom: 30px;
-            filter: var(--logo-filter);
-            transition: filter 0.5s ease;
-        }
+        .dynamic-logo { width: 300px; margin-bottom: 30px; filter: var(--logo-filter); transition: filter 0.5s ease; }
 
         @keyframes loadBar { 0% { left: -50%; } 100% { left: 100%; } }
 
         #loginScreen {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(5, 1, 3, 0.9); backdrop-filter: blur(20px); z-index: 2000; display: none; 
+            background: var(--bg-deep); backdrop-filter: blur(20px); z-index: 2000; display: none; 
             flex-direction: column; justify-content: center; align-items: center;
         }
 
         .login-banner { 
-            color: #fff; font-size: 2.2rem; letter-spacing: 4px; margin-bottom: 5px; font-weight: 800; 
+            color: var(--text-main); font-size: 2.2rem; letter-spacing: 4px; margin-bottom: 5px; font-weight: 800; 
             text-shadow: 0 0 20px var(--theme-bright); font-style: italic; transition: text-shadow 0.5s ease;
         }
 
@@ -164,19 +180,19 @@
         .terminal-panel:focus-within { border-color: var(--theme-bright); box-shadow: 0 10px 40px var(--theme-ghost); }
 
         .panel-label {
-            position: absolute; top: -12px; left: 20px; background: #1a0511; padding: 4px 12px;
-            font-size: 0.75rem; color: #fff; letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase;
+            position: absolute; top: -12px; left: 20px; background: var(--theme-ghost); padding: 4px 12px;
+            font-size: 0.75rem; color: var(--text-main); letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase;
             border-radius: 4px; border: 1px solid var(--theme-dim); box-shadow: 0 0 10px var(--theme-ghost);
         }
 
         .data-input {
             font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.5;
-            background: rgba(0, 0, 0, 0.6); border: none; border-bottom: 2px solid var(--theme-dim); color: #fff;
+            background: var(--input-bg); border: none; border-bottom: 2px solid var(--theme-dim); color: var(--text-main);
             padding: 12px 16px; width: 100%; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 6px 6px 0 0;
         }
-        .data-input:focus { outline: none; border-bottom-color: var(--theme-bright); background: rgba(0,0,0,0.8); }
-        .data-input::placeholder { color: rgba(255,255,255,0.3); }
+        .data-input:focus { outline: none; border-bottom-color: var(--theme-bright); background: rgba(0,0,0,0.3); }
+        .data-input::placeholder { color: var(--text-muted); opacity: 0.6; }
 
         .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 10px; padding-top: 10px; }
         .grid-category-header {
@@ -185,31 +201,30 @@
         }
 
         .action-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; }
-        .action-item label { cursor: pointer; color: #ccc; transition: 0.2s; }
-        .action-item label:hover { color: #fff; text-shadow: 0 0 8px var(--theme-dim); }
+        .action-item label { cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+        .action-item label:hover { color: var(--text-main); text-shadow: 0 0 8px var(--theme-dim); }
         
         input[type="checkbox"] {
             appearance: none; width: 18px; height: 18px; flex-shrink: 0; border-radius: 4px;
-            border: 1px solid var(--theme-dim); background: rgba(0,0,0,0.5); cursor: pointer; position: relative; transition: 0.2s;
+            border: 1px solid var(--theme-dim); background: var(--input-bg); cursor: pointer; position: relative; transition: 0.2s;
         }
         input[type="checkbox"]:checked { border-color: var(--theme-bright); background: var(--theme); box-shadow: 0 0 10px var(--theme); }
         input[type="checkbox"]:checked::after { content: "✓"; color: #000; position: absolute; top: -2px; left: 2px; font-size: 14px; font-weight: 900; }
 
-        /* FIXED TAB BAR: Using flex-wrap prevents clipping */
         .tab-bar { display: flex; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 10px; }
         .tab { 
-            padding: 10px 24px; color: #e0e0e0; cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
-            background: rgba(0,0,0,0.6); border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); letter-spacing: 1px; white-space: nowrap;
+            padding: 10px 24px; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; text-transform: uppercase; font-weight: 800; transition: 0.3s;
+            background: var(--input-bg); border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); letter-spacing: 1px; white-space: nowrap;
         }
-        .tab:hover { color: #fff; background: var(--theme-ghost); border-color: var(--theme-dim); }
-        .tab.active { background: var(--theme); color: #000; box-shadow: 0 0 15px var(--theme-ghost); border-color: transparent; }
+        .tab:hover { color: var(--text-main); background: var(--theme-ghost); border-color: var(--theme-dim); }
+        .tab.active { background: var(--theme); color: var(--tab-active-text); box-shadow: 0 0 15px var(--theme-ghost); border-color: transparent; }
 
         .btn {
             background: var(--theme-ghost); color: var(--theme-bright); border: 1px solid var(--theme-dim); border-radius: 8px;
             padding: 14px 24px; font-weight: 800; cursor: pointer; text-transform: uppercase; 
-            font-family: inherit; letter-spacing: 1.5px; font-size: 0.85rem; transition: all 0.2s;
+            font-family: inherit; letter-spacing: 1.5px; font-size: 0.85rem; transition: all 0.2s; position: relative; overflow: hidden;
         }
-        .btn:hover:not(:disabled) { background: var(--theme); color: #000; box-shadow: 0 0 20px var(--theme-ghost); border-color: var(--theme-bright); }
+        .btn:hover:not(:disabled) { background: var(--theme); color: var(--tab-active-text); box-shadow: 0 0 20px var(--theme-ghost); border-color: var(--theme-bright); }
         .btn:active:not(:disabled) { transform: scale(0.98); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -237,7 +252,7 @@
         .paper {
             background: #fff; color: #111; font-family: 'Inter', sans-serif;
             padding: 50px 60px; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap; position: relative; width: 100%; box-sizing: border-box; min-height: 100%;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.8); border-radius: 4px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.8); border-radius: 4px; z-index:2;
         }
         .paper .bold { font-weight: 800; font-size: 1.1em; color: #000; }
         .paper .italic { font-style: italic; color: #444; }
@@ -249,8 +264,55 @@
         }
         .paper-holes.right { left: auto; right: -20px; border-right: none; border-left: 1px dashed rgba(0,0,0,0.15); }
         
+        /* --- ARCHIVES & FILING CABINET --- */
+        #cabinetIcon {
+            position: absolute; bottom: -100px; right: 30px; font-size: 3rem; opacity: 0; transition: bottom 0.4s ease, opacity 0.4s ease; z-index: 9999;
+            filter: drop-shadow(0 0 10px var(--theme));
+        }
+        #cabinetIcon.active { bottom: 30px; opacity: 1; }
+
+        .drawer-container {
+            display: flex; gap: 20px; flex-wrap: wrap; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 12px;
+            box-shadow: inset 0 20px 50px rgba(0,0,0,0.5); min-height: 400px; align-content: flex-start;
+        }
+
+        .folder {
+            width: 140px; height: 180px; background: #c5a86d; border-radius: 5px 15px 5px 5px; position: relative;
+            cursor: pointer; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; box-sizing: border-box;
+            border-left: 2px solid #e0ca96; border-top: 2px solid #e0ca96;
+        }
+        .folder::before {
+            content: ''; position: absolute; top: -10px; right: 10px; width: 50px; height: 15px; background: #c5a86d;
+            border-radius: 5px 5px 0 0; border-top: 2px solid #e0ca96; border-right: 2px solid #e0ca96;
+        }
+        .folder:hover { transform: translateY(-15px) scale(1.05); box-shadow: 0 15px 25px rgba(0,0,0,0.8); }
+        .folder-label { background: #fff; color: #000; font-family: 'Share Tech Mono'; font-size: 0.65rem; padding: 2px 4px; font-weight: bold; transform: rotate(-2deg); box-shadow: 1px 1px 3px rgba(0,0,0,0.3);}
+        .folder-date { color: rgba(0,0,0,0.6); font-size: 0.6rem; font-weight:bold; margin-top: 5px;}
+
+        /* Archive Deletion Button */
+        .folder-delete {
+            position: absolute; top: 5px; left: 5px; background: rgba(180, 0, 0, 0.8); color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 4px; width: 22px; height: 22px;
+            font-size: 12px; font-weight: bold; cursor: pointer; display: none; align-items: center; justify-content: center;
+            z-index: 10; transition: background 0.2s; font-family: 'Inter', sans-serif;
+        }
+        .folder:hover .folder-delete { display: flex; }
+        .folder-delete:hover { background: #ff0000; box-shadow: 0 0 10px red; }
+
+        /* Folder Opening Animations */
+        @keyframes fanOut1 { 0% { transform: rotate(0deg) translateY(0); opacity: 0; } 100% { transform: rotate(-15deg) translateX(-20px) translateY(-30px); opacity: 1; } }
+        @keyframes fanOut2 { 0% { transform: rotate(0deg) translateY(0); opacity: 0; } 100% { transform: rotate(5deg) translateY(-40px); opacity: 1; } }
+        @keyframes fanOut3 { 0% { transform: rotate(0deg) translateY(0); opacity: 0; } 100% { transform: rotate(20deg) translateX(20px) translateY(-20px); opacity: 1; } }
+        
+        .folder.opening { pointer-events: none; z-index: 100; transform: scale(1.2) translateY(-20px); }
+        .folder .doc-fan { position: absolute; bottom: 20px; left: 10px; width: 80%; height: 80%; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.5); opacity: 0; border-radius: 2px; border:1px solid #ccc; }
+        .folder.opening .doc-fan:nth-child(2) { animation: fanOut1 0.6s 0.2s forwards ease-out; }
+        .folder.opening .doc-fan:nth-child(3) { animation: fanOut2 0.6s 0.3s forwards ease-out; }
+        .folder.opening .doc-fan:nth-child(4) { animation: fanOut3 0.6s 0.4s forwards ease-out; }
+
         .person-row { display: flex; gap: 10px; margin-bottom: 12px; }
-        .person-select { width: 160px; font-family: 'Inter', sans-serif; padding: 12px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid var(--theme-dim); border-radius: 6px; outline: none; }
+        .person-select { width: 160px; font-family: 'Inter', sans-serif; padding: 12px; background: var(--input-bg); color: var(--text-main); border: 1px solid var(--theme-dim); border-radius: 6px; outline: none; }
         .person-select:focus { border-color: var(--theme-bright); }
 
         @media print {
@@ -265,6 +327,9 @@
 
         @keyframes pulseGlow { 0% { box-shadow: 0 0 5px var(--theme-bright); } 50% { box-shadow: 0 0 20px var(--theme-bright); } 100% { box-shadow: 0 0 5px var(--theme-bright); } }
         .ai-loading { animation: pulseGlow 1.5s infinite; border-bottom-color: var(--theme-bright) !important; color: var(--theme-bright) !important; }
+        
+        @keyframes printBlink { 0% { opacity:1; } 50% { opacity:0.3; } 100% { opacity:1; } }
+        .printer-active-icon { animation: printBlink 1s infinite; color: var(--success); }
     </style>
 </head>
 <body>
@@ -273,6 +338,8 @@
 
 <div class="monitor">
     <div class="screen">
+        <div id="cabinetIcon">🗄️</div>
+        
         <div id="powerButtonScreen" style="position: absolute; top:0; left:0; width:100%; height:100%; background: #050103; z-index: 9999; display: flex; justify-content: center; align-items: center;">
             <button class="btn" onclick="startSystemBoot()" style="font-size: 1.5rem; padding: 20px 40px; border-radius: 15px;">⏻ INITIALIZE SYSTEM</button>
         </div>
@@ -290,7 +357,7 @@
         <div id="loginScreen">
             <img src="Roxy Logo.png" class="dynamic-logo" style="width: 220px;" onerror="this.style.display='none'">
             <div class="login-banner">KYNTRA DATABASE</div>
-            <div style="color: #aaa; font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">SECURE MULTITASKING TERMINAL HOST</div>
+            <div style="color: var(--text-muted); font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">SECURE MULTITASKING TERMINAL HOST</div>
             
             <div class="terminal-panel" style="width: 480px; text-align: left; padding: 40px 30px;">
                 <span class="panel-label">SECURITY CHALLENGE</span>
@@ -301,13 +368,13 @@
 
                 <div id="loginView">
                     <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">OPERATOR IDENTITY NAME:</label>
-                        <input type="text" class="data-input" id="loginName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">OPERATOR IDENTITY NAME:</label>
+                        <input type="text" class="data-input" id="loginName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="margin-bottom:35px;">
-                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">ACCESS PASSPHRASE:</label>
-                        <input type="password" class="data-input" id="loginPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">ACCESS PASSPHRASE:</label>
+                        <input type="password" class="data-input" id="loginPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="display:flex; gap:10px;">
@@ -318,18 +385,18 @@
 
                 <div id="registerView" style="display:none;">
                     <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">NEW OPERATOR NAME:</label>
-                        <input type="text" class="data-input" id="regName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">NEW OPERATOR NAME:</label>
+                        <input type="text" class="data-input" id="regName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
                     
                     <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">ASSIGNED CALLSIGN:</label>
-                        <input type="text" class="data-input" id="regCallsign" placeholder="e.g. 1A-37" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">ASSIGNED CALLSIGN:</label>
+                        <input type="text" class="data-input" id="regCallsign" placeholder="e.g. 1A-37" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">AUTHORIZING AGENCY:</label>
-                        <select id="regAgency" class="data-input" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">AUTHORIZING AGENCY:</label>
+                        <select id="regAgency" class="data-input" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                             <option value="LSPD">LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
                             <option value="SASP">SAN ANDREAS STATE POLICE (SASP)</option>
                             <option value="BCSO">BLAINE COUNTY SHERIFF'S OFFICE (BCSO)</option>
@@ -337,8 +404,8 @@
                     </div>
 
                     <div style="margin-bottom:25px;">
-                        <label style="display:block; font-size:0.8rem; color:#aaa; margin-bottom:8px; font-weight:600;">NEW PASSPHRASE:</label>
-                        <input type="password" class="data-input" id="regPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; color:var(--theme-bright); font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">NEW PASSPHRASE:</label>
+                        <input type="password" class="data-input" id="regPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="display:flex; gap:10px;">
@@ -352,24 +419,24 @@
 
         <div class="ui-container">
             <div class="sidebar" id="lexiconSidebar">
-                <h3 style="margin-top:0; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:15px; color:#fff; font-weight:800; letter-spacing:1px;">// SYNTAX LEXICON</h3>
+                <h3 style="margin-top:0; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:15px; color:var(--text-main); font-weight:800; letter-spacing:1px;">// SYNTAX LEXICON</h3>
                 <div style="display:flex; flex-direction:column; gap: 16px;">
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">I saw him</div> <span style="color:var(--theme-bright); font-weight:600;">"Observed suspect on scene"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">He ran away</div> <span style="color:var(--theme-bright); font-weight:600;">"Suspect fled on foot"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">I caught him</div> <span style="color:var(--theme-bright); font-weight:600;">"Suspect apprehended"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Put cuffs on</div> <span style="color:var(--theme-bright); font-weight:600;">"Secured in double-locked restraints"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Checking car</div> <span style="color:var(--theme-bright); font-weight:600;">"Conducted lawful vehicle search"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Searched pockets</div> <span style="color:var(--theme-bright); font-weight:600;">"Conducted a protective pat-down search"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">He was mad</div> <span style="color:var(--theme-bright); font-weight:600;">"Suspect was uncooperative/combative"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Yelled at me</div> <span style="color:var(--theme-bright); font-weight:600;">"Subject became verbally hostile"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Told him to stop</div> <span style="color:var(--theme-bright); font-weight:600;">"Issued lawful verbal commands"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Didn't listen</div> <span style="color:var(--theme-bright); font-weight:600;">"Failed to comply with physical direction"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Found a gun</div> <span style="color:var(--theme-bright); font-weight:600;">"Firearm weapon mechanism recovered"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Found drugs</div> <span style="color:var(--theme-bright); font-weight:600;">"Discovered suspected illegal narcotics"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">He was high</div> <span style="color:var(--theme-bright); font-weight:600;">"Showed signs of substance impairment"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Smelled weed</div> <span style="color:var(--theme-bright); font-weight:600;">"Detected distinct odor of marijuana"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Pulled him over</div> <span style="color:var(--theme-bright); font-weight:600;">"Initiated a marked vehicle traffic stop"</span></div>
-                    <div><div style="color:#666; text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Got out of car</div> <span style="color:var(--theme-bright); font-weight:600;">"Exited the primary patrol vehicle"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">I saw him</div> <span style="color:var(--theme-bright); font-weight:600;">"Observed suspect on scene"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">He ran away</div> <span style="color:var(--theme-bright); font-weight:600;">"Suspect fled on foot"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">I caught him</div> <span style="color:var(--theme-bright); font-weight:600;">"Suspect apprehended"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Put cuffs on</div> <span style="color:var(--theme-bright); font-weight:600;">"Secured in double-locked restraints"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Checking car</div> <span style="color:var(--theme-bright); font-weight:600;">"Conducted lawful vehicle search"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Searched pockets</div> <span style="color:var(--theme-bright); font-weight:600;">"Conducted a protective pat-down search"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">He was mad</div> <span style="color:var(--theme-bright); font-weight:600;">"Suspect was uncooperative/combative"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Yelled at me</div> <span style="color:var(--theme-bright); font-weight:600;">"Subject became verbally hostile"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Told him to stop</div> <span style="color:var(--theme-bright); font-weight:600;">"Issued lawful verbal commands"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Didn't listen</div> <span style="color:var(--theme-bright); font-weight:600;">"Failed to comply with physical direction"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Found a gun</div> <span style="color:var(--theme-bright); font-weight:600;">"Firearm weapon mechanism recovered"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Found drugs</div> <span style="color:var(--theme-bright); font-weight:600;">"Discovered suspected illegal narcotics"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">He was high</div> <span style="color:var(--theme-bright); font-weight:600;">"Showed signs of substance impairment"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Smelled weed</div> <span style="color:var(--theme-bright); font-weight:600;">"Detected distinct odor of marijuana"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Pulled him over</div> <span style="color:var(--theme-bright); font-weight:600;">"Initiated a marked vehicle traffic stop"</span></div>
+                    <div><div style="color:var(--text-muted); text-decoration:line-through; font-size:0.8rem; margin-bottom:2px;">Got out of car</div> <span style="color:var(--theme-bright); font-weight:600;">"Exited the primary patrol vehicle"</span></div>
                 </div>
             </div>
 
@@ -377,23 +444,26 @@
                 
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="display:flex; align-items:center; gap:15px;">
-                        <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:#fff; text-shadow: 0 0 10px var(--theme); font-style:italic;">LSPD</span>
+                        <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:var(--text-main); text-shadow: 0 0 10px var(--theme); font-style:italic;">LSPD</span>
                         <span style="color:var(--theme-dim);">//</span>
-                        <span id="userDisplay" style="font-size:0.9rem; color:#aaa; font-weight:bold; font-family:'Share Tech Mono';">NODE: 04 | AUTH: ---</span>
+                        <span id="userDisplay" style="font-size:0.9rem; color:var(--text-muted); font-weight:bold; font-family:'Share Tech Mono';">NODE: 04 | AUTH: ---</span>
                     </div>
                     <div style="display:flex; align-items:center; gap: 10px; font-family:'Share Tech Mono';">
                         <button class="btn-toggle" onclick="toggleLexicon()" title="Toggle Jargon Translation">📖 LEXICON</button>
                         
                         <select id="themeSelector" class="btn-toggle" style="outline:none; cursor:pointer;" onchange="applyTheme(this.value)" title="System Theme">
-                            <option value="theme-pink" style="background:#000; color:#ff66a3;">🌸 PINK PATROL</option>
-                            <option value="theme-lspd" style="background:#000; color:#80ebff;">🚔 LSPD BLUE</option>
-                            <option value="theme-tactical" style="background:#000; color:#ff6666;">🌙 TACTICAL RED</option>
-                            <option value="theme-amber" style="background:#000; color:#ffc44d;">📟 CLASSIC AMBER</option>
-                            <option value="theme-hacker" style="background:#000; color:#66ff66;">💻 MATRIX GREEN</option>
+                            <option value="theme-investigator" style="background:#1a1008; color:#d4a373;">💼 INVESTIGATOR'S DESK</option>
+                            <option value="theme-archive" style="background:#d1bfae; color:#3d2616;">📜 PAPER ARCHIVE</option>
+                            <option value="theme-terminal" style="background:#000; color:#33ff33;">📟 CLASSIC TERMINAL</option>
+                            <option value="theme-evidence" style="background:#111; color:#ffcc00;">🚧 EVIDENCE LOCKER</option>
+                            <option value="theme-court" style="background:#e2e6eb; color:#0f253f;">🏛️ COURT RECORDS</option>
+                            <option value="theme-night" style="background:#040608; color:#4a7c99;">🌙 NIGHT SHIFT</option>
+                            <option value="theme-desk" style="background:#0a0d12; color:#8b9eb0;">📁 CASE FILE DESK</option>
                         </select>
 
                         <button class="btn-toggle" id="audioToggle" onclick="toggleAudio()" title="Toggle Terminal Sound">🔊 AUDIO ON</button>
                         <span style="color:var(--theme-dim);">|</span>
+                        <span id="printIndicator" style="display:none; font-weight:bold; margin-right:5px;" class="printer-active-icon">🖨️</span>
                         <span id="hexTicker" style="font-size:0.75rem; color:var(--theme-bright); opacity:0.5;">0x00000000</span>
                         <span id="sysClock" style="font-size:1rem; font-weight:bold; color:var(--theme-bright); text-shadow: 0 0 5px var(--theme);">00:00:00</span>
                     </div>
@@ -406,22 +476,23 @@
                     <div class="tab" onclick="setTab('MISSING', this)">MISSING PERSON</div>
                     <div class="tab" onclick="setTab('WARRANT', this)">WARRANT</div>
                     <div class="tab" style="color:var(--success); border-color:rgba(0,255,204,0.2);" onclick="setTab('NCIC', this)">NCIC DATABASE</div>
-                    <div class="tab" style="margin-left:auto; color:#fff; border-color:var(--theme-dim);" onclick="setTab('SETTINGS', this)">⚙️ SETTINGS</div>
+                    <div class="tab" style="margin-left:auto; border-color:var(--theme-dim);" onclick="setTab('ARCHIVES', this)">🗄️ ARCHIVES</div>
+                    <div class="tab" style="border-color:var(--theme-dim);" onclick="setTab('SETTINGS', this)">⚙️ SETTINGS</div>
                 </div>
 
-                <div id="dynamicFields"></div>
+                <div id="dynamicFields" class="workspace-panel active"></div>
 
-                <div id="standardForms">
+                <div id="standardForms" class="workspace-panel active">
                     <div class="terminal-panel" style="margin-bottom: 20px;">
                         <span class="panel-label">NARRATIVE & EVIDENCE</span>
                         
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                            <label id="narLabel" style="color:#aaa; font-weight:600; font-size:0.85rem;">Incident Summary:</label>
+                            <label id="narLabel" style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Incident Summary:</label>
                             <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
                         </div>
                         <textarea id="narrative" class="data-input" rows="4" placeholder="Detail the sequence of events... Type shorthand notes here and click AI ENHANCE to formalize."></textarea>
                         
-                        <label style="display:block; margin-top:20px; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">Evidence Log:</label>
+                        <label style="display:block; margin-top:20px; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Evidence Log:</label>
                         <textarea id="evidence" class="data-input" rows="2" placeholder="List items seized (each on a new line)..."></textarea>
                     </div>
 
@@ -470,7 +541,7 @@
                         </div>
 
                         <div style="margin-top: 20px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.1);">
-                            <label style="color:#aaa; font-weight:600; font-size:0.8rem; margin-bottom:8px; display:block;">ADD CUSTOM ACTIONS INDEX:</label>
+                            <label style="color:var(--text-muted); font-weight:600; font-size:0.8rem; margin-bottom:8px; display:block;">ADD CUSTOM ACTIONS INDEX:</label>
                             <div style="display:flex; gap:10px;">
                                 <input type="text" id="customActionInput" class="data-input" placeholder="e.g. WARRANT SEARCH UNDERTAKEN..." style="flex:1;">
                                 <button class="btn" style="padding: 12px 20px; font-size:0.75rem;" onclick="addCustomAction()">+ ADD</button>
@@ -482,7 +553,18 @@
                     <div class="terminal-panel" style="margin-bottom: 20px;">
                         <span class="panel-label">POST-ACTION PROTOCOL</span>
                         <input type="text" id="addActions" class="data-input" placeholder="Additional procedures (e.g. Forwarded to Traffic Division units)...">
+                        
+                        <div style="margin-top: 15px; display:flex; align-items:center; gap:8px;">
+                            <input type="checkbox" id="reqSupSig">
+                            <label for="reqSupSig" style="color:var(--theme-bright); font-size:0.85rem; font-weight:bold; cursor:pointer;">REQUIRE SUPERVISOR SIGNATURE</label>
+                        </div>
                     </div>
+                </div>
+
+                <div id="archivesView" class="workspace-panel terminal-panel">
+                    <span class="panel-label">DEPARTMENT ARCHIVES</span>
+                    <div class="drawer-container" id="drawerContainer">
+                        </div>
                 </div>
 
                 <div id="printStatusBox"></div>
@@ -496,10 +578,11 @@
                     </div>
                 </div>
 
-                <div style="display:flex; gap:15px;" id="actionButtons">
+                <div style="display:flex; gap:15px;" id="actionButtons" class="workspace-panel active">
                     <button class="btn" id="printBtn" style="flex:2" onclick="initiatePrintSequence()">🖨️ COMPILE & PRINT</button>
-                    <button class="btn" id="copyBtn" style="display:none; flex:1; background:var(--theme-dim); border-color:var(--theme-bright); color:#fff;" onclick="copyReport()">📋 COPY MARKDOWN</button>
-                    <button class="btn" id="hardcopyBtn" style="display:none; flex:1; background:var(--success); color:#000; border-color:var(--success);" onclick="triggerHardcopy()">📠 HARDCOPY EXPORT</button>
+                    <button class="btn" id="fileReportBtn" style="display:none; flex:1; background:var(--theme-dim); border-color:var(--theme-bright); color:var(--text-main);" onclick="fileReportToCabinet()">📁 FILE REPORT</button>
+                    <button class="btn" id="copyBtn" style="display:none; flex:1; background:transparent; border-color:var(--theme-dim); color:var(--theme-bright);" onclick="copyReport()">📋 COPY</button>
+                    <button class="btn" id="hardcopyBtn" style="display:none; flex:1; background:var(--success); color:#000; border-color:var(--success);" onclick="triggerHardcopy()">📠 HARDCOPY</button>
                     <button class="btn" style="background:rgba(255,51,102,0.1); color:var(--alert-red); border-color:var(--alert-red);" onclick="clearReport()">🗑️ CLEAR</button>
                 </div>
             </div>
@@ -515,10 +598,12 @@
     let activePrinterNodes = [];
     let printJobID = 0; 
     let globalRawMarkdownOutput = ""; 
+    let globalHTMLOutput = "";
+    let currentCaseID = "";
     let audioMuted = false;
 
     // --- INIT THEMES ---
-    let activeTheme = localStorage.getItem('kyntraTheme') || 'theme-pink';
+    let activeTheme = localStorage.getItem('kyntraTheme') || 'theme-investigator';
     document.body.className = activeTheme;
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -536,6 +621,7 @@
     let usersDB = JSON.parse(localStorage.getItem('kyntraUsers')) || {};
     let currentUserProfile = null; 
     let localNCIC = JSON.parse(localStorage.getItem('kyntraNCIC')) || [];
+    let localArchives = JSON.parse(localStorage.getItem('kyntraArchives')) || [];
 
     setInterval(() => {
         const now = new Date();
@@ -713,7 +799,7 @@
         for(let i = 0; i < bootLines.length; i++) {
             const p = document.createElement('p');
             if(bootLines[i].includes("Kyntra OS")) p.style.color = "var(--theme-bright)";
-            if(bootLines[i].includes("MDT-SHELL")) p.style.color = "#ffffff";
+            if(bootLines[i].includes("MDT-SHELL")) p.style.color = "var(--text-main)";
             p.innerText = bootLines[i]; loader.appendChild(p); playDataSeekSound();
             
             if(bootLines[i].includes("ESTABLISHING CRYPTO")) {
@@ -914,8 +1000,12 @@
         playHeavyClick();
         if(confirm("ALERT: ARE YOU SURE YOU WANT TO CLEAR THE CURRENT LOG REPORT DATA?")) {
             printJobID++; stopPrinterSound(); 
-            document.getElementById('narrative').value = ''; document.getElementById('evidence').value = ''; document.getElementById('addActions').value = '';
-            document.querySelectorAll('#actionsMatrix input[type="checkbox"]').forEach(c => c.checked = false); document.getElementById('customActionsGrid').innerHTML = '';
+            const nar = document.getElementById('narrative'); if(nar) nar.value = ''; 
+            const evi = document.getElementById('evidence'); if(evi) evi.value = ''; 
+            const addAct = document.getElementById('addActions'); if(addAct) addAct.value = '';
+            document.querySelectorAll('#actionsMatrix input[type="checkbox"]').forEach(c => c.checked = false); 
+            const custGrid = document.getElementById('customActionsGrid'); if(custGrid) custGrid.innerHTML = '';
+            const reqSup = document.getElementById('reqSupSig'); if(reqSup) reqSup.checked = false;
             
             const peopleBox = document.getElementById('peopleList'); if(peopleBox) { peopleBox.innerHTML = ''; addPersonRow(); }
             const loc = document.getElementById('lastLoc'); if(loc) loc.value = '';
@@ -927,8 +1017,12 @@
             const printer = document.getElementById('printerDisplay');
             document.getElementById('paperContent').innerHTML = '';
             printer.style.display = 'none';
-            document.getElementById('printStatusBox').style.display = 'none'; document.getElementById('copyBtn').style.display = 'none'; document.getElementById('hardcopyBtn').style.display = 'none';
+            document.getElementById('printStatusBox').style.display = 'none'; 
+            document.getElementById('copyBtn').style.display = 'none'; 
+            document.getElementById('hardcopyBtn').style.display = 'none'; 
+            document.getElementById('fileReportBtn').style.display = 'none';
             document.getElementById('printBtn').disabled = false;
+            document.getElementById('printIndicator').style.display = 'none';
         }
     }
 
@@ -965,7 +1059,7 @@
         playClick();
         const query = document.getElementById('qSearch').value.trim().toUpperCase();
         const resBox = document.getElementById('queryResults');
-        resBox.innerHTML = "<span style='color:var(--theme-dim)'>SEARCHING LOCAL MAINFRAME...</span>";
+        resBox.innerHTML = "<span style='color:var(--text-muted)'>SEARCHING LOCAL MAINFRAME...</span>";
         
         await sleep(800); playDataSeekSound();
         
@@ -982,38 +1076,58 @@
             results.forEach(r => {
                 let statusColor = r.warrant === 'WANTED' ? 'var(--alert-red)' : 'var(--success)';
                 let wText = r.warrant === 'WANTED' ? '🚨 ACTIVE WARRANT 🚨' : 'CLEAR';
-                html += `<div style="border-bottom:1px dashed rgba(255,42,133,0.3); padding-bottom:15px; margin-bottom:15px; background: rgba(0,0,0,0.4); padding: 15px; border-radius:8px;">
+                html += `<div style="border-bottom:1px dashed var(--theme-dim); padding-bottom:15px; margin-bottom:15px; background: var(--input-bg); padding: 15px; border-radius:8px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                        <div><span style="color:#aaa; font-size:0.8rem; font-weight:600;">NAME:</span> <span style="color:var(--theme-bright); font-weight:bold; font-size:1.1em;">${r.name || 'UNKNOWN'}</span></div>
-                        <div><span style="color:#aaa; font-size:0.8rem; font-weight:600;">DOB:</span> <span style="color:#fff;">${r.dob || 'UNKNOWN'}</span></div>
+                        <div><span style="color:var(--text-muted); font-size:0.8rem; font-weight:600;">NAME:</span> <span style="color:var(--text-main); font-weight:bold; font-size:1.1em;">${r.name || 'UNKNOWN'}</span></div>
+                        <div><span style="color:var(--text-muted); font-size:0.8rem; font-weight:600;">DOB:</span> <span style="color:var(--text-main);">${r.dob || 'UNKNOWN'}</span></div>
                     </div>
-                    <div style="margin-bottom:10px;"><span style="color:#aaa; font-size:0.8rem; font-weight:600;">PLATE/ID:</span> <span style="color:var(--theme-bright); font-weight:bold;">${r.plate || 'UNKNOWN'}</span></div>
-                    <div style="margin-bottom:10px;"><span style="color:#aaa; font-size:0.8rem; font-weight:600;">PROPERTIES:</span> <span style="color:#fff;">${r.props || 'None registered.'}</span></div>
-                    <div style="margin-bottom:10px;"><span style="color:#aaa; font-size:0.8rem; font-weight:600;">STATUS:</span> <span style="color:${statusColor}; font-weight:bold;">${wText}</span></div>
-                    <div><span style="color:#aaa; font-size:0.8rem; font-weight:600;">NOTES:</span> <span style="color:#fff;">${r.notes || 'None on file.'}</span></div>
+                    <div style="margin-bottom:10px;"><span style="color:var(--text-muted); font-size:0.8rem; font-weight:600;">PLATE/ID:</span> <span style="color:var(--text-main); font-weight:bold;">${r.plate || 'UNKNOWN'}</span></div>
+                    <div style="margin-bottom:10px;"><span style="color:var(--text-muted); font-size:0.8rem; font-weight:600;">PROPERTIES:</span> <span style="color:var(--text-main);">${r.props || 'None registered.'}</span></div>
+                    <div style="margin-bottom:10px;"><span style="color:var(--text-muted); font-size:0.8rem; font-weight:600;">STATUS:</span> <span style="color:${statusColor}; font-weight:bold;">${wText}</span></div>
+                    <div><span style="color:var(--text-muted); font-size:0.8rem; font-weight:600;">NOTES:</span> <span style="color:var(--text-main);">${r.notes || 'None on file.'}</span></div>
                 </div>`;
             });
             resBox.innerHTML = html;
         } else {
-            resBox.innerHTML = `<span style='color:var(--theme-dim);'>NO RECORDS FOUND FOR [${query}] IN LOCAL MAINFRAME.</span>`;
+            resBox.innerHTML = `<span style='color:var(--text-muted);'>NO RECORDS FOUND FOR [${query}] IN LOCAL MAINFRAME.</span>`;
         }
     }
 
     function setTab(type, el) {
-        playHeavyClick(); currentTab = type;
+        playHeavyClick(); 
+        
+        document.querySelectorAll('.workspace-panel').forEach(p => p.classList.remove('active'));
+        
+        if (type === 'ARCHIVES') {
+            document.getElementById('archivesView').classList.add('active');
+            renderArchives();
+        } else if (type === 'SETTINGS') {
+            document.getElementById('dynamicFields').classList.add('active');
+        } else if (type === 'NCIC') {
+            document.getElementById('dynamicFields').classList.add('active');
+        } else {
+            document.getElementById('dynamicFields').classList.add('active');
+            document.getElementById('standardForms').classList.add('active');
+            document.getElementById('actionButtons').classList.add('active');
+            
+            if(document.getElementById('paperContent').innerHTML !== "") {
+                document.getElementById('printerDisplay').style.display = 'block';
+            }
+        }
+
+        currentTab = type;
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); 
         if(el) el.classList.add('active');
         
         const container = document.getElementById('dynamicFields'); container.innerHTML = '';
         
         if(type === 'NCIC') {
-            document.getElementById('standardForms').style.display = 'none'; document.getElementById('actionButtons').style.display = 'none'; 
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px; border-color:var(--success); box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);">
-                    <span class="panel-label" style="color:var(--success); border-color:var(--success);">NCIC DATABASE ACCESS</span>
+                    <span class="panel-label" style="color:var(--bg-deep); background:var(--success); border-color:var(--success);">NCIC DATABASE ACCESS</span>
                     
                     <div style="display:flex; justify-content:space-between; margin-bottom: 15px; align-items:center;">
-                        <label style="color:#aaa; font-weight:600; font-size:0.85rem;">Database Search Protocol:</label>
+                        <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Database Search Protocol:</label>
                         <button class="btn-toggle" style="color:var(--success); border-color:var(--success);" onclick="toggleNCICForm()">+ ADD NEW RECORD</button>
                     </div>
 
@@ -1022,8 +1136,8 @@
                         <button class="btn" style="background:var(--success); border-color:var(--success); color:#000;" onclick="searchNCIC()">QUERY</button>
                     </div>
 
-                    <div id="ncicAddForm" style="display:none; padding:25px; border:1px solid rgba(0,255,204,0.3); background:rgba(0,0,0,0.8); margin-bottom:20px; border-radius:8px;">
-                        <span style="color:var(--success); font-weight:800; display:block; margin-bottom:15px; border-bottom: 1px solid rgba(0,255,204,0.2); padding-bottom:8px; font-size:1.1rem;">// CREATE NEW DATABASE ENTRY</span>
+                    <div id="ncicAddForm" style="display:none; padding:25px; border:1px solid var(--theme-dim); background:var(--input-bg); margin-bottom:20px; border-radius:8px;">
+                        <span style="color:var(--success); font-weight:800; display:block; margin-bottom:15px; border-bottom: 1px solid var(--theme-dim); padding-bottom:8px; font-size:1.1rem;">// CREATE NEW DATABASE ENTRY</span>
                         <div style="display:flex; gap:10px; margin-bottom:15px;">
                             <input type="text" id="newNName" class="data-input" placeholder="Full Legal Name" style="flex:1;">
                             <input type="text" id="newNDOB" class="data-input" placeholder="DOB (MM/DD/YYYY)" style="flex:1;">
@@ -1038,44 +1152,39 @@
                         <button class="btn" onclick="saveNCICRecord()" style="width:100%; background:var(--success); color:#000; border-color:var(--success);">SAVE RECORD TO MAINFRAME</button>
                     </div>
 
-                    <div id="queryResults" style="padding: 20px; border: 1px dashed rgba(0,255,204,0.3); min-height:150px; border-radius:8px; font-family:'Share Tech Mono'; background:rgba(0,0,0,0.5);">
-                        <span style="color:rgba(0,255,204,0.5);">AWAITING INPUT...</span>
+                    <div id="queryResults" style="padding: 20px; border: 1px dashed var(--theme-dim); min-height:150px; border-radius:8px; font-family:'Share Tech Mono'; background:var(--input-bg);">
+                        <span style="color:var(--text-muted);">AWAITING INPUT...</span>
                     </div>
                 </div>
             `;
         } else if (type === 'WARRANT') {
-            document.getElementById('standardForms').style.display = 'none'; 
-            document.getElementById('actionButtons').style.display = 'flex';
-            
+            document.getElementById('standardForms').classList.remove('active'); 
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px;">
                     <span class="panel-label">WARRANT PARAMETERS</span>
                     
-                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">Target Identity / Location:</label>
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Target Identity / Location:</label>
                     <input type="text" id="warTarget" class="data-input" placeholder="Enter target individual or address to be searched..." style="margin-bottom:20px;">
                     
-                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">Charges:</label>
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Charges:</label>
                     <textarea id="warCharges" class="data-input" rows="3" placeholder="List specific charges (each on a new line)..." style="margin-bottom:20px;"></textarea>
                     
-                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">Reason / Probable Cause:</label>
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Reason / Probable Cause:</label>
                     <textarea id="warReason" class="data-input" rows="4" placeholder="Provide factual justification and reasoning for warrant request..."></textarea>
                 </div>
             `;
         } else if (type === 'SETTINGS') {
-            document.getElementById('standardForms').style.display = 'none'; 
-            document.getElementById('actionButtons').style.display = 'none'; 
-            
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px;">
                     <span class="panel-label">OPERATOR SETTINGS</span>
                     
-                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">UPDATE CALLSIGN:</label>
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">UPDATE CALLSIGN:</label>
                     <div style="display:flex; gap:10px; margin-bottom: 20px;">
                         <input type="text" id="setCallsign" class="data-input" value="${currentUserProfile.callsign}" style="flex:1;">
                         <button class="btn" onclick="updateProfile('callsign')">UPDATE</button>
                     </div>
 
-                    <label style="display:block; margin-bottom:8px; color:#aaa; font-weight:600; font-size:0.85rem;">UPDATE AGENCY:</label>
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">UPDATE AGENCY:</label>
                     <div style="display:flex; gap:10px; margin-bottom: 30px;">
                         <select id="setAgency" class="data-input" style="flex:1;">
                             <option value="LSPD" ${currentUserProfile.agency === 'LSPD' ? 'selected' : ''}>LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
@@ -1091,9 +1200,7 @@
                     </div>
                 </div>
             `;
-        } else {
-            document.getElementById('standardForms').style.display = 'block'; document.getElementById('actionButtons').style.display = 'flex'; 
-            
+        } else if (type !== 'ARCHIVES') {
             if(type === 'INCIDENT' || type === 'MISSING') {
                 container.innerHTML = `
                     <div class="terminal-panel" style="margin-bottom: 20px;">
@@ -1129,11 +1236,12 @@
 
     async function initiatePrintSequence() {
         playHeavyClick(); printJobID++; const currentJob = printJobID; 
-        const btn = document.getElementById('printBtn'); const copyBtn = document.getElementById('copyBtn'); const hardBtn = document.getElementById('hardcopyBtn');
+        const btn = document.getElementById('printBtn'); const copyBtn = document.getElementById('copyBtn'); const hardBtn = document.getElementById('hardcopyBtn'); const fileBtn = document.getElementById('fileReportBtn');
         const statusBox = document.getElementById('printStatusBox'); const printer = document.getElementById('printerDisplay');
         const workspace = document.getElementById('mainWorkspace');
+        const printIcon = document.getElementById('printIndicator');
         
-        btn.disabled = true; copyBtn.style.display = 'none'; hardBtn.style.display = 'none';
+        btn.disabled = true; copyBtn.style.display = 'none'; hardBtn.style.display = 'none'; fileBtn.style.display = 'none';
         
         document.getElementById('paperContent').innerHTML = '';
         printer.style.display = 'none';
@@ -1143,7 +1251,8 @@
         const nar = document.getElementById('narrative') ? document.getElementById('narrative').value : '';
         const evi = document.getElementById('evidence') ? document.getElementById('evidence').value : ''; 
         const add = document.getElementById('addActions') ? document.getElementById('addActions').value : '';
-        
+        const reqSup = document.getElementById('reqSupSig') ? document.getElementById('reqSupSig').checked : false;
+
         let checks = [];
         if (currentTab !== 'WARRANT') {
             const coreChecks = Array.from(document.querySelectorAll('#actionsMatrix input:checked')).map(c => c.value);
@@ -1151,13 +1260,17 @@
             checks = coreChecks.concat(customChecks);
         }
 
-        const now = new Date(); const timestamp = now.toLocaleString('en-US');
+        const now = new Date(); 
+        const pad = (n) => n.toString().padStart(2, '0');
+        // New Timestamp-based ID (YYYYMMDD-HHMM)
+        currentCaseID = `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`;
+        const displayTimestamp = now.toLocaleString('en-US');
         
-        let rawOut = `**[ ${activeAgency} - KYNTRA DATABASE ]**\n`;
+        let rawOut = `**[ ${activeAgency} CENTRAL DATABASE ]**\n`;
         rawOut += `**TYPE:** ${currentTab}\n`;
         rawOut += `**OFFICER:** ${offName}\n`;
         rawOut += `**UNIT:** ${unitID}\n`;
-        rawOut += `**TIMESTAMP:** ${timestamp}\n`;
+        rawOut += `**TIMESTAMP:** ${displayTimestamp}\n`;
         rawOut += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
         
         if(currentTab === 'WARRANT') {
@@ -1212,7 +1325,9 @@
             rawOut += `**ADDITIONAL PROCEDURES:**\n${add || "None."}\n\n`;
         }
 
-        rawOut += `**SUPERVISOR SIGNATURE:** __________________________\n\n`;
+        if(reqSup || currentTab === 'WARRANT') {
+            rawOut += `**SUPERVISOR SIGNATURE:** __________________________\n\n`;
+        }
         if (currentTab === 'WARRANT') {
             rawOut += `**JUDGE SIGNATURE:** _______________________________\n\n`;
         }
@@ -1234,6 +1349,7 @@
         await sleep(400); if (currentJob !== printJobID) return; 
         
         printer.style.display = 'block'; 
+        printIcon.style.display = 'inline';
         startPrinterSound();
         
         let lines = rawOut.split('\n');
@@ -1264,12 +1380,130 @@
         }
         
         stopPrinterSound(); playPrintFinishSound();
+        printIcon.style.display = 'none';
         statusBox.innerHTML += "> <span style='color:var(--success)'>PRINT COMPLETE. RECORD ARCHIVED.</span>";
         
+        globalHTMLOutput = printContentHTML;
         document.getElementById('printBody').innerHTML = printContentHTML;
-        btn.disabled = false; copyBtn.style.display = 'block'; hardBtn.style.display = 'block';
-        
+        btn.disabled = false; copyBtn.style.display = 'block'; hardBtn.style.display = 'block'; fileBtn.style.display = 'block';
         playHeavyClick();
+    }
+
+    async function fileReportToCabinet() {
+        playClick();
+        const paper = document.getElementById('printerDisplay');
+        const cabIcon = document.getElementById('cabinetIcon');
+        
+        cabIcon.classList.add('active'); 
+        await sleep(300);
+
+        const pRect = paper.getBoundingClientRect();
+        const cRect = cabIcon.getBoundingClientRect();
+        
+        const clone = paper.cloneNode(true);
+        document.body.appendChild(clone);
+        
+        clone.style.position = 'fixed'; clone.style.top = pRect.top + 'px'; clone.style.left = pRect.left + 'px';
+        clone.style.width = pRect.width + 'px'; clone.style.height = pRect.height + 'px';
+        clone.style.margin = '0'; clone.style.zIndex = '9999';
+        
+        paper.style.visibility = 'hidden';
+
+        const flight = clone.animate([
+            { transform: 'scale(1) translate(0,0)', opacity: 1 },
+            { transform: `scale(0.05) translate(${(cRect.left - pRect.left)*20}px, ${(cRect.top - pRect.top)*20}px)`, opacity: 0 }
+        ], { duration: 600, easing: 'ease-in-out' });
+
+        flight.onfinish = () => {
+            clone.remove();
+            playHeavyClick();
+            cabIcon.innerText = "📁"; 
+            setTimeout(() => { cabIcon.innerText = "🗄️"; cabIcon.classList.remove('active'); }, 600);
+            
+            const now = new Date();
+            const timeFormatted = now.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'});
+
+            const newDoc = {
+                id: currentCaseID,
+                type: currentTab,
+                date: now.toLocaleDateString() + ' ' + timeFormatted,
+                html: globalHTMLOutput,
+                md: globalRawMarkdownOutput
+            };
+            localArchives.unshift(newDoc);
+            localStorage.setItem('kyntraArchives', JSON.stringify(localArchives));
+
+            alert(`Record Filed: Timestamp [${currentCaseID}]`);
+            clearReport();
+            paper.style.visibility = 'visible'; 
+        };
+    }
+
+    function renderArchives() {
+        const container = document.getElementById('drawerContainer');
+        container.innerHTML = '';
+        if(localArchives.length === 0) {
+            container.innerHTML = '<span style="color:var(--text-muted);">NO RECORDS IN LOCAL ARCHIVE.</span>';
+            return;
+        }
+
+        localArchives.forEach((doc, index) => {
+            const f = document.createElement('div');
+            f.className = 'folder';
+            
+            let labelText = doc.id;
+            
+            f.innerHTML = `
+                <div class="folder-delete" onclick="deleteArchive(event, ${index})" title="Shred Record">✕</div>
+                <div class="doc-fan"></div><div class="doc-fan"></div><div class="doc-fan"></div>
+                <div class="folder-label">${labelText}</div>
+                <div class="folder-date">${doc.type}</div>
+                <div class="folder-date">${doc.date.split(' ')[1] || ''}</div>
+            `;
+            f.onclick = () => openArchivedReport(index, f);
+            container.appendChild(f);
+        });
+    }
+
+    function deleteArchive(event, index) {
+        event.stopPropagation();
+        playHeavyClick();
+        if(confirm(`SECURITY ALERT: Are you sure you want to permanently shred and delete record [${localArchives[index].id}]?`)) {
+            localArchives.splice(index, 1);
+            localStorage.setItem('kyntraArchives', JSON.stringify(localArchives));
+            renderArchives();
+            playDataSeekSound();
+        }
+    }
+
+    async function openArchivedReport(index, element) {
+        playHeavyClick();
+        element.classList.add('opening');
+        await sleep(1000); 
+        
+        const doc = localArchives[index];
+        globalRawMarkdownOutput = doc.md;
+        globalHTMLOutput = doc.html;
+        
+        document.getElementById('archivesView').classList.remove('active');
+        document.getElementById('actionButtons').classList.add('active');
+        document.getElementById('actionButtons').style.display = 'flex';
+        
+        document.getElementById('printBtn').disabled = false;
+        document.getElementById('copyBtn').style.display = 'block'; 
+        document.getElementById('hardcopyBtn').style.display = 'block'; 
+        document.getElementById('fileReportBtn').style.display = 'none';
+
+        const printer = document.getElementById('printerDisplay');
+        printer.style.display = 'block';
+        document.getElementById('paperContent').innerHTML = doc.html;
+        document.getElementById('printBody').innerHTML = doc.html;
+        
+        let paperWrapper = document.getElementById('paperWrapper');
+        paperWrapper.scrollTop = 0; 
+        
+        element.classList.remove('opening');
+        playDataSeekSound();
     }
 
     function copyReport() {
