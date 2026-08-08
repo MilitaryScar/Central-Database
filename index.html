@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyntra Database - Node 04</title>
+    <title>Ghost Live Operations - Node 04</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap');
 
@@ -102,7 +102,7 @@
 
         body {
             background: var(--bg-image);
-            background-color: var(--bg-deep); /* Fallback */
+            background-color: var(--bg-deep);
             color: var(--theme); font-family: 'Inter', sans-serif;
             margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center;
             min-height: 100vh; overflow: hidden; user-select: none; transition: background 0.5s ease;
@@ -155,9 +155,6 @@
             background: var(--bezel); z-index: 2500; display: none; flex-direction: column; justify-content: center; align-items: center;
         }
 
-        /* Dynamic Logo Coloring */
-        .dynamic-logo { width: 300px; margin-bottom: 30px; filter: var(--logo-filter); transition: filter 0.5s ease; }
-
         @keyframes loadBar { 0% { left: -50%; } 100% { left: 100%; } }
 
         #loginScreen {
@@ -193,23 +190,6 @@
         }
         .data-input:focus { outline: none; border-bottom-color: var(--theme-bright); background: rgba(0,0,0,0.3); }
         .data-input::placeholder { color: var(--text-muted); opacity: 0.6; }
-
-        .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 10px; padding-top: 10px; }
-        .grid-category-header {
-            grid-column: span 4; font-size: 0.75rem; color: var(--theme-bright); font-weight: bold;
-            border-bottom: 1px solid var(--theme-ghost); padding-bottom: 4px; margin-top: 10px; letter-spacing: 1.5px;
-        }
-
-        .action-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; }
-        .action-item label { cursor: pointer; color: var(--text-muted); transition: 0.2s; }
-        .action-item label:hover { color: var(--text-main); text-shadow: 0 0 8px var(--theme-dim); }
-        
-        input[type="checkbox"] {
-            appearance: none; width: 18px; height: 18px; flex-shrink: 0; border-radius: 4px;
-            border: 1px solid var(--theme-dim); background: var(--input-bg); cursor: pointer; position: relative; transition: 0.2s;
-        }
-        input[type="checkbox"]:checked { border-color: var(--theme-bright); background: var(--theme); box-shadow: 0 0 10px var(--theme); }
-        input[type="checkbox"]:checked::after { content: "✓"; color: #000; position: absolute; top: -2px; left: 2px; font-size: 14px; font-weight: 900; }
 
         .tab-bar { display: flex; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 10px; }
         .tab { 
@@ -290,7 +270,6 @@
         .folder-label { background: #fff; color: #000; font-family: 'Share Tech Mono'; font-size: 0.65rem; padding: 2px 4px; font-weight: bold; transform: rotate(-2deg); box-shadow: 1px 1px 3px rgba(0,0,0,0.3);}
         .folder-date { color: rgba(0,0,0,0.6); font-size: 0.6rem; font-weight:bold; margin-top: 5px;}
 
-        /* Archive Deletion Button */
         .folder-delete {
             position: absolute; top: 5px; left: 5px; background: rgba(180, 0, 0, 0.8); color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 4px; width: 22px; height: 22px;
@@ -300,7 +279,6 @@
         .folder:hover .folder-delete { display: flex; }
         .folder-delete:hover { background: #ff0000; box-shadow: 0 0 10px red; }
 
-        /* Folder Opening Animations */
         @keyframes fanOut1 { 0% { transform: rotate(0deg) translateY(0); opacity: 0; } 100% { transform: rotate(-15deg) translateX(-20px) translateY(-30px); opacity: 1; } }
         @keyframes fanOut2 { 0% { transform: rotate(0deg) translateY(0); opacity: 0; } 100% { transform: rotate(5deg) translateY(-40px); opacity: 1; } }
         @keyframes fanOut3 { 0% { transform: rotate(0deg) translateY(0); opacity: 0; } 100% { transform: rotate(20deg) translateX(20px) translateY(-20px); opacity: 1; } }
@@ -310,10 +288,6 @@
         .folder.opening .doc-fan:nth-child(2) { animation: fanOut1 0.6s 0.2s forwards ease-out; }
         .folder.opening .doc-fan:nth-child(3) { animation: fanOut2 0.6s 0.3s forwards ease-out; }
         .folder.opening .doc-fan:nth-child(4) { animation: fanOut3 0.6s 0.4s forwards ease-out; }
-
-        .person-row { display: flex; gap: 10px; margin-bottom: 12px; }
-        .person-select { width: 160px; font-family: 'Inter', sans-serif; padding: 12px; background: var(--input-bg); color: var(--text-main); border: 1px solid var(--theme-dim); border-radius: 6px; outline: none; }
-        .person-select:focus { border-color: var(--theme-bright); }
 
         @media print {
             body { background: none; padding: 0; margin: 0; }
@@ -347,7 +321,6 @@
         <div id="bootLoader"></div>
 
         <div id="bootTransition">
-            <img src="Roxy Logo.png" class="dynamic-logo" onerror="this.style.display='none'">
             <div style="width:400px; height:4px; background:var(--theme-ghost); margin:20px 0; position:relative; overflow:hidden; border-radius: 2px;">
                 <div style="position:absolute; height:100%; width:40%; background:var(--theme-bright); animation:loadBar 1s infinite cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 15px var(--theme-bright);"></div>
             </div>
@@ -355,8 +328,7 @@
         </div>
 
         <div id="loginScreen">
-            <img src="Roxy Logo.png" class="dynamic-logo" style="width: 220px;" onerror="this.style.display='none'">
-            <div class="login-banner">KYNTRA DATABASE</div>
+            <div class="login-banner">GHOST LIVE OPERATIONS</div>
             <div style="color: var(--text-muted); font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">SECURE MULTITASKING TERMINAL HOST</div>
             
             <div class="terminal-panel" style="width: 480px; text-align: left; padding: 40px 30px;">
@@ -369,51 +341,18 @@
                 <div id="loginView">
                     <div style="margin-bottom:15px;">
                         <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">OPERATOR IDENTITY NAME:</label>
-                        <input type="text" class="data-input" id="loginName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
+                        <input type="text" class="data-input" id="loginName" placeholder="e.g. Sam Harlow" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="margin-bottom:35px;">
-                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">ACCESS PASSPHRASE:</label>
-                        <input type="password" class="data-input" id="loginPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">ASSIGNED CALLSIGN:</label>
+                        <input type="text" class="data-input" id="loginPass" placeholder="e.g. C-209" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="display:flex; gap:10px;">
                         <button class="btn" style="flex:1; padding: 16px; font-size: 1rem;" onclick="attemptLogin()">AUTHORIZE</button>
-                        <button class="btn" style="flex:1; padding: 16px; font-size: 1rem; background:transparent; color:var(--theme-bright); border-color:var(--theme-dim);" onclick="toggleAuthView('register')">CREATE PROFILE</button>
                     </div>
                 </div>
-
-                <div id="registerView" style="display:none;">
-                    <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">NEW OPERATOR NAME:</label>
-                        <input type="text" class="data-input" id="regName" placeholder="e.g. Officer Levi Porter" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
-                    </div>
-                    
-                    <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">ASSIGNED CALLSIGN:</label>
-                        <input type="text" class="data-input" id="regCallsign" placeholder="e.g. 1A-37" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
-                    </div>
-
-                    <div style="margin-bottom:15px;">
-                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">AUTHORIZING AGENCY:</label>
-                        <select id="regAgency" class="data-input" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
-                            <option value="LSPD">LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
-                            <option value="SASP">SAN ANDREAS STATE POLICE (SASP)</option>
-                            <option value="BCSO">BLAINE COUNTY SHERIFF'S OFFICE (BCSO)</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-bottom:25px;">
-                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">NEW PASSPHRASE:</label>
-                        <input type="password" class="data-input" id="regPass" placeholder="••••••••••••" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
-                    </div>
-
-                    <div style="display:flex; gap:10px;">
-                        <button class="btn" style="flex:1; padding: 14px; background:var(--success); color:#000; border-color:var(--success);" onclick="attemptRegister()">REGISTER & LOGIN</button>
-                        <button class="btn" style="flex:1; padding: 14px; background:transparent; color:var(--alert-red); border-color:rgba(255,51,102,0.3);" onclick="toggleAuthView('login')">CANCEL</button>
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -444,7 +383,7 @@
                 
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="display:flex; align-items:center; gap:15px;">
-                        <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:var(--text-main); text-shadow: 0 0 10px var(--theme); font-style:italic;">LSPD</span>
+                        <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:var(--text-main); text-shadow: 0 0 10px var(--theme); font-style:italic;">SHERIFF'S OFFICE</span>
                         <span style="color:var(--theme-dim);">//</span>
                         <span id="userDisplay" style="font-size:0.9rem; color:var(--text-muted); font-weight:bold; font-family:'Share Tech Mono';">NODE: 04 | AUTH: ---</span>
                     </div>
@@ -482,85 +421,6 @@
 
                 <div id="dynamicFields" class="workspace-panel active"></div>
 
-                <div id="standardForms" class="workspace-panel active">
-                    <div class="terminal-panel" style="margin-bottom: 20px;">
-                        <span class="panel-label">NARRATIVE & EVIDENCE</span>
-                        
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                            <label id="narLabel" style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Incident Summary:</label>
-                            <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
-                        </div>
-                        <textarea id="narrative" class="data-input" rows="4" placeholder="Detail the sequence of events... Type shorthand notes here and click AI ENHANCE to formalize."></textarea>
-                        
-                        <label style="display:block; margin-top:20px; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Evidence Log:</label>
-                        <textarea id="evidence" class="data-input" rows="2" placeholder="List items seized (each on a new line)..."></textarea>
-                    </div>
-
-                    <div class="terminal-panel" style="margin-bottom: 20px;">
-                        <span class="panel-label">ACTIONS INITIATED</span>
-                        <div class="actions-grid" id="actionsMatrix">
-                            <div class="grid-category-header">CORE RESPONSES</div>
-                            <div class="action-item"><input type="checkbox" id="a1" value="MIRANDA READ"><label for="a1">MIRANDA READ</label></div>
-                            <div class="action-item"><input type="checkbox" id="a2" value="DETAINED"><label for="a2">DETAINED</label></div>
-                            <div class="action-item"><input type="checkbox" id="a3" value="ARRESTED"><label for="a3">ARRESTED</label></div>
-                            <div class="action-item"><input type="checkbox" id="a4" value="FOOT PURSUIT"><label for="a4">FOOT PURSUIT</label></div>
-                            <div class="action-item"><input type="checkbox" id="a5" value="VEHICLE PURSUIT"><label for="a5">VEH PURSUIT</label></div>
-                            <div class="action-item"><input type="checkbox" id="a6" value="CODE 3 RESPONSE"><label for="a6">CODE 3 RESP.</label></div>
-                            <div class="action-item"><input type="checkbox" id="a7" value="BACKUP REQUESTED"><label for="a7">BACKUP REQ.</label></div>
-                            <div class="action-item"><input type="checkbox" id="a8" value="SUPERVISOR REQ."><label for="a8">SUPERVISOR</label></div>
-
-                            <div class="grid-category-header">TACTICAL & FORCE INTERVENTIONS</div>
-                            <div class="action-item"><input type="checkbox" id="b1" value="WEAPON DRAWN"><label for="b1">WEAPON DRAWN</label></div>
-                            <div class="action-item"><input type="checkbox" id="b2" value="TASER DEPLOYED"><label for="b2">TASER DEPLOYED</label></div>
-                            <div class="action-item"><input type="checkbox" id="b3" value="LESS-LETHAL ENGAGED"><label for="b3">LESS-LETHAL</label></div>
-                            <div class="action-item"><input type="checkbox" id="b4" value="K9 DEPLOYED"><label for="b4">K9 DEPLOYED</label></div>
-                            <div class="action-item"><input type="checkbox" id="b5" value="SPIKE STRIPS"><label for="b5">SPIKE STRIPS</label></div>
-                            <div class="action-item"><input type="checkbox" id="b6" value="PIT EXECUTED"><label for="b6">PIT EXECUTED</label></div>
-                            <div class="action-item"><input type="checkbox" id="b7" value="FELONY STOP PROTOCOL"><label for="b7">FELONY STOP</label></div>
-                            <div class="action-item"><input type="checkbox" id="b8" value="RAMMING EXECUTED"><label for="b8">RAMMING EXEC.</label></div>
-
-                            <div class="grid-category-header">SEARCH, SEIZURE & SCENE CONTROL</div>
-                            <div class="action-item"><input type="checkbox" id="c1" value="VEH. SEARCH"><label for="c1">VEH. SEARCH</label></div>
-                            <div class="action-item"><input type="checkbox" id="c2" value="PERSON SEARCH"><label for="c2">PERSON SEARCH</label></div>
-                            <div class="action-item"><input type="checkbox" id="c3" value="PROPERTY SEARCH"><label for="c3">PROP. SEARCH</label></div>
-                            <div class="action-item"><input type="checkbox" id="c4" value="CONTRABAND SEIZED"><label for="c4">CONTRABAND</label></div>
-                            <div class="action-item"><input type="checkbox" id="c5" value="GUN RECOVERED"><label for="c5">GUN RECOVERED</label></div>
-                            <div class="action-item"><input type="checkbox" id="c6" value="DRUGS SEIZED"><label for="c6">DRUGS SEIZED</label></div>
-                            <div class="action-item"><input type="checkbox" id="c7" value="VEHICLE IMPOUNDED"><label for="c7">IMPOUNDED</label></div>
-                            <div class="action-item"><input type="checkbox" id="c8" value="SCENE SECURED"><label for="c8">SCENE SECURED</label></div>
-
-                            <div class="grid-category-header">ADMINISTRATIVE & MEDICAL</div>
-                            <div class="action-item"><input type="checkbox" id="d1" value="EMS CONTACTED"><label for="d1">EMS CONTACTED</label></div>
-                            <div class="action-item"><input type="checkbox" id="d2" value="FIRE DEPT CONTACTED"><label for="d2">FIRE DEPT</label></div>
-                            <div class="action-item"><input type="checkbox" id="d3" value="BREATHALYZER"><label for="d3">BREATHALYZER</label></div>
-                            <div class="action-item"><input type="checkbox" id="d4" value="GSR TEST"><label for="d4">GSR TEST</label></div>
-                            <div class="action-item"><input type="checkbox" id="d5" value="DNA SAMPLE"><label for="d5">DNA SAMPLE</label></div>
-                            <div class="action-item"><input type="checkbox" id="d6" value="CITATION ISSUED"><label for="d6">CITATION ISSUED</label></div>
-                            <div class="action-item"><input type="checkbox" id="d7" value="WARNING ISSUED"><label for="d7">WARNING ISSUED</label></div>
-                            <div class="action-item"><input type="checkbox" id="d8" value="BODYCAM UPLOADED"><label for="d8">BODYCAM UP</label></div>
-                        </div>
-
-                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px dashed rgba(255,255,255,0.1);">
-                            <label style="color:var(--text-muted); font-weight:600; font-size:0.8rem; margin-bottom:8px; display:block;">ADD CUSTOM ACTIONS INDEX:</label>
-                            <div style="display:flex; gap:10px;">
-                                <input type="text" id="customActionInput" class="data-input" placeholder="e.g. WARRANT SEARCH UNDERTAKEN..." style="flex:1;">
-                                <button class="btn" style="padding: 12px 20px; font-size:0.75rem;" onclick="addCustomAction()">+ ADD</button>
-                            </div>
-                            <div class="actions-grid" id="customActionsGrid" style="padding-top:10px; margin-bottom:0; display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px 10px;"></div>
-                        </div>
-                    </div>
-
-                    <div class="terminal-panel" style="margin-bottom: 20px;">
-                        <span class="panel-label">POST-ACTION PROTOCOL</span>
-                        <input type="text" id="addActions" class="data-input" placeholder="Additional procedures (e.g. Forwarded to Traffic Division units)...">
-                        
-                        <div style="margin-top: 15px; display:flex; align-items:center; gap:8px;">
-                            <input type="checkbox" id="reqSupSig">
-                            <label for="reqSupSig" style="color:var(--theme-bright); font-size:0.85rem; font-weight:bold; cursor:pointer;">REQUIRE SUPERVISOR SIGNATURE</label>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="archivesView" class="workspace-panel terminal-panel">
                     <span class="panel-label">DEPARTMENT ARCHIVES</span>
                     <div class="drawer-container" id="drawerContainer">
@@ -593,7 +453,7 @@
 <script>
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     let currentTab = "ARREST";
-    let activeAgency = "LSPD";
+    let activeAgency = "SHERIFF'S OFFICE";
     let noiseBuffer = null;
     let activePrinterNodes = [];
     let printJobID = 0; 
@@ -603,7 +463,7 @@
     let audioMuted = false;
 
     // --- INIT THEMES ---
-    let activeTheme = localStorage.getItem('kyntraTheme') || 'theme-investigator';
+    let activeTheme = localStorage.getItem('kyntraTheme') || 'theme-night';
     document.body.className = activeTheme;
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -779,7 +639,7 @@
     document.addEventListener('change', (e) => { if(e.target.tagName === 'SELECT' || e.target.type === 'checkbox') playHeavyClick(); });
 
     const bootLines = [
-        "KYNTRA SYSTEMS INC. BYTESIZE BIOS V3.01 CORE", "COPR. 1986-1994 ALL RIGHTS RESERVED.", "--------------------------------------------------",
+        "GHOST LIVE OPERATIONS BIOS V3.01 CORE", "COPR. 1986-1994 ALL RIGHTS RESERVED.", "--------------------------------------------------",
         "CPU: KYNTRA-68030 PRO processor @ 40 MHz", "TESTING BASE MEMORY: 640 KB OK", "TESTING EXTENDED MEMORY: 15360 KB OK",
         "VERIFYING SYSTEM VECTORS... SUCCESSFUL", "DETECTING COMPACT DISK DRIVES... NONE FOUND", "MOUNTAIN STORAGE DEVICE... PRIMARY MASTER MATCHED [KNTR-540MB]",
         "READING TRACK 0 SYSTEM CONFIGURATION BOOT SECTOR...", " ", "BOOTING Kyntra OS v4.22.1 ...",
@@ -819,19 +679,6 @@
         }, 600);
     }
 
-    // --- AUTHENTICATION LOGIC ---
-    function toggleAuthView(view) {
-        playHeavyClick();
-        document.getElementById('authError').style.display = 'none';
-        if(view === 'register') {
-            document.getElementById('loginView').style.display = 'none';
-            document.getElementById('registerView').style.display = 'block';
-        } else {
-            document.getElementById('registerView').style.display = 'none';
-            document.getElementById('loginView').style.display = 'block';
-        }
-    }
-
     function showAuthError(msg) {
         const err = document.getElementById('authError');
         err.style.display = 'block';
@@ -839,105 +686,42 @@
         playPrintFinishSound(); 
     }
 
-    function attemptRegister() {
-        playHeavyClick();
-        const name = document.getElementById('regName').value.trim().toUpperCase();
-        const pass = document.getElementById('regPass').value;
-        const callsign = document.getElementById('regCallsign').value.trim().toUpperCase();
-        const agency = document.getElementById('regAgency').value;
-
-        if(!name || !pass || !callsign) {
-            showAuthError("ALL REGISTRATION FIELDS MUST BE FILLED.");
-            return;
-        }
-
-        if(usersDB[name]) {
-            showAuthError("OPERATOR IDENTITY ALREADY EXISTS IN DATABASE.");
-            return;
-        }
-
-        usersDB[name] = { password: pass, callsign: callsign, agency: agency };
-        localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
-
-        currentUserProfile = usersDB[name];
-        currentUserProfile.name = name;
-        completeLoginSequence();
-    }
-
     function attemptLogin() {
         playHeavyClick();
         const name = document.getElementById('loginName').value.trim().toUpperCase();
-        const pass = document.getElementById('loginPass').value;
+        const pass = document.getElementById('loginPass').value.trim().toUpperCase();
 
         if(!name || !pass) {
             showAuthError("CREDENTIALS REQUIRED TO ESTABLISH LINK.");
             return;
         }
 
-        if(usersDB[name] && usersDB[name].password === pass) {
-            currentUserProfile = usersDB[name];
-            currentUserProfile.name = name;
-            completeLoginSequence();
-        } else {
-            showAuthError("INVALID IDENTITY OR PASSPHRASE.");
-        }
-    }
-
-    function completeLoginSequence() {
-        activeAgency = currentUserProfile.agency;
-        document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
+        currentUserProfile = { name: name, callsign: pass, agency: "SHERIFF'S OFFICE" };
+        activeAgency = "SHERIFF'S OFFICE";
+        
         document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
         document.getElementById('loginScreen').style.display = 'none'; 
         
-        document.title = `Kyntra Database - Node 04`;
+        document.title = `Ghost Live Operations - Node 04`;
         
         setTab('ARREST', document.querySelector('.tab'));
     }
 
-    // --- PROFILE SETTINGS ---
     function updateProfile(field) {
         playHeavyClick();
         if(field === 'callsign') {
             const newCS = document.getElementById('setCallsign').value.trim().toUpperCase();
             if(newCS) {
                 currentUserProfile.callsign = newCS;
-                usersDB[currentUserProfile.name].callsign = newCS;
                 alert("CALLSIGN UPDATED SECURELY.");
             }
-        } else if(field === 'agency') {
-            const newAg = document.getElementById('setAgency').value;
-            currentUserProfile.agency = newAg;
-            activeAgency = newAg;
-            usersDB[currentUserProfile.name].agency = newAg;
-            document.getElementById('agencyDisplay').innerText = currentUserProfile.agency;
-            alert("AUTHORIZING AGENCY UPDATED.");
         }
-        
-        localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
         document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
-    }
-
-    function deleteAccount() {
-        playHeavyClick();
-        if(confirm("CRITICAL WARNING: THIS WILL PURGE YOUR ENTIRE OPERATOR PROFILE FROM THE DATABASE PERMANENTLY.\n\nPROCEED WITH DELETION?")) {
-            delete usersDB[currentUserProfile.name];
-            localStorage.setItem('kyntraUsers', JSON.stringify(usersDB));
-            location.reload();
-        }
     }
 
     function toggleLexicon() {
         playHeavyClick(); const sidebar = document.getElementById('lexiconSidebar');
         sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function addCustomAction() {
-        const val = document.getElementById('customActionInput').value.toUpperCase().trim();
-        if(val) {
-            const container = document.getElementById('customActionsGrid'); const div = document.createElement('div'); div.className = 'action-item'; const id = 'ca_' + Date.now();
-            div.innerHTML = `<input type="checkbox" id="${id}" value="${val}" checked><label for="${id}">${val}</label>`;
-            container.appendChild(div); document.getElementById('customActionInput').value = ''; playClick();
-        }
     }
 
     async function enhanceNarrative() {
@@ -1000,19 +784,8 @@
         playHeavyClick();
         if(confirm("ALERT: ARE YOU SURE YOU WANT TO CLEAR THE CURRENT LOG REPORT DATA?")) {
             printJobID++; stopPrinterSound(); 
-            const nar = document.getElementById('narrative'); if(nar) nar.value = ''; 
-            const evi = document.getElementById('evidence'); if(evi) evi.value = ''; 
-            const addAct = document.getElementById('addActions'); if(addAct) addAct.value = '';
-            document.querySelectorAll('#actionsMatrix input[type="checkbox"]').forEach(c => c.checked = false); 
-            const custGrid = document.getElementById('customActionsGrid'); if(custGrid) custGrid.innerHTML = '';
-            const reqSup = document.getElementById('reqSupSig'); if(reqSup) reqSup.checked = false;
             
-            const peopleBox = document.getElementById('peopleList'); if(peopleBox) { peopleBox.innerHTML = ''; addPersonRow(); }
-            const loc = document.getElementById('lastLoc'); if(loc) loc.value = '';
-
-            const warTarget = document.getElementById('warTarget'); if(warTarget) warTarget.value = '';
-            const warCharges = document.getElementById('warCharges'); if(warCharges) warCharges.value = '';
-            const warReason = document.getElementById('warReason'); if(warReason) warReason.value = '';
+            setTab(currentTab, document.querySelector('.tab.active'));
 
             const printer = document.getElementById('printerDisplay');
             document.getElementById('paperContent').innerHTML = '';
@@ -1041,10 +814,7 @@
         const warrant = document.getElementById('newNWarrant').value;
         const notes = document.getElementById('newNNotes').value.trim();
 
-        if(!name && !plate) {
-            alert("MUST PROVIDE A VALID NAME OR LICENSE PLATE.");
-            return;
-        }
+        if(!name && !plate) { alert("MUST PROVIDE A VALID NAME OR LICENSE PLATE."); return; }
 
         localNCIC.push({ name, dob, plate, props, warrant, notes, id: Date.now() });
         localStorage.setItem('kyntraNCIC', JSON.stringify(localNCIC));
@@ -1063,10 +833,7 @@
         
         await sleep(800); playDataSeekSound();
         
-        if(query === "") {
-            resBox.innerHTML = "<span style='color:var(--alert-red)'>ERROR: NO SEARCH PARAMETERS PROVIDED.</span>";
-            return;
-        }
+        if(query === "") { resBox.innerHTML = "<span style='color:var(--alert-red)'>ERROR: NO SEARCH PARAMETERS PROVIDED.</span>"; return; }
 
         const results = localNCIC.filter(r => (r.name && r.name.includes(query)) || (r.plate && r.plate.includes(query)));
 
@@ -1088,9 +855,7 @@
                 </div>`;
             });
             resBox.innerHTML = html;
-        } else {
-            resBox.innerHTML = `<span style='color:var(--text-muted);'>NO RECORDS FOUND FOR [${query}] IN LOCAL MAINFRAME.</span>`;
-        }
+        } else { resBox.innerHTML = `<span style='color:var(--text-muted);'>NO RECORDS FOUND FOR [${query}] IN LOCAL MAINFRAME.</span>`; }
     }
 
     function setTab(type, el) {
@@ -1107,7 +872,6 @@
             document.getElementById('dynamicFields').classList.add('active');
         } else {
             document.getElementById('dynamicFields').classList.add('active');
-            document.getElementById('standardForms').classList.add('active');
             document.getElementById('actionButtons').classList.add('active');
             
             if(document.getElementById('paperContent').innerHTML !== "") {
@@ -1121,7 +885,113 @@
         
         const container = document.getElementById('dynamicFields'); container.innerHTML = '';
         
-        if(type === 'NCIC') {
+        if (type === 'ARREST' || type === 'INCIDENT' || type === 'MISSING') {
+            container.innerHTML = `
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">INCIDENT PARAMETERS</span>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="incType" class="data-input" placeholder="Report Type (e.g. Felony Arrest)" style="flex:1;">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="incLoc" class="data-input" placeholder="Primary Location" style="flex:1;">
+                        <input type="text" id="incFLoc" class="data-input" placeholder="Final Location (If Moved)" style="flex:1;">
+                        <input type="text" id="incTrans" class="data-input" placeholder="Transported To" style="flex:1;">
+                    </div>
+                </div>
+                
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">SUBJECT INFO & CHARGES</span>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="incSName" class="data-input" placeholder="Suspect Name" style="flex:2;">
+                        <input type="text" id="incSSexRace" class="data-input" placeholder="Sex / Race" style="flex:1;">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="incSCloth" class="data-input" placeholder="Clothing Description" style="flex:1;">
+                        <input type="text" id="incSOther" class="data-input" placeholder="Other Identifiers" style="flex:1;">
+                    </div>
+                    <textarea id="incCharges" class="data-input" rows="3" placeholder="List Charges Here..."></textarea>
+                </div>
+
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">NARRATIVE LOG</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Sequence of Events:</label>
+                        <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
+                    </div>
+                    <textarea id="narrative" class="data-input" rows="6" placeholder="Enter narrative here..."></textarea>
+                    
+                    <label style="display:block; margin-top:20px; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Disposition & Review:</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="incDisp" class="data-input" placeholder="Disposition (End Result)" style="flex:2;">
+                        <input type="text" id="incReview" class="data-input" placeholder="Reviewing Supervisor [Callsign/Rank/Name]" style="flex:1;">
+                    </div>
+                </div>
+            `;
+        } 
+        else if (type === 'CITATION') {
+            container.innerHTML = `
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">TRAFFIC CITATION</span>
+                    
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="citDriver" class="data-input" placeholder="Driver Name & DOB" style="flex:2;">
+                        <input type="text" id="citVeh" class="data-input" placeholder="Vehicle (Color / Make / Model)" style="flex:2;">
+                    </div>
+                    
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="citLocation" class="data-input" placeholder="Location of Infraction" style="flex:2;">
+                        <input type="text" id="citSpeed" class="data-input" placeholder="Clocked Speed (MPH)" style="flex:1;">
+                        <input type="text" id="citLimit" class="data-input" placeholder="Posted Limit (MPH)" style="flex:1;">
+                        <input type="text" id="citAmt" class="data-input" placeholder="Citation Amount ($)" style="flex:1;">
+                    </div>
+                </div>
+
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">CITATION NARRATIVE</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Event Narrative:</label>
+                        <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
+                    </div>
+                    <textarea id="narrative" class="data-input" rows="6" placeholder="Detail the sequence of events during the traffic stop..."></textarea>
+                </div>
+            `;
+        } 
+        else if (type === 'WARRANT') {
+            container.innerHTML = `
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">WARRANT PARAMETERS</span>
+                    
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="warTarget" class="data-input" placeholder="Target Name & DOB" style="flex:1;">
+                    </div>
+                    
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Charges to be Enforced:</label>
+                    <textarea id="warCharges" class="data-input" rows="2" placeholder="List specific charges..." style="margin-bottom:20px;"></textarea>
+                    
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Background & Introduction:</label>
+                    <textarea id="warBg" class="data-input" rows="3" placeholder="Provide background reasoning..." style="margin-bottom:20px;"></textarea>
+                </div>
+                
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">PROBABLE CAUSE & BASIS</span>
+                    
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Probable Cause Statement:</label>
+                        <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
+                    </div>
+                    <textarea id="narrative" class="data-input" rows="6" placeholder="Enter incident details, deputy accounts, and evidence..." style="margin-bottom:20px;"></textarea>
+                    
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Basis for Arrest (Select Applicable):</label>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB1" value="Evidence of a Crime"> Arrest is sought for Evidence of a Crime</label>
+                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB2" value="The subject is directly identified by victims, deputies, or surveillance."> The subject is directly identified by victims, deputies, or surveillance.</label>
+                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB3" value="The subject poses a risk to public safety and law enforcement officers."> The subject poses a risk to public safety and law enforcement officers.</label>
+                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB4" value="Arrest is necessary to prevent further offenses and secure justice for victims."> Arrest is necessary to prevent further offenses and secure justice for victims.</label>
+                    </div>
+                </div>
+            `;
+        }
+        else if (type === 'NCIC') {
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px; border-color:var(--success); box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);">
                     <span class="panel-label" style="color:var(--bg-deep); background:var(--success); border-color:var(--success);">NCIC DATABASE ACCESS</span>
@@ -1157,23 +1027,8 @@
                     </div>
                 </div>
             `;
-        } else if (type === 'WARRANT') {
-            document.getElementById('standardForms').classList.remove('active'); 
-            container.innerHTML = `
-                <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">WARRANT PARAMETERS</span>
-                    
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Target Identity / Location:</label>
-                    <input type="text" id="warTarget" class="data-input" placeholder="Enter target individual or address to be searched..." style="margin-bottom:20px;">
-                    
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Charges:</label>
-                    <textarea id="warCharges" class="data-input" rows="3" placeholder="List specific charges (each on a new line)..." style="margin-bottom:20px;"></textarea>
-                    
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Reason / Probable Cause:</label>
-                    <textarea id="warReason" class="data-input" rows="4" placeholder="Provide factual justification and reasoning for warrant request..."></textarea>
-                </div>
-            `;
-        } else if (type === 'SETTINGS') {
+        } 
+        else if (type === 'SETTINGS') {
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px;">
                     <span class="panel-label">OPERATOR SETTINGS</span>
@@ -1184,52 +1039,12 @@
                         <button class="btn" onclick="updateProfile('callsign')">UPDATE</button>
                     </div>
 
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">UPDATE AGENCY:</label>
-                    <div style="display:flex; gap:10px; margin-bottom: 30px;">
-                        <select id="setAgency" class="data-input" style="flex:1;">
-                            <option value="LSPD" ${currentUserProfile.agency === 'LSPD' ? 'selected' : ''}>LOS SANTOS POLICE DEPARTMENT (LSPD)</option>
-                            <option value="SASP" ${currentUserProfile.agency === 'SASP' ? 'selected' : ''}>SAN ANDREAS STATE POLICE (SASP)</option>
-                            <option value="BCSO" ${currentUserProfile.agency === 'BCSO' ? 'selected' : ''}>BLAINE COUNTY SHERIFF'S OFFICE (BCSO)</option>
-                        </select>
-                        <button class="btn" onclick="updateProfile('agency')">UPDATE</button>
-                    </div>
-
                     <div style="border-top:1px dashed var(--theme-ghost); padding-top:25px; display:flex; justify-content:space-between;">
-                        <button class="btn" style="background:transparent; color:var(--alert-red); border-color:var(--alert-red);" onclick="deleteAccount()">🚨 PURGE ACCOUNT DATA 🚨</button>
                         <button class="btn" onclick="location.reload()">LOGOUT</button>
                     </div>
                 </div>
             `;
-        } else if (type !== 'ARCHIVES') {
-            if(type === 'INCIDENT' || type === 'MISSING') {
-                container.innerHTML = `
-                    <div class="terminal-panel" style="margin-bottom: 20px;">
-                        <span class="panel-label">MODULE I: INVOLVED PARTIES</span>
-                        <div id="peopleList"></div>
-                        <button type="button" class="btn-toggle" style="margin-top:10px;" onclick="addPersonRow()">+ ADD PERSON FILE</button>
-                    </div>
-                `;
-                if(type === 'MISSING') {
-                    container.innerHTML += `
-                        <div class="terminal-panel" style="margin-bottom: 20px;">
-                            <span class="panel-label">GEOGRAPHIC PARAMETERS</span>
-                            <input type="text" id="lastLoc" class="data-input" placeholder="Last Known Location Coordinates / Intersections...">
-                        </div>
-                    `;
-                }
-                addPersonRow();
-            }
         }
-    }
-
-    function addPersonRow() {
-        playClick(); const box = document.getElementById('peopleList'); const div = document.createElement('div'); div.className = 'person-row';
-        div.innerHTML = `
-            <select class="person-select p-type"><option>Suspect</option><option>Victim</option><option>Witness</option><option>Missing</option></select>
-            <input type="text" style="flex:2;" class="data-input p-name" placeholder="Full Legal Name / Recognized Aliases">
-            <button type="button" class="btn" style="background:var(--alert-red); color:white; border:none; padding:0 15px;" onclick="playHeavyClick(); this.parentElement.remove()">X</button>
-        `;
-        box.appendChild(div);
     }
 
     const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -1246,93 +1061,93 @@
         document.getElementById('paperContent').innerHTML = '';
         printer.style.display = 'none';
         
-        const offName = currentUserProfile.name;
-        const unitID = currentUserProfile.callsign; 
-        const nar = document.getElementById('narrative') ? document.getElementById('narrative').value : '';
-        const evi = document.getElementById('evidence') ? document.getElementById('evidence').value : ''; 
-        const add = document.getElementById('addActions') ? document.getElementById('addActions').value : '';
-        const reqSup = document.getElementById('reqSupSig') ? document.getElementById('reqSupSig').checked : false;
-
-        let checks = [];
-        if (currentTab !== 'WARRANT') {
-            const coreChecks = Array.from(document.querySelectorAll('#actionsMatrix input:checked')).map(c => c.value);
-            const customChecks = Array.from(document.querySelectorAll('#customActionsGrid input:checked')).map(c => c.value);
-            checks = coreChecks.concat(customChecks);
-        }
-
         const now = new Date(); 
         const pad = (n) => n.toString().padStart(2, '0');
-        // New Timestamp-based ID (YYYYMMDD-HHMM)
         currentCaseID = `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`;
-        const displayTimestamp = now.toLocaleString('en-US');
         
-        let rawOut = `**[ ${activeAgency} CENTRAL DATABASE ]**\n`;
-        rawOut += `**TYPE:** ${currentTab}\n`;
-        rawOut += `**OFFICER:** ${offName}\n`;
-        rawOut += `**UNIT:** ${unitID}\n`;
-        rawOut += `**TIMESTAMP:** ${displayTimestamp}\n`;
-        rawOut += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+        const dateStr = now.toLocaleDateString('en-US');
+        const timeStr = now.toLocaleTimeString('en-US', {hour12: false}) + " HRS";
+        const offName = currentUserProfile.name;
+        const unitID = currentUserProfile.callsign; 
         
-        if(currentTab === 'WARRANT') {
-            const wTarget = document.getElementById('warTarget') ? document.getElementById('warTarget').value || 'UNSTATED' : 'UNSTATED';
-            const wCharges = document.getElementById('warCharges') ? document.getElementById('warCharges').value || 'NONE' : 'NONE';
-            const wReason = document.getElementById('warReason') ? document.getElementById('warReason').value || 'NONE' : 'NONE';
+        let rawOut = "";
+        
+        if (currentTab === 'ARREST' || currentTab === 'INCIDENT' || currentTab === 'MISSING') {
+            const type = document.getElementById('incType').value || currentTab;
+            const loc = document.getElementById('incLoc').value || "[Location]";
+            const fLoc = document.getElementById('incFLoc').value || "[Final Location]";
+            const trans = document.getElementById('incTrans').value || "N/A";
+            const sName = document.getElementById('incSName').value || "[Name]";
+            const sSexRace = document.getElementById('incSSexRace').value || "[Sex/Race]";
+            const sCloth = document.getElementById('incSCloth').value || "[Clothing]";
+            const sOther = document.getElementById('incSOther').value || "None";
+            const charges = document.getElementById('incCharges').value || "[List Charges here]";
+            const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
+            const disp = document.getElementById('incDisp').value || "[What was the end result]";
+            const rev = document.getElementById('incReview').value || "[Callsign / Rank / Full Name(s)]";
 
-            rawOut += `**TARGET / LOCATION:**\n*${wTarget}*\n\n`;
-            
-            rawOut += `**CHARGES:**\n`;
-            if (wCharges.trim()) {
-                wCharges.split('\n').filter(l => l.trim() !== '').forEach(line => { 
-                    let cl = line.trim(); 
-                    rawOut += cl.startsWith('-') ? `${cl}\n` : `- ${cl}\n`; 
-                });
-            } else {
-                rawOut += `- None listed.\n`;
-            }
-            rawOut += `\n`;
-            
-            rawOut += `**REASON / PROBABLE CAUSE:**\n`;
-            if (wReason.trim()) {
-                wReason.split('\n').filter(l => l.trim() !== '').forEach(line => { rawOut += `*${line.trim()}*\n`; });
-            } else {
-                rawOut += `*None listed.*\n`;
-            }
-            rawOut += `\n`;
-            
-        } else {
-            rawOut += `**NARRATIVE LOG:**\n`;
-            if(currentTab === 'INCIDENT' || currentTab === 'MISSING') {
-                const people = document.querySelectorAll('#peopleList > div');
-                if(people.length > 0) {
-                    rawOut += `*INVOLVED: `; let pArray = [];
-                    people.forEach(row => { const pType = row.querySelector('.p-type').value; const pName = row.querySelector('.p-name').value || "UNKNOWN"; pArray.push(`[${pType}] ${pName}`); });
-                    rawOut += pArray.join(', ') + `*\n`;
-                }
-                if(currentTab === 'MISSING') { const loc = document.getElementById('lastLoc'); rawOut += `*LAST KNOWN LOC: ${loc && loc.value ? loc.value : "Unknown"}*\n`; }
-            }
-            
-            let narLines = nar ? nar.split('\n') : ["No historical event logged."];
-            narLines.forEach(line => { if(line.trim() !== '') { rawOut += `*${line.trim()}*\n`; } else { rawOut += `\n`; } });
-            rawOut += `\n`;
-            
-            rawOut += `**EVIDENCE STORE:**\n`;
-            if (evi.trim()) {
-                evi.split('\n').filter(l => l.trim() !== '').forEach(line => { let cl = line.trim(); rawOut += cl.startsWith('-') ? `${cl}\n` : `- ${cl}\n`; });
-            } else { rawOut += `- None logged.\n`; }
-            rawOut += `\n`;
-            
-            rawOut += `**ACTIONS INITIATED:**\n${checks.join(' | ') || "None."}\n\n`;
-            rawOut += `**ADDITIONAL PROCEDURES:**\n${add || "None."}\n\n`;
+            rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**REPORT TYPE – ${type}**\n\n`;
+            rawOut += `**Date of Incident:** ${dateStr}\n**Time of Incident:** ${timeStr}\n`;
+            rawOut += `**Primary Location:** ${loc}\n**Final Location (if pursuit/arrest moved):** ${fLoc}\n**Transported To:** ${trans}\n\n`;
+            rawOut += `**Reporting Officer:**\n${unitID} ${offName}\n\n**Assisting Officer(s):**\n[Add if any]\n\n`;
+            rawOut += `**Suspect Information:**\n Name: ${sName}\n Sex/Race: ${sSexRace}\n Clothing: ${sCloth}\n Other Identifiers (if any): ${sOther}\n\n`;
+            rawOut += `**Charges:**\n${charges}\n\n`;
+            rawOut += `**Narrative:**\n${narrative}\n\n`;
+            rawOut += `**Subject Description:** ${sSexRace}, ${sCloth}, ${sOther}\n\n`;
+            rawOut += `**Disposition:**\n${disp}\n\n`;
+            rawOut += `**Filed By:**\n ${unitID} ${offName}\n**Reviewed By:**\n ${rev}`;
         }
+        else if (currentTab === 'CITATION') {
+            const drv = document.getElementById('citDriver').value || "[Driver Name / DOB]";
+            const veh = document.getElementById('citVeh').value || "[Vehicle Info]";
+            const loc = document.getElementById('citLocation').value || "[Location]";
+            const spd = document.getElementById('citSpeed').value || "[Speed]";
+            const lim = document.getElementById('citLimit').value || "[Limit]";
+            const amt = document.getElementById('citAmt').value || "[Amount]";
+            const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
+            
+            rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**TRAFFIC CITATION**\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+            rawOut += `**Date:** ${dateStr} | **Time:** ${timeStr}\n`;
+            rawOut += `**Issuing Deputy:** ${unitID} ${offName}\n\n`;
+            rawOut += `**Driver Information:** ${drv}\n`;
+            rawOut += `**Vehicle Description:** ${veh}\n`;
+            rawOut += `**Location of Stop:** ${loc}\n`;
+            rawOut += `**Infraction:** ${spd} MPH in a ${lim} MPH zone\n`;
+            rawOut += `**Citation Fine:** $${amt}\n\n`;
+            rawOut += `**Narrative:**\n${narrative}\n`;
+        }
+        else if (currentTab === 'WARRANT') {
+            const target = document.getElementById('warTarget').value || "Name/DOB";
+            const charges = document.getElementById('warCharges').value || "Charges";
+            const bg = document.getElementById('warBg').value || "[Enter Background]";
+            const pc = document.getElementById('narrative').value || "[Enter specific details]";
+            
+            let basis = [];
+            if(document.getElementById('warB1') && document.getElementById('warB1').checked) basis.push("[X] Arrest is sought for Evidence of a Crime");
+            else basis.push("[ ] Arrest is sought for Evidence of a Crime");
+            
+            if(document.getElementById('warB2') && document.getElementById('warB2').checked) basis.push("[X] The subject is directly identified by victims, deputies, or surveillance.");
+            else basis.push("[ ] The subject is directly identified by victims, deputies, or surveillance.");
 
-        if(reqSup || currentTab === 'WARRANT') {
-            rawOut += `**SUPERVISOR SIGNATURE:** __________________________\n\n`;
+            if(document.getElementById('warB3') && document.getElementById('warB3').checked) basis.push("[X] The subject poses a risk to public safety and law enforcement officers.");
+            else basis.push("[ ] The subject poses a risk to public safety and law enforcement officers.");
+
+            if(document.getElementById('warB4') && document.getElementById('warB4').checked) basis.push("[X] Arrest is necessary to prevent further offenses and secure justice for victims.");
+            else basis.push("[ ] Arrest is necessary to prevent further offenses and secure justice for victims.");
+            
+            rawOut = `**Blaine County Sheriff's Office**\n**Arrest Warrant**\n\n`;
+            rawOut += `**Petitioner:** Blaine County Sheriff's Office\n**Requested By:** ${unitID} ${offName}\n\n`;
+            rawOut += `**In the Matter of the Arrest of:**\nName/DOB: ${target}\n\n`;
+            rawOut += `**Charges to be Enforced:**\n${charges}\n\n`;
+            rawOut += `**Introduction and Background:**\nI make this affidavit in support of an application for an arrest warrant for ${target}, for the following reasons:\n${bg}\n\n`;
+            rawOut += `**Probable Cause Statement:**\nThere is probable cause to believe that the subject has committed the following violations of the San Andreas Criminal Code:\n${pc}\n\n`;
+            rawOut += `**Criminal Code Violations:**\nStatutes that are violated (See Charges above).\n\n`;
+            rawOut += `**Basis for Arrest under Title 2, San Andreas Criminal Code:**\n${basis.join('\n')}\n\n`;
+            rawOut += `**Conclusion:**\nI make this affidavit in support of an application for an arrest warrant for:\n${target}.\n\nI, ${offName}, a sworn officer of the law, declare under penalty of perjury under the laws of the State of San Andreas that the information provided is true and correct to the best of my knowledge.\n\n`;
+            rawOut += `**Officer sign here:**\n${unitID} ${offName}\nBlaine County Sheriff's Office\nDate: ${dateStr}\n\n`;
+            rawOut += `**Command Sign Here:**\n__________________________\nBlaine County Sheriff's Office\nDate:\n\n`;
+            rawOut += `**Judge Sign Here:**\n__________________________\nDate:`;
         }
-        if (currentTab === 'WARRANT') {
-            rawOut += `**JUDGE SIGNATURE:** _______________________________\n\n`;
-        }
-        
-        rawOut += `*** END OF REPORT ***`;
 
         globalRawMarkdownOutput = rawOut;
 
