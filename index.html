@@ -463,7 +463,7 @@
     let audioMuted = false;
 
     // --- INIT THEMES ---
-    let activeTheme = localStorage.getItem('kyntraTheme') || 'theme-night';
+    let activeTheme = localStorage.getItem('ghostTheme') || 'theme-night';
     document.body.className = activeTheme;
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -474,14 +474,14 @@
     function applyTheme(themeName) {
         playHeavyClick();
         document.body.className = themeName;
-        localStorage.setItem('kyntraTheme', themeName);
+        localStorage.setItem('ghostTheme', themeName);
     }
 
     // --- MOCK USER DATABASE INITIALIZATION ---
-    let usersDB = JSON.parse(localStorage.getItem('kyntraUsers')) || {};
+    let usersDB = JSON.parse(localStorage.getItem('ghostUsers')) || {};
     let currentUserProfile = null; 
-    let localNCIC = JSON.parse(localStorage.getItem('kyntraNCIC')) || [];
-    let localArchives = JSON.parse(localStorage.getItem('kyntraArchives')) || [];
+    let localNCIC = JSON.parse(localStorage.getItem('ghostNCIC')) || [];
+    let localArchives = JSON.parse(localStorage.getItem('ghostArchives')) || [];
 
     setInterval(() => {
         const now = new Date();
@@ -640,9 +640,9 @@
 
     const bootLines = [
         "GHOST LIVE OPERATIONS BIOS V3.01 CORE", "COPR. 1986-1994 ALL RIGHTS RESERVED.", "--------------------------------------------------",
-        "CPU: KYNTRA-68030 PRO processor @ 40 MHz", "TESTING BASE MEMORY: 640 KB OK", "TESTING EXTENDED MEMORY: 15360 KB OK",
-        "VERIFYING SYSTEM VECTORS... SUCCESSFUL", "DETECTING COMPACT DISK DRIVES... NONE FOUND", "MOUNTAIN STORAGE DEVICE... PRIMARY MASTER MATCHED [KNTR-540MB]",
-        "READING TRACK 0 SYSTEM CONFIGURATION BOOT SECTOR...", " ", "BOOTING Kyntra OS v4.22.1 ...",
+        "CPU: GHOST-68030 PRO processor @ 40 MHz", "TESTING BASE MEMORY: 640 KB OK", "TESTING EXTENDED MEMORY: 15360 KB OK",
+        "VERIFYING SYSTEM VECTORS... SUCCESSFUL", "DETECTING COMPACT DISK DRIVES... NONE FOUND", "MOUNTAIN STORAGE DEVICE... PRIMARY MASTER MATCHED [GHST-540MB]",
+        "READING TRACK 0 SYSTEM CONFIGURATION BOOT SECTOR...", " ", "BOOTING Ghost OS v4.22.1 ...",
         "LOAD SYSTEM REGISTRY BASE PACKET... [ DONE ]", "INITIALIZING TCP/IP NETWORK EMULATOR DEVICING MODULE...",
         "UPLINK SECURED -> STATEWIDE DATABANK TERMINAL ROUTE", "ESTABLISHING CRYPTO GRAPHIC HANDSHAKE WITH MAIN FRAME NODE 04...",
         "REMOTE ACCESS GRANTED. TERMINAL DESK PROTOCOL ENGAGED.", "LAUNCHING MDT-SHELL INTERFACE ENGINE..."
@@ -658,7 +658,7 @@
         
         for(let i = 0; i < bootLines.length; i++) {
             const p = document.createElement('p');
-            if(bootLines[i].includes("Kyntra OS")) p.style.color = "var(--theme-bright)";
+            if(bootLines[i].includes("Ghost OS")) p.style.color = "var(--theme-bright)";
             if(bootLines[i].includes("MDT-SHELL")) p.style.color = "var(--text-main)";
             p.innerText = bootLines[i]; loader.appendChild(p); playDataSeekSound();
             
@@ -817,7 +817,7 @@
         if(!name && !plate) { alert("MUST PROVIDE A VALID NAME OR LICENSE PLATE."); return; }
 
         localNCIC.push({ name, dob, plate, props, warrant, notes, id: Date.now() });
-        localStorage.setItem('kyntraNCIC', JSON.stringify(localNCIC));
+        localStorage.setItem('ghostNCIC', JSON.stringify(localNCIC));
 
         document.getElementById('newNName').value = ''; document.getElementById('newNDOB').value = ''; document.getElementById('newNPlate').value = ''; document.getElementById('newNProps').value = ''; document.getElementById('newNNotes').value = '';
         toggleNCICForm();
@@ -856,6 +856,27 @@
             });
             resBox.innerHTML = html;
         } else { resBox.innerHTML = `<span style='color:var(--text-muted);'>NO RECORDS FOUND FOR [${query}] IN LOCAL MAINFRAME.</span>`; }
+    }
+
+    function addSubjectRow() {
+        playClick();
+        const container = document.getElementById('subjectList');
+        const div = document.createElement('div');
+        div.className = 'subject-entry';
+        div.style = 'border: 1px dashed var(--theme-dim); background: rgba(0,0,0,0.2); padding: 15px; margin-bottom: 15px; position: relative; border-radius: 6px;';
+        div.innerHTML = `
+            <button type="button" class="btn" style="position:absolute; top:10px; right:10px; padding:4px 10px; background:var(--alert-red); color:white; border:none; font-size:0.7rem; min-width:0;" onclick="playHeavyClick(); this.parentElement.remove()">X</button>
+            <div style="display:flex; gap:10px; margin-bottom:10px; padding-right: 40px;">
+                <input type="text" class="data-input s-name" placeholder="Subject Name" style="flex:2;">
+                <input type="text" class="data-input s-sexrace" placeholder="Sex / Race" style="flex:1;">
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom:10px;">
+                <input type="text" class="data-input s-cloth" placeholder="Clothing Description" style="flex:1;">
+                <input type="text" class="data-input s-other" placeholder="Other Identifiers" style="flex:1;">
+            </div>
+            <textarea class="data-input s-charges" rows="2" placeholder="List Charges Here (Hit Enter for new line)..."></textarea>
+        `;
+        container.appendChild(div);
     }
 
     function setTab(type, el) {
@@ -900,16 +921,9 @@
                 </div>
                 
                 <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">SUBJECT INFO & CHARGES</span>
-                    <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="incSName" class="data-input" placeholder="Suspect Name" style="flex:2;">
-                        <input type="text" id="incSSexRace" class="data-input" placeholder="Sex / Race" style="flex:1;">
-                    </div>
-                    <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="incSCloth" class="data-input" placeholder="Clothing Description" style="flex:1;">
-                        <input type="text" id="incSOther" class="data-input" placeholder="Other Identifiers" style="flex:1;">
-                    </div>
-                    <textarea id="incCharges" class="data-input" rows="3" placeholder="List Charges Here..."></textarea>
+                    <span class="panel-label">SUBJECT(S) INFO</span>
+                    <div id="subjectList"></div>
+                    <button class="btn-toggle" style="margin-top:5px; margin-bottom:20px; color:var(--theme-bright); border-color:var(--theme-bright);" onclick="addSubjectRow()">+ ADD SUBJECT</button>
                 </div>
 
                 <div class="terminal-panel" style="margin-bottom: 20px;">
@@ -927,23 +941,25 @@
                     </div>
                 </div>
             `;
+            addSubjectRow(); 
         } 
         else if (type === 'CITATION') {
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">TRAFFIC CITATION</span>
+                    <span class="panel-label">CITATION</span>
                     
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="citDriver" class="data-input" placeholder="Driver Name & DOB" style="flex:2;">
-                        <input type="text" id="citVeh" class="data-input" placeholder="Vehicle (Color / Make / Model)" style="flex:2;">
+                        <input type="text" id="citDriver" class="data-input" placeholder="Subject Name & DOB" style="flex:2;">
+                        <input type="text" id="citVeh" class="data-input" placeholder="Vehicle (Color/Make/Model) - If Applicable" style="flex:2;">
                     </div>
                     
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="citLocation" class="data-input" placeholder="Location of Infraction" style="flex:2;">
-                        <input type="text" id="citSpeed" class="data-input" placeholder="Clocked Speed (MPH)" style="flex:1;">
-                        <input type="text" id="citLimit" class="data-input" placeholder="Posted Limit (MPH)" style="flex:1;">
+                        <input type="text" id="citLocation" class="data-input" placeholder="Location of Incident" style="flex:2;">
                         <input type="text" id="citAmt" class="data-input" placeholder="Citation Amount ($)" style="flex:1;">
                     </div>
+
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Infraction / Charge(s):</label>
+                    <textarea id="citInfraction" class="data-input" rows="3" placeholder="List Infractions/Charges (Hit Enter for new line)..."></textarea>
                 </div>
 
                 <div class="terminal-panel" style="margin-bottom: 20px;">
@@ -952,7 +968,7 @@
                         <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Event Narrative:</label>
                         <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
                     </div>
-                    <textarea id="narrative" class="data-input" rows="6" placeholder="Detail the sequence of events during the traffic stop..."></textarea>
+                    <textarea id="narrative" class="data-input" rows="6" placeholder="Detail the sequence of events during the stop or contact..."></textarea>
                 </div>
             `;
         } 
@@ -966,7 +982,7 @@
                     </div>
                     
                     <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Charges to be Enforced:</label>
-                    <textarea id="warCharges" class="data-input" rows="2" placeholder="List specific charges..." style="margin-bottom:20px;"></textarea>
+                    <textarea id="warCharges" class="data-input" rows="3" placeholder="List specific charges (Hit Enter for new line)..." style="margin-bottom:20px;"></textarea>
                     
                     <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Background & Introduction:</label>
                     <textarea id="warBg" class="data-input" rows="3" placeholder="Provide background reasoning..." style="margin-bottom:20px;"></textarea>
@@ -1047,6 +1063,14 @@
         }
     }
 
+    function formatBullets(text) {
+        if(!text) return "- None listed.";
+        return text.split('\n')
+            .filter(l => l.trim() !== '')
+            .map(l => l.trim().startsWith('-') || l.trim().startsWith('•') ? l.trim() : `- ${l.trim()}`)
+            .join('\n');
+    }
+
     const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
     async function initiatePrintSequence() {
@@ -1077,48 +1101,63 @@
             const loc = document.getElementById('incLoc').value || "[Location]";
             const fLoc = document.getElementById('incFLoc').value || "[Final Location]";
             const trans = document.getElementById('incTrans').value || "N/A";
-            const sName = document.getElementById('incSName').value || "[Name]";
-            const sSexRace = document.getElementById('incSSexRace').value || "[Sex/Race]";
-            const sCloth = document.getElementById('incSCloth').value || "[Clothing]";
-            const sOther = document.getElementById('incSOther').value || "None";
-            const charges = document.getElementById('incCharges').value || "[List Charges here]";
             const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
             const disp = document.getElementById('incDisp').value || "[What was the end result]";
             const rev = document.getElementById('incReview').value || "[Callsign / Rank / Full Name(s)]";
+
+            let subjectOut = "";
+            let descOut = "";
+            const subjects = document.querySelectorAll('.subject-entry');
+            if(subjects.length === 0) {
+                subjectOut = " Name: N/A\n Sex/Race: N/A\n Clothing: N/A\n Other Identifiers: N/A\n\n **Charges:**\n- None listed.\n\n";
+                descOut = "N/A\n";
+            } else {
+                subjects.forEach((sub, idx) => {
+                    const sName = sub.querySelector('.s-name').value || "UNKNOWN";
+                    const sSex = sub.querySelector('.s-sexrace').value || "UNKNOWN";
+                    const sCloth = sub.querySelector('.s-cloth').value || "UNKNOWN";
+                    const sOther = sub.querySelector('.s-other').value || "None";
+                    const sCharges = formatBullets(sub.querySelector('.s-charges').value);
+                    
+                    let tag = subjects.length > 1 ? `*[Subject ${idx+1}]*\n` : ``;
+                    let descTag = subjects.length > 1 ? `*[Subject ${idx+1}]:* ` : ``;
+
+                    subjectOut += `${tag} Name: ${sName}\n Sex/Race: ${sSex}\n Clothing: ${sCloth}\n Other Identifiers (if any): ${sOther}\n\n **Charges:**\n${sCharges}\n\n`;
+                    descOut += `${descTag}${sSex}, ${sCloth}, ${sOther}\n`;
+                });
+            }
 
             rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**REPORT TYPE – ${type}**\n\n`;
             rawOut += `**Date of Incident:** ${dateStr}\n**Time of Incident:** ${timeStr}\n`;
             rawOut += `**Primary Location:** ${loc}\n**Final Location (if pursuit/arrest moved):** ${fLoc}\n**Transported To:** ${trans}\n\n`;
             rawOut += `**Reporting Officer:**\n${unitID} ${offName}\n\n**Assisting Officer(s):**\n[Add if any]\n\n`;
-            rawOut += `**Suspect Information:**\n Name: ${sName}\n Sex/Race: ${sSexRace}\n Clothing: ${sCloth}\n Other Identifiers (if any): ${sOther}\n\n`;
-            rawOut += `**Charges:**\n${charges}\n\n`;
+            rawOut += `**Subject(s) Information:**\n${subjectOut}`;
             rawOut += `**Narrative:**\n${narrative}\n\n`;
-            rawOut += `**Subject Description:** ${sSexRace}, ${sCloth}, ${sOther}\n\n`;
+            rawOut += `**Subject(s) Description:**\n${descOut}\n`;
             rawOut += `**Disposition:**\n${disp}\n\n`;
             rawOut += `**Filed By:**\n ${unitID} ${offName}\n**Reviewed By:**\n ${rev}`;
         }
         else if (currentTab === 'CITATION') {
-            const drv = document.getElementById('citDriver').value || "[Driver Name / DOB]";
-            const veh = document.getElementById('citVeh').value || "[Vehicle Info]";
+            const drv = document.getElementById('citDriver').value || "[Subject Name / DOB]";
+            const veh = document.getElementById('citVeh').value || "[Vehicle Info (if applicable)]";
             const loc = document.getElementById('citLocation').value || "[Location]";
-            const spd = document.getElementById('citSpeed').value || "[Speed]";
-            const lim = document.getElementById('citLimit').value || "[Limit]";
+            const infraction = formatBullets(document.getElementById('citInfraction').value);
             const amt = document.getElementById('citAmt').value || "[Amount]";
             const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
             
-            rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**TRAFFIC CITATION**\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+            rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**CITATION**\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
             rawOut += `**Date:** ${dateStr} | **Time:** ${timeStr}\n`;
             rawOut += `**Issuing Deputy:** ${unitID} ${offName}\n\n`;
-            rawOut += `**Driver Information:** ${drv}\n`;
+            rawOut += `**Subject Information:** ${drv}\n`;
             rawOut += `**Vehicle Description:** ${veh}\n`;
-            rawOut += `**Location of Stop:** ${loc}\n`;
-            rawOut += `**Infraction:** ${spd} MPH in a ${lim} MPH zone\n`;
+            rawOut += `**Location of Incident:** ${loc}\n`;
+            rawOut += `**Infraction / Charge(s):**\n${infraction}\n\n`;
             rawOut += `**Citation Fine:** $${amt}\n\n`;
             rawOut += `**Narrative:**\n${narrative}\n`;
         }
         else if (currentTab === 'WARRANT') {
             const target = document.getElementById('warTarget').value || "Name/DOB";
-            const charges = document.getElementById('warCharges').value || "Charges";
+            const charges = formatBullets(document.getElementById('warCharges').value);
             const bg = document.getElementById('warBg').value || "[Enter Background]";
             const pc = document.getElementById('narrative').value || "[Enter specific details]";
             
@@ -1246,7 +1285,7 @@
                 md: globalRawMarkdownOutput
             };
             localArchives.unshift(newDoc);
-            localStorage.setItem('kyntraArchives', JSON.stringify(localArchives));
+            localStorage.setItem('ghostArchives', JSON.stringify(localArchives));
 
             alert(`Record Filed: Timestamp [${currentCaseID}]`);
             clearReport();
@@ -1285,7 +1324,7 @@
         playHeavyClick();
         if(confirm(`SECURITY ALERT: Are you sure you want to permanently shred and delete record [${localArchives[index].id}]?`)) {
             localArchives.splice(index, 1);
-            localStorage.setItem('kyntraArchives', JSON.stringify(localArchives));
+            localStorage.setItem('ghostArchives', JSON.stringify(localArchives));
             renderArchives();
             playDataSeekSound();
         }
