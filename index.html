@@ -1009,27 +1009,16 @@
                     
                     <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Charges to be Enforced:</label>
                     <textarea id="warCharges" class="data-input" rows="3" placeholder="List specific charges (Hit Enter for new line)..." style="margin-bottom:20px;"></textarea>
-                    
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Background & Introduction:</label>
-                    <textarea id="warBg" class="data-input" rows="3" placeholder="Provide background reasoning..." style="margin-bottom:20px;"></textarea>
                 </div>
                 
                 <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">PROBABLE CAUSE & BASIS</span>
+                    <span class="panel-label">PROBABLE CAUSE</span>
                     
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                         <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Probable Cause Statement:</label>
                         <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
                     </div>
-                    <textarea id="narrative" class="data-input" rows="6" placeholder="Enter incident details, deputy accounts, and evidence..." style="margin-bottom:20px;"></textarea>
-                    
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Basis for Arrest (Select Applicable):</label>
-                    <div style="display:flex; flex-direction:column; gap:8px;">
-                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB1" value="Evidence of a Crime"> Arrest is sought for Evidence of a Crime</label>
-                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB2" value="The subject is directly identified by victims, deputies, or surveillance."> The subject is directly identified by victims, deputies, or surveillance.</label>
-                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB3" value="The subject poses a risk to public safety and law enforcement officers."> The subject poses a risk to public safety and law enforcement officers.</label>
-                        <label style="color:var(--text-main); font-size:0.85rem; cursor:pointer;"><input type="checkbox" id="warB4" value="Arrest is necessary to prevent further offenses and secure justice for victims."> Arrest is necessary to prevent further offenses and secure justice for victims.</label>
-                    </div>
+                    <textarea id="narrative" class="data-input" rows="10" placeholder="Enter incident details, officer accounts, and evidence..." style="margin-bottom:20px;"></textarea>
                 </div>
             `;
         }
@@ -1152,31 +1141,14 @@
         else if (currentTab === 'WARRANT') {
             const target = document.getElementById('warTarget').value || "Name/DOB";
             const charges = formatBullets(document.getElementById('warCharges').value);
-            const bg = document.getElementById('warBg').value || "[Enter Background]";
             const pc = document.getElementById('narrative').value || "[Enter specific details]";
-            
-            let basis = [];
-            if(document.getElementById('warB1') && document.getElementById('warB1').checked) basis.push("[X] Arrest is sought for Evidence of a Crime");
-            else basis.push("[ ] Arrest is sought for Evidence of a Crime");
-            
-            if(document.getElementById('warB2') && document.getElementById('warB2').checked) basis.push("[X] The subject is directly identified by victims, deputies, or surveillance.");
-            else basis.push("[ ] The subject is directly identified by victims, deputies, or surveillance.");
-
-            if(document.getElementById('warB3') && document.getElementById('warB3').checked) basis.push("[X] The subject poses a risk to public safety and law enforcement officers.");
-            else basis.push("[ ] The subject poses a risk to public safety and law enforcement officers.");
-
-            if(document.getElementById('warB4') && document.getElementById('warB4').checked) basis.push("[X] Arrest is necessary to prevent further offenses and secure justice for victims.");
-            else basis.push("[ ] Arrest is necessary to prevent further offenses and secure justice for victims.");
             
             rawOut = `**CHICAGO POLICE DEPARTMENT**\n**ARREST WARRANT**\n\n`;
             rawOut += `**Petitioner:** Chicago Police Department\n**Requested By:** ${unitID} ${offName}\n\n`;
             rawOut += `**In the Matter of the Arrest of:**\nName/DOB: ${target}\n\n`;
             rawOut += `**Charges to be Enforced:**\n${charges}\n\n`;
-            rawOut += `**Introduction and Background:**\nI make this affidavit in support of an application for an arrest warrant for ${target}, for the following reasons:\n${bg}\n\n`;
-            rawOut += `**Probable Cause Statement:**\nThere is probable cause to believe that the subject has committed the following violations of the San Andreas Criminal Code:\n${pc}\n\n`;
-            rawOut += `**Criminal Code Violations:**\nStatutes that are violated (See Charges above).\n\n`;
-            rawOut += `**Basis for Arrest under Title 2, San Andreas Criminal Code:**\n${basis.join('\n')}\n\n`;
-            rawOut += `**Conclusion:**\nI make this affidavit in support of an application for an arrest warrant for:\n${target}.\n\nI, ${offName}, a sworn officer of the law, declare under penalty of perjury under the laws of the State of San Andreas that the information provided is true and correct to the best of my knowledge.\n\n`;
+            rawOut += `**Probable Cause Statement:**\nThere is probable cause to believe that the subject has committed the following violations of the applicable Criminal Code:\n${pc}\n\n`;
+            rawOut += `**Conclusion:**\nI make this affidavit in support of an application for an arrest warrant for:\n${target}.\n\nI, ${offName}, a sworn officer of the law, declare under penalty of perjury under the laws of the State of Illinois that the information provided is true and correct to the best of my knowledge.\n\n`;
             rawOut += `**Officer sign here:**\n${unitID} ${offName}\nChicago Police Department\nDate: ${dateStr}\n\n`;
             rawOut += `**Command Sign Here:**\n__________________________\nChicago Police Department\nDate:\n\n`;
             rawOut += `**Judge Sign Here:**\n__________________________\nDate:`;
