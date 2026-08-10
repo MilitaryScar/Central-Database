@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost Live Operations - Node 04</title>
+    <title>Ghost Live Operations - CPD Node 04</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;800&display=swap');
 
@@ -328,8 +328,8 @@
         </div>
 
         <div id="loginScreen">
-            <div class="login-banner">GHOST LIVE OPERATIONS</div>
-            <div style="color: var(--text-muted); font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">SECURE MULTITASKING TERMINAL HOST</div>
+            <div class="login-banner">CHICAGO POLICE DEPARTMENT</div>
+            <div style="color: var(--text-muted); font-size:0.85rem; letter-spacing: 2px; margin-bottom:30px; font-weight: 600;">GHOST LIVE OPERATIONS TERMINAL</div>
             
             <div class="terminal-panel" style="width: 480px; text-align: left; padding: 40px 30px;">
                 <span class="panel-label">SECURITY CHALLENGE</span>
@@ -345,8 +345,8 @@
                     </div>
 
                     <div style="margin-bottom:35px;">
-                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">ASSIGNED CALLSIGN:</label>
-                        <input type="text" class="data-input" id="loginPass" placeholder="e.g. C-209" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
+                        <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">BADGE / CALLSIGN:</label>
+                        <input type="text" class="data-input" id="loginPass" placeholder="e.g. 1128-A102" style="font-family:'Share Tech Mono'; letter-spacing:1px; font-weight:bold;">
                     </div>
 
                     <div style="display:flex; gap:10px;">
@@ -383,7 +383,7 @@
                 
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div style="display:flex; align-items:center; gap:15px;">
-                        <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:var(--text-main); text-shadow: 0 0 10px var(--theme); font-style:italic;">SHERIFF'S OFFICE</span>
+                        <span id="agencyDisplay" style="font-size:1.5rem; font-weight:900; color:var(--text-main); text-shadow: 0 0 10px var(--theme); font-style:italic;">CHICAGO POLICE DEPARTMENT</span>
                         <span style="color:var(--theme-dim);">//</span>
                         <span id="userDisplay" style="font-size:0.9rem; color:var(--text-muted); font-weight:bold; font-family:'Share Tech Mono';">NODE: 04 | AUTH: ---</span>
                     </div>
@@ -412,6 +412,7 @@
                     <div class="tab active" onclick="setTab('ARREST', this)">ARREST</div>
                     <div class="tab" onclick="setTab('CITATION', this)">CITATION</div>
                     <div class="tab" onclick="setTab('INCIDENT', this)">INCIDENT</div>
+                    <div class="tab" onclick="setTab('JUVENILE', this)">JUVENILE</div>
                     <div class="tab" onclick="setTab('MISSING', this)">MISSING PERSON</div>
                     <div class="tab" onclick="setTab('WARRANT', this)">WARRANT</div>
                     <div class="tab" style="color:var(--success); border-color:rgba(0,255,204,0.2);" onclick="setTab('NCIC', this)">NCIC DATABASE</div>
@@ -453,7 +454,7 @@
 <script>
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     let currentTab = "ARREST";
-    let activeAgency = "SHERIFF'S OFFICE";
+    let activeAgency = "CHICAGO POLICE DEPARTMENT";
     let noiseBuffer = null;
     let activePrinterNodes = [];
     let printJobID = 0; 
@@ -696,13 +697,13 @@
             return;
         }
 
-        currentUserProfile = { name: name, callsign: pass, agency: "SHERIFF'S OFFICE" };
-        activeAgency = "SHERIFF'S OFFICE";
+        currentUserProfile = { name: name, callsign: pass, agency: "CHICAGO POLICE DEPARTMENT" };
+        activeAgency = "CHICAGO POLICE DEPARTMENT";
         
         document.getElementById('userDisplay').innerText = `NODE: 04 | AUTH: ${currentUserProfile.name} [${currentUserProfile.callsign}]`;
         document.getElementById('loginScreen').style.display = 'none'; 
         
-        document.title = `Ghost Live Operations - Node 04`;
+        document.title = `Ghost Live Operations - CPD Node 04`;
         
         setTab('ARREST', document.querySelector('.tab'));
     }
@@ -874,6 +875,7 @@
                 <input type="text" class="data-input s-cloth" placeholder="Clothing Description" style="flex:1;">
                 <input type="text" class="data-input s-other" placeholder="Other Identifiers" style="flex:1;">
             </div>
+            <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Infraction / Charge(s):</label>
             <textarea class="data-input s-charges" rows="2" placeholder="List Charges Here (Hit Enter for new line)..."></textarea>
         `;
         container.appendChild(div);
@@ -911,17 +913,15 @@
                 <div class="terminal-panel" style="margin-bottom: 20px;">
                     <span class="panel-label">INCIDENT PARAMETERS</span>
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="incType" class="data-input" placeholder="Report Type (e.g. Felony Arrest)" style="flex:1;">
+                        <input type="text" id="incType" class="data-input" placeholder="Incident Type (e.g. Aggravated Assault on Peace Officer)" style="flex:1;">
                     </div>
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
-                        <input type="text" id="incLoc" class="data-input" placeholder="Primary Location" style="flex:1;">
-                        <input type="text" id="incFLoc" class="data-input" placeholder="Final Location (If Moved)" style="flex:1;">
-                        <input type="text" id="incTrans" class="data-input" placeholder="Transported To" style="flex:1;">
+                        <input type="text" id="incLoc" class="data-input" placeholder="Location (e.g. Postal 435)" style="flex:1;">
                     </div>
                 </div>
                 
                 <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">SUBJECT(S) INFO</span>
+                    <span class="panel-label">INVOLVED INDIVIDUAL(S)</span>
                     <div id="subjectList"></div>
                     <button class="btn-toggle" style="margin-top:5px; margin-bottom:20px; color:var(--theme-bright); border-color:var(--theme-bright);" onclick="addSubjectRow()">+ ADD SUBJECT</button>
                 </div>
@@ -932,21 +932,47 @@
                         <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Sequence of Events:</label>
                         <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
                     </div>
-                    <textarea id="narrative" class="data-input" rows="6" placeholder="Enter narrative here..."></textarea>
+                    <textarea id="narrative" class="data-input" rows="8" placeholder="Enter narrative here..."></textarea>
                     
-                    <label style="display:block; margin-top:20px; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Disposition & Review:</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="incDisp" class="data-input" placeholder="Disposition (End Result)" style="flex:2;">
-                        <input type="text" id="incReview" class="data-input" placeholder="Reviewing Supervisor [Callsign/Rank/Name]" style="flex:1;">
-                    </div>
+                    <label style="display:block; margin-top:20px; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Disposition & Status:</label>
+                    <textarea id="incDisp" class="data-input" rows="3" placeholder="e.g. Subject Name: Arrested / Transported to Bollenbrooke..."></textarea>
                 </div>
             `;
             addSubjectRow(); 
         } 
+        else if (type === 'JUVENILE') {
+            container.innerHTML = `
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">JUVENILE INCIDENT PARAMETERS</span>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="juvLoc" class="data-input" placeholder="Incident Location" style="flex:2;">
+                        <input type="text" id="juvVeh" class="data-input" placeholder="Vehicle Description" style="flex:2;">
+                    </div>
+                    <div style="display:flex; gap:10px; margin-bottom:15px;">
+                        <input type="text" id="juvName" class="data-input" placeholder="Juvenile Name" style="flex:2;">
+                        <input type="number" id="juvAge" class="data-input" placeholder="Age" style="flex:1;">
+                    </div>
+                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Alleged Offenses:</label>
+                    <textarea id="juvOffenses" class="data-input" rows="3" placeholder="List offenses (Hit Enter for new line)..."></textarea>
+                    
+                    <label style="display:block; margin-top:15px; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">Involved Officer(s):</label>
+                    <input type="text" id="juvOfficers" class="data-input" placeholder="e.g. Inv. Officer - Sam - P-608">
+                </div>
+
+                <div class="terminal-panel" style="margin-bottom: 20px;">
+                    <span class="panel-label">NARRATIVE LOG</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Event Narrative:</label>
+                        <button class="btn-toggle" style="color:var(--theme-bright); border-color:var(--theme-bright);" onclick="enhanceNarrative()">[ ✨ AI NEURAL ENHANCE ]</button>
+                    </div>
+                    <textarea id="narrative" class="data-input" rows="8" placeholder="Enter narrative here..."></textarea>
+                </div>
+            `;
+        }
         else if (type === 'CITATION') {
             container.innerHTML = `
                 <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">CITATION</span>
+                    <span class="panel-label">CITATION PARAMETERS</span>
                     
                     <div style="display:flex; gap:10px; margin-bottom:15px;">
                         <input type="text" id="citDriver" class="data-input" placeholder="Subject Name & DOB" style="flex:2;">
@@ -1007,67 +1033,13 @@
                 </div>
             `;
         }
-        else if (type === 'NCIC') {
-            container.innerHTML = `
-                <div class="terminal-panel" style="margin-bottom: 20px; border-color:var(--success); box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);">
-                    <span class="panel-label" style="color:var(--bg-deep); background:var(--success); border-color:var(--success);">NCIC DATABASE ACCESS</span>
-                    
-                    <div style="display:flex; justify-content:space-between; margin-bottom: 15px; align-items:center;">
-                        <label style="color:var(--text-muted); font-weight:600; font-size:0.85rem;">Database Search Protocol:</label>
-                        <button class="btn-toggle" style="color:var(--success); border-color:var(--success);" onclick="toggleNCICForm()">+ ADD NEW RECORD</button>
-                    </div>
-
-                    <div style="display:flex; gap:10px; margin-bottom: 20px;">
-                        <input type="text" id="qSearch" class="data-input" placeholder="Search by Name or License Plate..." style="flex:1; border-color:var(--success);">
-                        <button class="btn" style="background:var(--success); border-color:var(--success); color:#000;" onclick="searchNCIC()">QUERY</button>
-                    </div>
-
-                    <div id="ncicAddForm" style="display:none; padding:25px; border:1px solid var(--theme-dim); background:var(--input-bg); margin-bottom:20px; border-radius:8px;">
-                        <span style="color:var(--success); font-weight:800; display:block; margin-bottom:15px; border-bottom: 1px solid var(--theme-dim); padding-bottom:8px; font-size:1.1rem;">// CREATE NEW DATABASE ENTRY</span>
-                        <div style="display:flex; gap:10px; margin-bottom:15px;">
-                            <input type="text" id="newNName" class="data-input" placeholder="Full Legal Name" style="flex:1;">
-                            <input type="text" id="newNDOB" class="data-input" placeholder="DOB (MM/DD/YYYY)" style="flex:1;">
-                        </div>
-                        <input type="text" id="newNPlate" class="data-input" placeholder="License Plate / Serial Number" style="margin-bottom:15px;">
-                        <input type="text" id="newNProps" class="data-input" placeholder="Properties Owned / Registered Addresses" style="margin-bottom:15px;">
-                        <select id="newNWarrant" class="data-input" style="margin-bottom:15px; font-weight:bold;">
-                            <option value="CLEAR">STATUS: CLEAR / NO WARRANTS</option>
-                            <option value="WANTED">STATUS: ACTIVE WARRANT / WANTED</option>
-                        </select>
-                        <textarea id="newNNotes" class="data-input" rows="3" placeholder="Officer Notes, warnings, distinguishing marks..." style="margin-bottom:20px;"></textarea>
-                        <button class="btn" onclick="saveNCICRecord()" style="width:100%; background:var(--success); color:#000; border-color:var(--success);">SAVE RECORD TO MAINFRAME</button>
-                    </div>
-
-                    <div id="queryResults" style="padding: 20px; border: 1px dashed var(--theme-dim); min-height:150px; border-radius:8px; font-family:'Share Tech Mono'; background:var(--input-bg);">
-                        <span style="color:var(--text-muted);">AWAITING INPUT...</span>
-                    </div>
-                </div>
-            `;
-        } 
-        else if (type === 'SETTINGS') {
-            container.innerHTML = `
-                <div class="terminal-panel" style="margin-bottom: 20px;">
-                    <span class="panel-label">OPERATOR SETTINGS</span>
-                    
-                    <label style="display:block; margin-bottom:8px; color:var(--text-muted); font-weight:600; font-size:0.85rem;">UPDATE CALLSIGN:</label>
-                    <div style="display:flex; gap:10px; margin-bottom: 20px;">
-                        <input type="text" id="setCallsign" class="data-input" value="${currentUserProfile.callsign}" style="flex:1;">
-                        <button class="btn" onclick="updateProfile('callsign')">UPDATE</button>
-                    </div>
-
-                    <div style="border-top:1px dashed var(--theme-ghost); padding-top:25px; display:flex; justify-content:space-between;">
-                        <button class="btn" onclick="location.reload()">LOGOUT</button>
-                    </div>
-                </div>
-            `;
-        }
     }
 
     function formatBullets(text) {
         if(!text) return "- None listed.";
         return text.split('\n')
             .filter(l => l.trim() !== '')
-            .map(l => l.trim().startsWith('-') || l.trim().startsWith('•') ? l.trim() : `- ${l.trim()}`)
+            .map(l => l.trim().startsWith('-') || l.trim().startsWith('•') ? l.trim() : `• ${l.trim()}`)
             .join('\n');
     }
 
@@ -1089,8 +1061,10 @@
         const pad = (n) => n.toString().padStart(2, '0');
         currentCaseID = `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`;
         
-        const dateStr = now.toLocaleDateString('en-US');
-        const timeStr = now.toLocaleTimeString('en-US', {hour12: false}) + " HRS";
+        const cpdCaseNum = `CPD-${pad(now.getDate())}${now.toLocaleString('default', { month: 'short' }).toUpperCase()}${now.getFullYear()}-${Math.floor(Math.random()*9000)+1000}`;
+        const dateStr = `${pad(now.getDate())}${now.toLocaleString('default', { month: 'short' }).toUpperCase()}${now.getFullYear()}`;
+        const timeStr = now.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute:'2-digit'});
+        
         const offName = currentUserProfile.name;
         const unitID = currentUserProfile.callsign; 
         
@@ -1099,43 +1073,63 @@
         if (currentTab === 'ARREST' || currentTab === 'INCIDENT' || currentTab === 'MISSING') {
             const type = document.getElementById('incType').value || currentTab;
             const loc = document.getElementById('incLoc').value || "[Location]";
-            const fLoc = document.getElementById('incFLoc').value || "[Final Location]";
-            const trans = document.getElementById('incTrans').value || "N/A";
             const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
             const disp = document.getElementById('incDisp').value || "[What was the end result]";
-            const rev = document.getElementById('incReview').value || "[Callsign / Rank / Full Name(s)]";
 
-            let subjectOut = "";
-            let descOut = "";
+            let subjectNamesOut = "";
+            let chargesOut = "";
             const subjects = document.querySelectorAll('.subject-entry');
             if(subjects.length === 0) {
-                subjectOut = " Name: N/A\n Sex/Race: N/A\n Clothing: N/A\n Other Identifiers: N/A\n\n **Charges:**\n- None listed.\n\n";
-                descOut = "N/A\n";
+                subjectNamesOut = "N/A\n";
+                chargesOut = "- None listed.\n";
             } else {
                 subjects.forEach((sub, idx) => {
                     const sName = sub.querySelector('.s-name').value || "UNKNOWN";
-                    const sSex = sub.querySelector('.s-sexrace').value || "UNKNOWN";
-                    const sCloth = sub.querySelector('.s-cloth').value || "UNKNOWN";
-                    const sOther = sub.querySelector('.s-other').value || "None";
                     const sCharges = formatBullets(sub.querySelector('.s-charges').value);
-                    
-                    let tag = subjects.length > 1 ? `*[Subject ${idx+1}]*\n` : ``;
-                    let descTag = subjects.length > 1 ? `*[Subject ${idx+1}]:* ` : ``;
-
-                    subjectOut += `${tag} Name: ${sName}\n Sex/Race: ${sSex}\n Clothing: ${sCloth}\n Other Identifiers (if any): ${sOther}\n\n **Charges:**\n${sCharges}\n\n`;
-                    descOut += `${descTag}${sSex}, ${sCloth}, ${sOther}\n`;
+                    subjectNamesOut += `Name: ${sName}\n`;
+                    chargesOut += `**Charges for ${sName}:**\n${sCharges}\n\n`;
                 });
             }
 
-            rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**REPORT TYPE – ${type}**\n\n`;
-            rawOut += `**Date of Incident:** ${dateStr}\n**Time of Incident:** ${timeStr}\n`;
-            rawOut += `**Primary Location:** ${loc}\n**Final Location (if pursuit/arrest moved):** ${fLoc}\n**Transported To:** ${trans}\n\n`;
-            rawOut += `**Reporting Officer:**\n${unitID} ${offName}\n\n**Assisting Officer(s):**\n[Add if any]\n\n`;
-            rawOut += `**Subject(s) Information:**\n${subjectOut}`;
+            rawOut = `**CHICAGO POLICE DEPARTMENT**\n**INCIDENT / ARREST REPORT**\n\n`;
+            rawOut += `**Case Number:** ${cpdCaseNum}\n`;
+            rawOut += `**Date:** ${dateStr}\n`;
+            rawOut += `**Time:** Approximately ${timeStr} Hours\n`;
+            rawOut += `**Location:** ${loc}\n`;
+            rawOut += `**Reporting Officer:** ${offName}\n`;
+            rawOut += `**Badge #:** ${unitID}\n`;
+            rawOut += `**Incident Type:** ${type}\n\n`;
+            rawOut += `**Involved Individual(s):**\n${subjectNamesOut}\n`;
             rawOut += `**Narrative:**\n${narrative}\n\n`;
-            rawOut += `**Subject(s) Description:**\n${descOut}\n`;
+            rawOut += `**Preliminary Charges / Violations:**\n${chargesOut}`;
             rawOut += `**Disposition:**\n${disp}\n\n`;
-            rawOut += `**Filed By:**\n ${unitID} ${offName}\n**Reviewed By:**\n ${rev}`;
+            rawOut += `**Officer Statement:**\nThe above narrative accurately reflects my observations and actions during the incident to the best of my knowledge and recollection.\n\n`;
+            rawOut += `**Reporting Officer:** ${offName}\n`;
+            rawOut += `**Badge #:** ${unitID}\n`;
+            rawOut += `**Signature:** ___________________________\n`;
+            rawOut += `**Date:** ${dateStr}`;
+        }
+        else if (currentTab === 'JUVENILE') {
+            const loc = document.getElementById('juvLoc').value || "[Location]";
+            const veh = document.getElementById('juvVeh').value || "[Vehicle]";
+            const name = document.getElementById('juvName').value || "[Name]";
+            const age = document.getElementById('juvAge').value || "[Age]";
+            const offenses = formatBullets(document.getElementById('juvOffenses').value);
+            const invOff = document.getElementById('juvOfficers').value || "None";
+            const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
+
+            rawOut = `**Juvenile Incident Report**\n\n`;
+            rawOut += `**Reporting Officer:** ${offName} / Badge ${unitID}\n`;
+            rawOut += `**Agency:** ${activeAgency}\n`;
+            rawOut += `**Incident Date/Time:** ${dateStr} / ${timeStr} Hours\n`;
+            rawOut += `**Incident Location:** ${loc}\n`;
+            rawOut += `**Juvenile:** ${name}, age ${age}\n`;
+            rawOut += `**Vehicle:** ${veh}\n\n`;
+            rawOut += `**Narrative**\n${narrative}\n\n`;
+            rawOut += `**Alleged Offenses**\n${offenses}\n`;
+            if (invOff !== "None") {
+                rawOut += `• Involved Officer(s): ${invOff}\n`;
+            }
         }
         else if (currentTab === 'CITATION') {
             const drv = document.getElementById('citDriver').value || "[Subject Name / DOB]";
@@ -1145,12 +1139,12 @@
             const amt = document.getElementById('citAmt').value || "[Amount]";
             const narrative = document.getElementById('narrative').value || "[Enter narrative here]";
             
-            rawOut = `**BLAINE COUNTY SHERIFF'S OFFICE**\n**CITATION**\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-            rawOut += `**Date:** ${dateStr} | **Time:** ${timeStr}\n`;
-            rawOut += `**Issuing Deputy:** ${unitID} ${offName}\n\n`;
+            rawOut = `**CHICAGO POLICE DEPARTMENT**\n**CITATION**\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+            rawOut += `**Date:** ${dateStr} | **Time:** ${timeStr} Hours\n`;
+            rawOut += `**Issuing Officer:** ${unitID} ${offName}\n\n`;
             rawOut += `**Subject Information:** ${drv}\n`;
             rawOut += `**Vehicle Description:** ${veh}\n`;
-            rawOut += `**Location of Incident:** ${loc}\n`;
+            rawOut += `**Location of Incident:** ${loc}\n\n`;
             rawOut += `**Infraction / Charge(s):**\n${infraction}\n\n`;
             rawOut += `**Citation Fine:** $${amt}\n\n`;
             rawOut += `**Narrative:**\n${narrative}\n`;
@@ -1174,8 +1168,8 @@
             if(document.getElementById('warB4') && document.getElementById('warB4').checked) basis.push("[X] Arrest is necessary to prevent further offenses and secure justice for victims.");
             else basis.push("[ ] Arrest is necessary to prevent further offenses and secure justice for victims.");
             
-            rawOut = `**Blaine County Sheriff's Office**\n**Arrest Warrant**\n\n`;
-            rawOut += `**Petitioner:** Blaine County Sheriff's Office\n**Requested By:** ${unitID} ${offName}\n\n`;
+            rawOut = `**CHICAGO POLICE DEPARTMENT**\n**ARREST WARRANT**\n\n`;
+            rawOut += `**Petitioner:** Chicago Police Department\n**Requested By:** ${unitID} ${offName}\n\n`;
             rawOut += `**In the Matter of the Arrest of:**\nName/DOB: ${target}\n\n`;
             rawOut += `**Charges to be Enforced:**\n${charges}\n\n`;
             rawOut += `**Introduction and Background:**\nI make this affidavit in support of an application for an arrest warrant for ${target}, for the following reasons:\n${bg}\n\n`;
@@ -1183,8 +1177,8 @@
             rawOut += `**Criminal Code Violations:**\nStatutes that are violated (See Charges above).\n\n`;
             rawOut += `**Basis for Arrest under Title 2, San Andreas Criminal Code:**\n${basis.join('\n')}\n\n`;
             rawOut += `**Conclusion:**\nI make this affidavit in support of an application for an arrest warrant for:\n${target}.\n\nI, ${offName}, a sworn officer of the law, declare under penalty of perjury under the laws of the State of San Andreas that the information provided is true and correct to the best of my knowledge.\n\n`;
-            rawOut += `**Officer sign here:**\n${unitID} ${offName}\nBlaine County Sheriff's Office\nDate: ${dateStr}\n\n`;
-            rawOut += `**Command Sign Here:**\n__________________________\nBlaine County Sheriff's Office\nDate:\n\n`;
+            rawOut += `**Officer sign here:**\n${unitID} ${offName}\nChicago Police Department\nDate: ${dateStr}\n\n`;
+            rawOut += `**Command Sign Here:**\n__________________________\nChicago Police Department\nDate:\n\n`;
             rawOut += `**Judge Sign Here:**\n__________________________\nDate:`;
         }
 
